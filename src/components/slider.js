@@ -25,7 +25,7 @@ const slides = [
 
 export default function SwiperDemo() {
   return (
-    <div className="relative h-[60vh] w-full sm:h-[70vh] md:h-[80vh] lg:h-[80vh] bg-black">
+    <div className="relative h-[20vh] w-full sm:h-[70vh] md:h-[35vh] lg:h-[80vh] bg-black">
       <Swiper
         modules={[Navigation, Pagination, Keyboard, Autoplay]}
         slidesPerView={1}
@@ -55,7 +55,7 @@ export default function SwiperDemo() {
               alt={`Slide ${i + 1}`}
               fill
               sizes="100vw"
-              className="object-cover"
+              className="object-cover cursor-pointer "
               priority={i === 0}
             />
           </SwiperSlide>
