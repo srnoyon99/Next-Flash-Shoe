@@ -153,11 +153,11 @@ export default function Navbar({
             >
               Shop Now
             </Link>
-            <select className="self-end bg-white dark:bg-black text-amber-50 text-xs shrink-0">
-              <option className="bg-white dark:bg-black text-amber-50" value="english">
+            <select className="self-end bg-gray-500 dark:bg-gray-500 text-amber-50 text-xs shrink-0">
+              <option className="bg-white dark:bg-black text-black dark:text-amber-50" value="english">
                 EN
               </option>
-              <option className="bg-white dark:bg-black text-amber-50" value="bengali">
+              <option className="bg-white dark:bg-black text-black dark:text-amber-50" value="bengali">
                 BN
               </option>
             </select>
@@ -175,7 +175,7 @@ export default function Navbar({
           <div className="flex items-center justify-between py-4 lg:hidden">
             <button
               onClick={() => setIsMobileMenuOpen((v) => !v)}
-              className="rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="rounded-lg p-2 transition-colors bg-gray-100 dark:bg-gray-800"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (

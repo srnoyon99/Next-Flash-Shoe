@@ -1,4 +1,6 @@
-import FlashSales from '@/components/bestsell'
+"use client"
+import BestSeller from '@/components/bestseller'
+import Products from '@/components/products'
 import SwiperCarousel from '@/components/slider'
 import React from 'react'
 
@@ -6,7 +8,8 @@ const page = () => {
   return (
     <div>
       <SwiperCarousel/>
-      <FlashSales/>
+      <Products/>
+      <BestSeller/>
     </div>
   )
 }
