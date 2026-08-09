@@ -3,7 +3,7 @@ import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Heart } from 'lucide-react'
 
-const BestSeller = () => {
+const Accessories = () => {
 
   const images = [
     { src: '/shoe1.avif', alt: 'Image 1' },
@@ -37,7 +37,7 @@ const BestSeller = () => {
     <div className="container mx-auto px-4 py-8">
       <div className="container flex items-center ">
         <div className="h-[40px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
-        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Best Seller</h2>
+        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Accessories</h2>
       </div>
 
       <Splide options={{
@@ -77,4 +77,4 @@ const BestSeller = () => {
   )
 }
 
-export default BestSeller
+export default Accessories
