@@ -175,7 +175,7 @@ export default function Navbar({
           <div className="flex items-center justify-between py-4 lg:hidden">
             <button
               onClick={() => setIsMobileMenuOpen((v) => !v)}
-              className="rounded-lg p-2 transition-colors bg-gray-100 dark:bg-gray-800"
+              className="rounded-lg p-2 transition-colors bg-gray-100 dark:bg-gray-800 cursor-pointer"
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -186,9 +186,7 @@ export default function Navbar({
             </button>
 
             <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-              <span className={`text-xl font-bold md:text-2xl ${themeText}`}>
-                Exclusive
-              </span>
+              <Image className=" h-23 w-30 rotate-13 py-2 " src={lightLogo} alt='img'/>
             </Link>
 
             <div className="flex items-center gap-2 md:gap-3">
