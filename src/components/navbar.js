@@ -231,7 +231,7 @@ export default function Navbar({
             </div>
 
             <Link href="/" className={`text-2xl font-bold leading-6 ${themeText}`}>
-              <Image className=" h-28 w-40 py-2 " src={lightLogo} alt='img'/>
+              <Image className=" h-28 w-40 py-2 rotate-15 " src={lightLogo} alt='img'/>
             </Link>
 
             <div className="flex items-center gap-6">
@@ -402,7 +402,7 @@ export default function Navbar({
                     <Link
                       href={link.href}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className={`block rounded-lg px-4 py-3 text-base font-semibold transition-colors hover:bg-gray-100 dark:hover:bg-gray-500 ${themeText} ${isActive(link.href) ? 'dark:bg-slate-600 bg-gray-100' : ''}`}
+                      className={`block rounded-lg px-4 py-3 text-base font-semibold transition-colors hover:bg-red-700 ${themeText} ${isActive(link.href) ? 'dark:bg-slate-600 bg-gray-100' : ''}`}
                     >
                       {link.label}
                     </Link>
@@ -468,7 +468,7 @@ export default function Navbar({
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[16px] font-medium leading-6 transition-colors hover:text-gray-500 ${themeText} ${isActive(link.href) ? `border-b-2 ${isDark ? 'border-white' : 'border-black'}` : ''}`}
+                className={`text-[16px] font-medium leading-6 transition-colors hover:text-red-700 ${themeText} ${isActive(link.href) ? `border-b-2 ${isDark ? 'border-white' : 'border-black'}` : ''}`}
               >
                 {link.label}
               </Link>

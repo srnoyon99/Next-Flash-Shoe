@@ -49,7 +49,7 @@ const Products = () => {
             <div className=" bg-yellow-300/50 rounded-2xl grid-rows-1 items-center justify-center mb-2">
             <img className=" w-full h-full lg:w-full lg:h-full object-cover " src={image.src} alt={image.alt} />
             <div className="text-center ml-2 border-0 border-black">
-              <h3 className="text-lg font-bold text-nowrap ">{products[index].name}</h3>
+              <h3 className="text-sm lg:text-lg font-bold text-nowrap ">{products[index].name}</h3>
             </div>
             </div>
           </SplideSlide>

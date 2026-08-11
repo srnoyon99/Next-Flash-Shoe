@@ -19,13 +19,13 @@ const Footer = () => {
                     <div className="flex flex-wrap justify-between gap-y-12 lg:gap-x-8">
 
                         <div className="w-full md:w-[45%] lg:w-[35%] flex flex-col items-start text-left">
-                            <Image
+                            <Image className="rotate-21 ml-5"
                                 src={logo}
                                 alt="Logo"
                                 width={157}
                                 height={40}
                             />
-                            <div className='w-full max-w-52 h-0.5 mt-8 bg-linear-to-r from-[#24212D] to-[#24212D]/0'></div>
+                            <div className='w-full max-w-52 h-0.5 bg-linear-to-r from-[#24212D] to-[#24212D]/0'></div>
                             <p className='text-sm text-black dark:text-white mt-6 max-w-[350px] leading-relaxed'>PrebuiltUI is a growing collection of beautifully designed, production-ready Tailwind CSS UI components.</p>
                         </div>
 
@@ -58,10 +58,11 @@ const Footer = () => {
                         <p className='text-xs text-center text-black dark:text-white '>© {new Date().getFullYear()} FLASH SHOE. All rights reserved.</p>
                     </div>
 
-                    <div className="w-full lg:hidden flex justify-center mt-6 md:mt-12 md:mb-[-0.5%]">
-                        <h1 className="text-center font-extrabold tracking-tighter text-nowrap leading-[0.70] text-zinc-600 dark:text-zinc-600 text-7xl pointer-events-none select-none">
+                    <div className="relative ">
+                        <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-3xl h-full max-h-64 bg-green-500 rounded-full blur-[170px] pointer-events-none"/>
+                        <h3 className="text-center font-extrabold leading-[0.7] text-transparent text-[clamp(3rem,14vw,10rem)] text-nowrap [-webkit-text-stroke:1px_#0D542B] mt-6" >
                             FLASH SHOE
-                        </h1>
+                        </h3>
                     </div>
                 </div>
             </footer>
