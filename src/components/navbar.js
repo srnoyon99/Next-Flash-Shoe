@@ -121,13 +121,12 @@ export default function Navbar({
 
   const navLinks = [
     { href: '/', label: 'Home' },
+    { href: '/accessories', label: 'Accessories' },
     { href: '/discountedproduct', label: 'Discounted Product' },
+    { href: '/leatherstudio', label: 'Leather Studio' },
     { href: '/sneakerstudio', label: 'Sneaker Studio' },
-    { href: '/accessories', label: 'ACCESSORIES' },
     { href: '/brands', label: 'Brands' },
-    { href: '/men', label: 'MEN' },
-    { href: '/women', label: 'WOMEN' },
-    { href: '/children', label: 'CHILDREN' },
+
     ...(currentUser ? [] : [{ href: '/auth/signup', label: 'Sign Up' }]),
   ];
 
