@@ -123,11 +123,11 @@ export default function Navbar({
     { href: '/', label: 'Home' },
     { href: '/discountedproduct', label: 'Discounted Product' },
     { href: '/sneakerstudio', label: 'Sneaker Studio' },
+    { href: '/accessories', label: 'ACCESSORIES' },
     { href: '/brands', label: 'Brands' },
     { href: '/men', label: 'MEN' },
     { href: '/women', label: 'WOMEN' },
     { href: '/children', label: 'CHILDREN' },
-    { href: '/accessories', label: 'ACCESSORIES' },
     ...(currentUser ? [] : [{ href: '/auth/signup', label: 'Sign Up' }]),
   ];
 
@@ -186,7 +186,7 @@ export default function Navbar({
             </button>
 
             <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-              <Image className=" h-23 w-30 rotate-13 py-2 " src={lightLogo} alt='img'/>
+              <Image className=" h-18 w-25 py-1 rotate-4 " src={lightLogo} alt='img'/>
             </Link>
 
             <div className="flex items-center gap-2 md:gap-3">
@@ -231,7 +231,7 @@ export default function Navbar({
             </div>
 
             <Link href="/" className={`text-2xl font-bold leading-6 ${themeText}`}>
-              <Image className=" h-28 w-40 py-2 rotate-15 " src={lightLogo} alt='img'/>
+              <Image className=" h-22 w-35 py-1 rotate-4 " src={lightLogo} alt='img'/>
             </Link>
 
             <div className="flex items-center gap-6">

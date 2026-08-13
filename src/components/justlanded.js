@@ -30,7 +30,7 @@ const JustLanded = () => {
      const sliderOptions = [
           { name: 'Sneakers' },
           { name: 'Party Shoes' },
-          { name: 'School & College' },
+          { name: 'Casual Shoes' },
           { name: 'Formal Shoes' },
           { name: 'Leather Items' },
           { name: 'Sports Shoes' },
@@ -66,8 +66,8 @@ const JustLanded = () => {
                          },
                     }}>
                          {sliderOptions.map((option, index) => (
-                              <SplideSlide className={' border-1 rounded-3xl border-gray-400/20 cursor-pointer mb-7 '} key={index}>
-                                   <h3 className="text-5 md:text-xl font-bold text-center py-2 ">{option.name}</h3>
+                              <SplideSlide className={' border-1 rounded-3xl border-gray-400/50 cursor-pointer mb-7 '} key={index}>
+                                   <h3 className=" text-4 lg:text-5 md:text-xl font-bold text-center py-2  ">{option.name}</h3>
                               </SplideSlide>
                          ))}
                     </Splide>

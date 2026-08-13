@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@plugin "daisyui" {
+   themes: light --default, dark --prefersdark;
+ }
 @import '@splidejs/react-splide/css';
 @custom-variant dark (&:where(.dark, .dark *));
 

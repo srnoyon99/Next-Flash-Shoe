@@ -19,13 +19,13 @@ const Footer = () => {
                     <div className="flex flex-wrap justify-between gap-y-12 lg:gap-x-8">
 
                         <div className="w-full md:w-[45%] lg:w-[35%] flex flex-col items-start text-left">
-                            <Image className="rotate-21 ml-5"
+                            <Image className=" h-20 lg:h-28 w-27 lg:w-40 rotate-4 ml-5 pb-3"
                                 src={logo}
                                 alt="Logo"
                                 width={157}
                                 height={40}
                             />
-                            <div className='w-full max-w-52 h-0.5 bg-linear-to-r from-[#24212D] to-[#24212D]/0'></div>
+                            <div className='w-full max-w-52 h-0.5 bg-linear-to-r from-[#24212D] to-[#24212D]/0 dark:from-[#fbfbfc] dark:to-[#24212D]/0 '></div>
                             <p className='text-sm text-black dark:text-white mt-6 max-w-[350px] leading-relaxed'>PrebuiltUI is a growing collection of beautifully designed, production-ready Tailwind CSS UI components.</p>
                         </div>
 
@@ -52,7 +52,7 @@ const Footer = () => {
 
                     </div>
 
-                    <div className='w-full h-0.5 mt-4 mb-4 bg-linear-to-r from-[#24212D]/0 via-[#24212D] to-[#24212D]/0'></div>
+                    <div className='w-full h-0.5 mt-4 mb-4 bg-linear-to-r from-[#24212D]/0 via-[#24212D] to-[#24212D]/0 dark:from-[#24212D]/0 dark:via-[#f4f4f5] dark:to-[#24212D]/0'></div>
 
                     <div className=" sm:flex-row items-center justify-between relative z-10">
                         <p className='text-xs text-center text-black dark:text-white '>© {new Date().getFullYear()} FLASH SHOE. All rights reserved.</p>
