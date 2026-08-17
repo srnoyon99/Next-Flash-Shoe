@@ -1,6 +1,5 @@
 "use client"
 import React from 'react'
-
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Heart } from 'lucide-react'
 
@@ -94,7 +93,7 @@ const page = () => {
       {/* //////////////////Selected Your Products////////////////////// */}
 
       {/* //////////////////ALL Products////////////////////// */}
-      <div>\
+      <div className=" pt-8 ">
          <div className="flex items-center ">
           <div className="h-[20px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
           <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">All Products</h2>

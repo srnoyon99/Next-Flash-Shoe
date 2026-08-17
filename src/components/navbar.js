@@ -20,6 +20,7 @@ import {
   ContactRound,
   Moon,
   Sun,
+  SunDim,
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -171,52 +172,187 @@ export default function Navbar({
       >
         <div className="container mx-auto px-4">
           {/* ---- Mobile row ---- */}
-          <div className="flex items-center justify-between py-4 lg:hidden">
-            <button
-              onClick={() => setIsMobileMenuOpen((v) => !v)}
-              className="rounded-lg p-2 transition-colors bg-gray-100 dark:bg-gray-800 cursor-pointer"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className={`h-6 w-6 ${themeIcon}`} />
-              ) : (
-                <Menu className={`h-6 w-6 ${themeIcon}`} />
-              )}
-            </button>
+          <div className="drawer block lg:hidden">
+            <input
+              id="flash-mobile-drawer"
+              type="checkbox"
+              className="drawer-toggle"
+              checked={isMobileMenuOpen}
+              onChange={() => setIsMobileMenuOpen((v) => !v)}
+            />
 
-            <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-              <Image className=" h-18 w-25 py-1 rotate-4 " src={lightLogo} alt='img'/>
-            </Link>
+            <div className="drawer-content">
+              <div className="flex items-center justify-between py-4">
+                <label
+                  htmlFor="flash-mobile-drawer"
+                  className="rounded-lg p-2 transition-colors bg-gray-100 dark:bg-gray-800 cursor-pointer"
+                  aria-label="Toggle menu"
+                >
+                  <Menu className={`h-6 w-6 ${themeIcon}`} />
+                </label>
 
-            <div className="flex items-center gap-2 md:gap-3">
-              <button
-                onClick={() => setIsSearchOpen((v) => !v)}
-                className="rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-                aria-label="Search"
-              >
-                <Search size={24} className={themeIcon} />
-              </button>
+                <Link href="/" className="absolute left-1/2 -translate-x-1/2">
+                  <Image className=" h-18 w-25 py-1 rotate-4 " src={lightLogo} alt='img'/>
+                </Link>
 
-              <Link
-                href="/wishlist"
-                className="relative rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-              >
-                <Heart fill="#ff0000" size={24} className={themeIcon} strokeWidth={2} />
-                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                  {wishlistCount}
-                </span>
-              </Link>
+                <div className="flex items-center gap-2 md:gap-3">
+                  <button
+                    onClick={() => setIsSearchOpen((v) => !v)}
+                    className="rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                    aria-label="Search"
+                  >
+                    <Search size={24} className={themeIcon} />
+                  </button>
 
-              <Link
-                href="/cart"
-                className="relative rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-                aria-label="Shopping cart"
-              >
-                <ShoppingCart size={24} className={themeIcon} strokeWidth={2} />
-                <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                  {cartCount}
-                </span>
-              </Link>
+                  <Link
+                    href="/wishlist"
+                    className="relative rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                  >
+                    <Heart fill="#ff0000" size={24} className={themeIcon} strokeWidth={2} />
+                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                      {wishlistCount}
+                    </span>
+                  </Link>
+
+                  <Link
+                    href="/cart"
+                    className="relative rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                    aria-label="Shopping cart"
+                  >
+                    <ShoppingCart size={24} className={themeIcon} strokeWidth={2} />
+                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                      {cartCount}
+                    </span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="drawer-side z-50">
+              <label
+                htmlFor="my-drawer-1"
+                aria-label="close sidebar"
+                className="drawer-overlay fixed inset-0 bg-black/50"
+                onClick={() => setIsMobileMenuOpen(false)}
+              />
+
+              <aside className={`menu min-h-full w-72 p-4 text-base-content ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}>
+                <div className="mb-4 flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-700 text-white">
+                      <ShoppingBag size={18} />
+                    </div>
+                    <span className="text-lg font-bold">Flash Shoes</span>
+                  </div>
+
+                  <label
+                    htmlFor="flash-mobile-drawer"
+                    className="cursor-pointer rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-800"
+                    aria-label="Close drawer"
+                  >
+                    <X className={`h-5 w-5 ${themeIcon}`} />
+                  </label>
+                </div>
+
+                <div className="mb-4 space-y-2">
+                  <div className="relative" ref={mobileMoodRef}>
+                    {mobileMoodOpen && (
+                      <div className="absolute z-10 mt-1 w-full rounded-lg border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+                        <button
+                          onClick={() => {
+                            setIsDark(false);
+                            setMobileMoodOpen(false);
+                          }}
+                          className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                          Light
+                        </button>
+                        <button
+                          onClick={() => {
+                            setIsDark(true);
+                            setMobileMoodOpen(false);
+                          }}
+                          className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-200 dark:hover:bg-gray-700"
+                        >
+                          Dark
+                        </button>
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="relative" ref={mobileAccountRef}>
+                    <button
+                      onClick={() => setMobileAccountOpen((v) => !v)}
+                      className="flex w-full items-center justify-between rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-600 dark:text-white"
+                    >
+                      Account <ChevronDown size={16} />
+                    </button>
+                    {mobileAccountOpen && (
+                      <div className={`absolute right-0 z-10 mt-1 min-w-56 space-y-3 rounded-xl border border-gray-200 bg-white p-2 shadow-lg backdrop-blur-[100px] dark:border-gray-700 dark:bg-black/80 dark:text-white`}>
+                        {currentUser ? (
+                          <>
+                            <p className="text-sm text-gray-500 dark:text-gray-300">{currentUser.email}</p>
+                            <Link href="/account" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <User size={20} /> Manage My Account
+                            </Link>
+                            <Link href="/orders" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <ShoppingBag size={20} /> My Order
+                            </Link>
+                            <Link href="/cancellations" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <XCircle size={20} /> My Cancellation
+                            </Link>
+                            <Link href="/reviews" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <Star size={20} /> My Reviews
+                            </Link>
+                          </>
+                        ) : (
+                          <>
+                            <Link href="/auth/login" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <User size={20} /> Sign In
+                            </Link>
+                            <Link href="/auth/signup" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <UserPlus size={20} /> Create Account
+                            </Link>
+                          </>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <ul className="menu w-full space-y-2">
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`block rounded-lg px-4 py-3 text-base font-semibold transition-colors hover:bg-red-700 ${themeText} ${isActive(link.href) ? 'bg-gray-100 dark:bg-slate-600' : ''}`}
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+
+                {currentUser && (
+                  <button
+                    onClick={handleLogout}
+                    className="mt-6 w-full rounded-lg border border-red-700 bg-red-700 py-2 font-semibold text-white transition-colors hover:bg-red-600 dark:border-red-700 dark:bg-red-700 dark:hover:bg-red-600"
+                  >
+                    Log Out
+                  </button>
+                )}
+
+                 <button
+                  onClick={toggleTheme}
+                  className={`inline-flex items-center justify-between gap-2 rounded-full border border-gray-300 px-3 py-2 text-sm font-medium transition hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 cursor-pointer ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}
+                  aria-label="Toggle light and dark mode "
+                >
+                  {isDark ? <Moon fill="#FFFF00" className={`h-4 w-4 ${themeIcon}`} /> : <SunDim color="#000000" fill="#e9fa00" className={`h-4 w-4 ${themeIcon}`} />}
+                  {isDark ? 'Dark mode' : 'Light mode'} 
+                </button>
+
+              </aside>
             </div>
           </div>
 
@@ -317,109 +453,6 @@ export default function Navbar({
           </div>
         </div>
         
-        {/* ---------------- Mobile menu dropdown ---------------- */}
-        {isMobileMenuOpen && (
-          <div className="border-t lg:hidden ${isDark ? 'border-gray-700 bg-black' : 'border-gray-200 bg-white'}">
-            <div className="container mx-auto px-4 py-4">
-              <div className="mb-3 flex justify-between gap-3">
-                {/* Mood dropdown */}
-                <div className="relative w-1/2" ref={mobileMoodRef}>
-                  <button
-                    onClick={() => setMobileMoodOpen((v) => !v)}
-                    className="flex w-full items-center justify-between rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-600 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800"
-                  >
-                    Mood <ChevronDown size={16} />
-                  </button>
-                  {mobileMoodOpen && (
-                    <div className="absolute z-10 mt-1 w-full rounded-lg border border-gray-200 bg-white dark-bg-black py-1 shadow-lg dark:border-gray-700 hover:bg-white dark:bg-gray-800 dark:hover:bg-gray-800 ">
-                      <button
-                        onClick={() => {
-                          setIsDark(false);
-                          setMobileMoodOpen(false);
-                        }}
-                        className={`block w-full px-4 py-2 text-left text-sm hover:bg-gray-200 hover:dark:bg-gray-600`}
-                      >
-                        Light
-                      </button>
-                      <button
-                        onClick={() => {
-                          setIsDark(true);
-                          setMobileMoodOpen(false);
-                        }}
-                        className={`block w-full px-4 py-2 text-left text-sm hover:bg-gray-200 hover:dark:bg-gray-600`}
-                      >
-                        Dark
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                {/* Account dropdown */}
-                <div className="relative w-1/2" ref={mobileAccountRef}>
-                  <button
-                    onClick={() => setMobileAccountOpen((v) => !v)}
-                    className="flex w-full items-center justify-between rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-600 dark:text-white"
-                  >
-                    Account <ChevronDown size={16} />
-                  </button>
-                  {mobileAccountOpen && (
-                    <div className={`absolute right-0 z-10 mt-1 min-w-56 space-y-3 rounded-xl border-none  backdrop-blur-[100px] border-0 bg-gray-100 dark:bg-black/50 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-900`}>
-                      {currentUser ? (
-                        <>
-                          <p className="text-sm text-gray-300">{currentUser.email}</p>
-                          <Link href="/account" className="flex items-center gap-4 hover:bg-gray-400 hover:dark:bg-gray-700 p-2 rounded-2xl " onClick={() => setMobileAccountOpen(false)}>
-                            <User size={20} /> Manage My Account
-                          </Link>
-                          <Link href="/orders" className="flex items-center gap-4 hover:bg-gray-400 hover:dark:bg-gray-700 p-2 rounded-2xl " onClick={() => setMobileAccountOpen(false)}>
-                            <ShoppingBag size={20} /> My Order
-                          </Link>
-                          <Link href="/cancellations" className="flex items-center gap-4 hover:bg-gray-400 hover:dark:bg-gray-700 p-2 rounded-2xl " onClick={() => setMobileAccountOpen(false)}>
-                            <XCircle size={20} /> My Cancellation
-                          </Link>
-                          <Link href="/reviews" className="flex items-center gap-4 hover:bg-gray-400 hover:dark:bg-gray-700 p-2 rounded-2xl " onClick={() => setMobileAccountOpen(false)}>
-                            <Star size={20} /> My Reviews
-                          </Link>
-                        </>
-                      ) : (
-                        <>
-                          <Link href="/auth/login" className="flex items-center gap-4 hover:bg-gray-400 hover:dark:bg-gray-700 p-2 rounded-2xl " onClick={() => setMobileAccountOpen(false)}>
-                            <User size={20} /> Sign In
-                          </Link>
-                          <Link href="/auth/signup" className="flex items-center gap-4 hover:bg-gray-400 hover:dark:bg-gray-700 p-2 rounded-2xl " onClick={() => setMobileAccountOpen(false)}>
-                            <UserPlus size={20} /> Create Account
-                          </Link>
-                        </>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <ul className="space-y-2">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      onClick={() => setIsMobileMenuOpen(false)}
-                      className={`block rounded-lg px-4 py-3 text-base font-semibold transition-colors hover:bg-red-700 ${themeText} ${isActive(link.href) ? 'dark:bg-slate-600 bg-gray-100' : ''}`}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              {currentUser && (
-                <button
-                  onClick={handleLogout}
-                  className="mt-3 w-full rounded-lg border border-red-700 bg-red-700 py-2 font-semibold text-white transition-colors hover:bg-red-600 dark:border-red-700 dark:bg-red-700 dark:hover:bg-red-600"
-                >
-                  Log Out
-                </button>
-              )}
-            </div>
-          </div>
-        )}
 
         {/* ---------------- Mobile search dropdown ---------------- */}
         {isSearchOpen && (
