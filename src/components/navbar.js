@@ -168,7 +168,7 @@ export default function Navbar({
       {/* ---------------- Main navbar ---------------- */}
       <nav
         ref={navbarRef}
-        className={`relative z-50 max-w-full border-b transition-shadow ${isDark ? 'border-gray-700 bg-black' : 'border-gray-200 bg-white'}`}
+        className={`sticky top-0 z-50 max-w-full border-b transition-shadow ${isDark ? 'border-gray-700 bg-black' : 'border-gray-200 bg-white'}`}
       >
         <div className="container mx-auto px-4">
           {/* ---- Mobile row ---- */}
@@ -237,12 +237,11 @@ export default function Navbar({
               />
 
               <aside className={`menu min-h-full w-72 p-4 text-base-content ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}>
-                <div className="mb-4 flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-700 text-white">
-                      <ShoppingBag size={18} />
-                    </div>
-                    <span className="text-lg font-bold">Flash Shoes</span>
+                <div className="mb-4 flex items-center justify-between border-b-1 border-black dark:border-gray-300 pb-6 pt-2 ">
+                  <div className="flex items-center gap-2 ">
+                    <Link href="/" className="absolute left-1/2 -translate-x-1/2">
+                  <Image className=" h-18 w-25 rotate-4 " src={lightLogo} alt='img'/>
+                </Link>
                   </div>
 
                   <label
@@ -491,7 +490,6 @@ export default function Navbar({
             </div>
           </div>
         )}
-      </nav>
 
       <div className={`hidden lg:block py-[15px] ${isDark ? 'bg-slate-800' : 'bg-gray-300'}`}>
         <div className="container mx-auto px-4">
@@ -509,6 +507,8 @@ export default function Navbar({
 
         </div>
       </div>
+      
+      </nav>
 
     </>
   );
