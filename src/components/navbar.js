@@ -123,12 +123,12 @@ export default function Navbar({
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/accessories', label: 'Accessories' },
+    { href: '/brands', label: 'Brands' },
     { href: '/discountedproduct', label: 'Discounted Product' },
     { href: '/leatherstudio', label: 'Leather Studio' },
     { href: '/sneakerstudio', label: 'Sneaker Studio' },
-    { href: '/brands', label: 'Brands' },
 
-    ...(currentUser ? [] : [{ href: '/auth/signup', label: 'Sign Up' }]),
+    ...(currentUser ? [] : [{ href: '/signin', label: 'Sign In' }]),
   ];
 
   const isActive = (href) => (href === '/' ? pathname === '/' : pathname?.startsWith(href));
@@ -306,10 +306,10 @@ export default function Navbar({
                           </>
                         ) : (
                           <>
-                            <Link href="/auth/login" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                            <Link href="signin" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <User size={20} /> Sign In
                             </Link>
-                            <Link href="/auth/signup" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                            <Link href="signup" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <UserPlus size={20} /> Create Account
                             </Link>
                           </>
@@ -427,10 +427,10 @@ export default function Navbar({
                         </>
                       ) : (
                         <>
-                          <Link href="/auth/login" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
+                          <Link href="signin" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <User size={22} /> Sign In
                           </Link>
-                          <Link href="/auth/signup" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
+                          <Link href="signup" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <UserPlus size={22} /> Create Account
                           </Link>
                         </>

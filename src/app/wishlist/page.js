@@ -66,7 +66,7 @@ const page = () => {
        <div className=" pt-12">
       <div className=" flex items-center ">
         <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
-        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Best Seller</h2>
+        <h2 className=" text-2xl font-bold mb-4 ml-2 ">You May Also Like</h2>
       </div>
 
       <Splide options={{
