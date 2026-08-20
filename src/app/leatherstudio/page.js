@@ -13,7 +13,7 @@ const page = () => {
     <div>
       <div className="container mx-auto px-4 py-8">
         <HeroBanner
-          subtitle="leather"
+          subtitle="sneaker"
           titleClassName="text-center font-extrabold leading-10 text-transparent dark:text-white text-2xl lg:text-5xl text-nowrap [-webkit-text-stroke:1px_#0D542B] bg-clip-text  bg-red-500 mt-6"
           subtitleClassName="text-2xl lg:text-5xl text-gray-800 dark:text-gray-200 text-center mt-0 lg:mt-5 font-bold leading-5 text-balance lg:text-nowrap bg-clip-text bg-red-500"
         >

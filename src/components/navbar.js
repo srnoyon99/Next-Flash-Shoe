@@ -61,11 +61,11 @@ export default function Navbar({
       ? 'dark'
       : 'light';
 
-    queueMicrotask(() => setIsDark(theme === 'dark'));
+    setIsDark(theme === 'dark');
     html.classList.remove('light', 'dark');
     html.classList.add(theme);
     window.localStorage.setItem('theme', theme);
-    queueMicrotask(() => setIsThemeLoaded(true));
+    setIsThemeLoaded(true);
   }, []);
 
   useEffect(() => {

@@ -60,7 +60,7 @@ export default function LoginForm() {
                   </TextField>
 
                   <div className="flex items-start flex-wrap gap-2">
-                     <Checkbox id="remember" name="remember" label="Remember me" darkClassName="dark:outline-neutral-600 dark:bg-neutral-700" />
+                     <Checkbox id="remember" name="remember" label="Remember me" wrapperClassName={null} darkClassName="dark:outline-neutral-600 dark:bg-neutral-700" />
 
                      <Link href="/forgetpassword"
                         className="ml-auto text-sm font-medium text-blue-700 dark:text-blue-500 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">

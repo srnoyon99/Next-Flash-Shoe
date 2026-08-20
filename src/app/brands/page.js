@@ -26,7 +26,7 @@ const page = () => {
             title={title}
             wrapperClassName=" flex items-center justify-between "
             contentClassName=" flex items-center"
-            pillClassName="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl flex items-center justify-center "
+            pillClassName={index ? "h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl " : "h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl flex items-center justify-center "}
             action={<button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >All</button>}
           />
           <ProductCarousel items={items} options={options} />

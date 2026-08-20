@@ -18,13 +18,13 @@ export default function SignupPage() {
                     <form className="w-full">
                          <div className="grid sm:grid-cols-2 gap-6">
                               <TextField type="text" id="fname" name="fname" label={<>Full
-                                   Name</>} placeholder="Your Name" />
-                              <TextField type="text" id="lname" name="lname" label="Address" placeholder="Give Your Address" />
-                              <TextField type="email" id="email" name="email" label="Email" placeholder="you@gmail.com" />
-                              <TextField type="tel" id="mobile" name="mobile" label="Mobile Number" placeholder="017*******" />
-                              <TextField type="password" id="password" name="password" label="Password" placeholder="••••••••" />
+                                   Name</>} placeholder="Your Name" requiredFirst />
+                              <TextField type="text" id="lname" name="lname" label="Address" placeholder="Give Your Address" requiredFirst />
+                              <TextField type="email" id="email" name="email" label="Email" placeholder="you@gmail.com" requiredFirst />
+                              <TextField type="tel" id="mobile" name="mobile" label="Mobile Number" placeholder="017*******" requiredFirst />
+                              <TextField type="password" id="password" name="password" label="Password" placeholder="••••••••" requiredFirst />
                               <TextField type="password" id="cpassword" name="cpassword" label={<>Confirm
-                                   Password</>} placeholder="••••••••" />
+                                   Password</>} placeholder="••••••••" requiredFirst />
                               <Checkbox id="tmc" name="tmc" label="I accept the" terms />
                          </div>
 
