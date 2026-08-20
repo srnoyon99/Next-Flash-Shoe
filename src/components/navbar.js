@@ -23,6 +23,7 @@ import {
   SunDim,
 } from 'lucide-react';
 import Image from 'next/image';
+import { AccountLinks } from '@/components/ui/AccountLinks';
 
 
 export default function Navbar({
@@ -60,11 +61,11 @@ export default function Navbar({
       ? 'dark'
       : 'light';
 
-    setIsDark(theme === 'dark');
+    queueMicrotask(() => setIsDark(theme === 'dark'));
     html.classList.remove('light', 'dark');
     html.classList.add(theme);
     window.localStorage.setItem('theme', theme);
-    setIsThemeLoaded(true);
+    queueMicrotask(() => setIsThemeLoaded(true));
   }, []);
 
   useEffect(() => {
@@ -288,32 +289,7 @@ export default function Navbar({
                     </button>
                     {mobileAccountOpen && (
                       <div className={`absolute right-0 z-10 mt-1 min-w-56 space-y-3 rounded-xl border border-gray-200 bg-white p-2 shadow-lg backdrop-blur-[100px] dark:border-gray-700 dark:bg-black/80 dark:text-white`}>
-                        {currentUser ? (
-                          <>
-                            <p className="text-sm text-gray-500 dark:text-gray-300">{currentUser.email}</p>
-                            <Link href="/account" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <User size={20} /> Manage My Account
-                            </Link>
-                            <Link href="/orders" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <ShoppingBag size={20} /> My Order
-                            </Link>
-                            <Link href="/cancellations" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <XCircle size={20} /> My Cancellation
-                            </Link>
-                            <Link href="/reviews" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <Star size={20} /> My Reviews
-                            </Link>
-                          </>
-                        ) : (
-                          <>
-                            <Link href="signin" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <User size={20} /> Sign In
-                            </Link>
-                            <Link href="signup" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <UserPlus size={20} /> Create Account
-                            </Link>
-                          </>
-                        )}
+                        <AccountLinks currentUser={currentUser} iconSize={20} linkClassName="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }} />
                       </div>
                     )}
                   </div>
@@ -406,34 +382,11 @@ export default function Navbar({
                   </button>
                   {accountMenuOpen && (
                     <div className={`absolute right-0 mt-2 min-w-56 space-y-3 rounded-xl border-none py-4 pl-5 pr-3 backdrop-blur-[100px] ${isDark ? 'bg-black/50 text-white' : 'bg-white/80 text-black'}`}>
-                      {currentUser ? (
-                        <>
-                          <p className="text-sm text-gray-300">{currentUser.email}</p>
-                          <Link href="/account" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <User size={22} /> Manage My Account
-                          </Link>
-                          <Link href="/orders" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <ShoppingBag size={22} /> My Order
-                          </Link>
-                          <Link href="/cancellations" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <XCircle size={22} /> My Cancellation
-                          </Link>
-                          <Link href="/reviews" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <Star size={22} /> My Reviews
-                          </Link>
-                          <button onClick={handleLogout} className="flex w-full items-center gap-4 cursor-pointer">
-                            <LogOut size={22} /> Log Out
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <Link href="signin" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <User size={22} /> Sign In
-                          </Link>
-                          <Link href="signup" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <UserPlus size={22} /> Create Account
-                          </Link>
-                        </>
+                      <AccountLinks currentUser={currentUser} iconSize={22} emailClassName="text-sm text-gray-300" linkClassName="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)} />
+                      {currentUser && (
+                        <button onClick={handleLogout} className="flex w-full items-center gap-4 cursor-pointer">
+                          <LogOut size={22} /> Log Out
+                        </button>
                       )}
                     </div>
                   )}
