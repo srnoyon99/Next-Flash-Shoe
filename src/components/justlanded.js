@@ -22,7 +22,7 @@ const JustLanded = () => {
 
      return (
           <div className="container mx-auto px-4 py-8">
-               <SectionHeading title="Just Landed" pillClassName="h-[40px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
+               <SectionHeading title="Just Landed" pillClassName="h-[30px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
                <div className="mb-7">
                     <Splide options={productCarouselOptions(7, { 640: { perPage: 3 }, 1024: { perPage: 4 } })}>
                          {sliderOptions.map((option, index) => (

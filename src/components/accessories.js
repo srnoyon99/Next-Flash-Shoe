@@ -3,6 +3,7 @@ import React from 'react'
 import { ProductCarousel, productCarouselOptions } from '@/components/ui/ProductCard'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { shoeImages, products, withImages } from '@/data/products'
+import Cummonbutton from './cummonbutton'
 
 const Accessories = () => {
 
@@ -10,8 +11,14 @@ const Accessories = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <SectionHeading title="Accessories" pillClassName="h-[40px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
-      <ProductCarousel items={items} options={productCarouselOptions(4, { 640: { perPage: 2 }, 1024: { perPage: 3 } })} />
+      <SectionHeading title="Accessories" pillClassName="h-[30px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
+      <ProductCarousel
+        items={items}
+        options={productCarouselOptions(4, { 640: { perPage: 2 }, 1024: { perPage: 3 } })}
+        slideClassName={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs '}
+        imageContent={<Cummonbutton />}
+        showSize={false}
+      />
 
     </div>
   )

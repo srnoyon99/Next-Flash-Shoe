@@ -10,7 +10,7 @@ const BestSeller = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <SectionHeading title="Best Seller" pillClassName="h-[40px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
+      <SectionHeading title="Best Seller" pillClassName="h-[30px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
       <ProductCarousel items={items} options={productCarouselOptions(4, { 640: { perPage: 2 }, 1024: { perPage: 3 } })} />
 
     </div>
