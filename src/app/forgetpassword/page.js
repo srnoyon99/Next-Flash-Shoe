@@ -28,23 +28,37 @@ export default function ForgetPasswordPage() {
     setStatus("loading");
     setErrorMsg("");
 
+    let res;
     try {
-      const res = await fetch("/api/auth/forget-password", {
+      res = await fetch("/api/auth/forget-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
       });
-
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        throw new Error(data?.message || "Something went wrong. Try again.");
-      }
-
-      setStatus("success");
     } catch (err) {
+      console.error("Password reset request failed to reach the server:", err);
       setStatus("error");
-      setErrorMsg(err.message || "Something went wrong. Try again.");
+      setErrorMsg("Could not reach the server. Check your connection and try again.");
+      return;
     }
+
+    if (!res.ok) {
+      let message = "";
+      try {
+        const data = await res.json();
+        message = typeof data?.message === "string" ? data.message : "";
+      } catch (err) {
+        console.error(
+          `Password reset request failed with status ${res.status} and an unreadable body:`,
+          err
+        );
+      }
+      setStatus("error");
+      setErrorMsg(message || `Something went wrong (${res.status}). Try again.`);
+      return;
+    }
+
+    setStatus("success");
   };
 
   return (

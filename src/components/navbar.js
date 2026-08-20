@@ -23,6 +23,11 @@ import {
   SunDim,
 } from 'lucide-react';
 import Image from 'next/image';
+import {
+  prefersDarkColorScheme,
+  readStoredValue,
+  writeStoredValue,
+} from '@/lib/storage';
 
 
 export default function Navbar({
@@ -40,6 +45,8 @@ export default function Navbar({
   const [isDark, setIsDark] = useState(false);
   const [isThemeLoaded, setIsThemeLoaded] = useState(false);
 
+  const [logoutError, setLogoutError] = useState('');
+
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
   const [mobileAccountOpen, setMobileAccountOpen] = useState(false);
   const [mobileMoodOpen, setMobileMoodOpen] = useState(false);
@@ -51,19 +58,19 @@ export default function Navbar({
   // ---- theme handling -----------------------------------------------
   useLayoutEffect(() => {
     const html = document.documentElement;
-    const storedTheme = window.localStorage.getItem('theme');
+    const storedTheme = readStoredValue('theme');
     const theme = storedTheme === 'dark'
       ? 'dark'
       : storedTheme === 'light'
         ? 'light'
-        : window.matchMedia('(prefers-color-scheme: dark)').matches
+        : prefersDarkColorScheme()
           ? 'dark'
           : 'light';
 
     setIsDark(theme === 'dark');
     html.classList.remove('light', 'dark');
     html.classList.add(theme);
-    window.localStorage.setItem('theme', theme);
+    writeStoredValue('theme', theme);
     setIsThemeLoaded(true);
   }, []);
 
@@ -73,7 +80,7 @@ export default function Navbar({
     const theme = isDark ? 'dark' : 'light';
     html.classList.remove('light', 'dark');
     html.classList.add(theme);
-    window.localStorage.setItem('theme', theme);
+    writeStoredValue('theme', theme);
   }, [isDark, isThemeLoaded]);
 
   const toggleTheme = () => setIsDark((prev) => !prev);
@@ -109,6 +116,7 @@ export default function Navbar({
   }, []);
 
   const handleLogout = async () => {
+    setLogoutError('');
     try {
       if (onLogout) await onLogout();
       setIsMobileMenuOpen(false);
@@ -117,6 +125,11 @@ export default function Navbar({
       router.push('/auth/login');
     } catch (error) {
       console.error('Logout failed:', error);
+      setLogoutError(
+        error instanceof Error && error.message
+          ? error.message
+          : 'Log out failed. Please try again.'
+      );
     }
   };
 
@@ -344,12 +357,19 @@ export default function Navbar({
                 </ul>
 
                 {currentUser && (
-                  <button
-                    onClick={handleLogout}
-                    className="mt-6 w-full rounded-lg border border-red-700 bg-red-700 py-2 font-semibold text-white transition-colors hover:bg-red-600 dark:border-red-700 dark:bg-red-700 dark:hover:bg-red-600"
-                  >
-                    Log Out
-                  </button>
+                  <>
+                    <button
+                      onClick={handleLogout}
+                      className="mt-6 w-full rounded-lg border border-red-700 bg-red-700 py-2 font-semibold text-white transition-colors hover:bg-red-600 dark:border-red-700 dark:bg-red-700 dark:hover:bg-red-600"
+                    >
+                      Log Out
+                    </button>
+                    {logoutError && (
+                      <p role="alert" className="mt-2 text-sm text-red-600 dark:text-red-400">
+                        {logoutError}
+                      </p>
+                    )}
+                  </>
                 )}
 
                 <button
@@ -454,6 +474,11 @@ export default function Navbar({
                           <button onClick={handleLogout} className="flex w-full items-center gap-4 cursor-pointer">
                             <LogOut size={22} /> Log Out
                           </button>
+                          {logoutError && (
+                            <p role="alert" className="text-sm text-red-500">
+                              {logoutError}
+                            </p>
+                          )}
                         </>
                       ) : (
                         <>
