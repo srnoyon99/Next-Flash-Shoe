@@ -5,6 +5,12 @@ import Image from "next/image";
 import { MoveLeft } from "lucide-react";
 
 export default function SignupPage() {
+     // Prevents the browser from serialising credentials and personal details into
+     // the URL query string until a signup endpoint is wired up.
+     const handleSubmit = (event) => {
+          event.preventDefault();
+     };
+
      return (
           <div>
                <div className="w-full max-w-lg mx-auto px-5 sm:max-w-4xl mt-9">
@@ -14,7 +20,7 @@ export default function SignupPage() {
                          <p className="text-slate-600 text-base mt-6 dark:text-slate-400">Create your account and get started</p>
                     </div>
 
-                    <form className="w-full">
+                    <form method="post" onSubmit={handleSubmit} className="w-full">
                          <div className="grid sm:grid-cols-2 gap-6">
                               <div>
                                    <label htmlFor="fname" className="mb-2 text-slate-900 font-medium text-sm inline-block dark:text-slate-50">Full
@@ -42,14 +48,14 @@ export default function SignupPage() {
                               <div>
                                    <label htmlFor="password"
                                         className="mb-2 text-slate-900 font-medium text-sm inline-block dark:text-slate-50">Password</label>
-                                   <input type="password" id="password" name="password" placeholder="••••••••" required
+                                   <input type="password" id="password" name="password" placeholder="••••••••" required autoComplete="new-password"
                                         className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 dark:text-slate-50 dark:bg-neutral-800 dark:outline-neutral-700" />
                               </div>
                               <div>
                                    <label htmlFor="cpassword"
                                         className="mb-2 text-slate-900 font-medium text-sm inline-block dark:text-slate-50">Confirm
                                         Password</label>
-                                   <input type="password" id="cpassword" name="cpassword" placeholder="••••••••" required
+                                   <input type="password" id="cpassword" name="cpassword" placeholder="••••••••" required autoComplete="new-password"
                                         className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 dark:text-slate-50 dark:bg-neutral-800 dark:outline-neutral-700" />
                               </div>
                               <div className="flex items-start flex-wrap gap-2">
