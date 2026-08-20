@@ -11,6 +11,12 @@ export default function LoginForm() {
       setIsVisible((prevState) => !prevState);
    };
 
+   // Prevents the browser from serialising credentials into the URL query string
+   // until a sign-in endpoint is wired up.
+   const handleSubmit = (event) => {
+      event.preventDefault();
+   };
+
    return (
       <main className="px-4 md:px-8 min-h-screen flex flex-col items-center justify-center">
          <div className="py-4 max-w-md w-full">
@@ -25,7 +31,7 @@ export default function LoginForm() {
                   <p className="text-sm text-slate-600 dark:text-slate-400">Enter your email and password to sign in.</p>
                </div>
 
-               <form className="space-y-6 mt-10">
+               <form method="post" onSubmit={handleSubmit} className="space-y-6 mt-10">
                   <div>
                      <label htmlFor="email"
                         className="mb-2 text-slate-900 font-medium text-sm inline-block dark:text-slate-50">Email</label>
@@ -34,6 +40,7 @@ export default function LoginForm() {
                         id="email"
                         name="email"
                         placeholder="you@gmail.com"
+                        autoComplete="email"
                         className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 dark:text-slate-50 dark:bg-neutral-700 dark:outline-neutral-600"
                         required
                      />
@@ -71,6 +78,7 @@ export default function LoginForm() {
                         id="password"
                         name="password"
                         placeholder="••••••••"
+                        autoComplete="current-password"
                         className="px-3 py-2.5 text-sm text-slate-900 rounded-md bg-white w-full outline-1 -outline-offset-1 outline-slate-300 focus:outline-2 focus:-outline-offset-2 focus:outline-blue-600 dark:text-slate-50 dark:bg-neutral-700 dark:outline-neutral-600"
                         required
                      />
