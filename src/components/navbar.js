@@ -1,6 +1,6 @@
 'use client';
 
-import lightLogo from "../../images/icon_light.png" ;
+import lightLogo from "../../images/icon_light.png";
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -62,10 +62,10 @@ export default function Navbar({
     const theme = storedTheme === 'dark'
       ? 'dark'
       : storedTheme === 'light'
-      ? 'light'
-      : prefersDarkColorScheme()
-      ? 'dark'
-      : 'light';
+        ? 'light'
+        : prefersDarkColorScheme()
+          ? 'dark'
+          : 'light';
 
     setIsDark(theme === 'dark');
     html.classList.remove('light', 'dark');
@@ -205,7 +205,7 @@ export default function Navbar({
                 </label>
 
                 <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-                  <Image className=" h-18 w-25 py-1 rotate-4 " src={lightLogo} alt='img'/>
+                  <Image className=" h-18 w-25 py-1 rotate-4 " src={lightLogo} alt='img' />
                 </Link>
 
                 <div className="flex items-center gap-2 md:gap-3">
@@ -227,16 +227,26 @@ export default function Navbar({
                     </span>
                   </Link>
 
-                  <Link
-                    href="/cart"
-                    className="relative rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-                    aria-label="Shopping cart"
-                  >
-                    <ShoppingCart size={24} className={themeIcon} strokeWidth={2} />
-                    <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                      {cartCount}
-                    </span>
-                  </Link>
+                  {/* Mobile */}
+                  <div className="drawer drawer-end">
+                    <input id="my-drawer-5" type="checkbox" className="drawer-toggle" />
+                    <div className="drawer-content">
+                      {/* Page content here */}
+                      <label htmlFor="my-drawer-5" className="drawer-button">
+                        <ShoppingCart size={24} className={themeIcon} strokeWidth={2} />
+                      </label>
+                    </div>
+                    <div className="drawer-side">
+                      <label htmlFor="my-drawer-5" aria-label="close sidebar" className="drawer-overlay"></label>
+                      <ul className="menu bg-white dark:bg-gray-600 min-h-full w-80 p-4">
+                        {/* Sidebar content here */}
+                        <li><a>Sidebar Item 1</a></li>
+                        <li><a>Sidebar Item 2</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  {/* Mobile */}
+
                 </div>
               </div>
             </div>
@@ -249,12 +259,12 @@ export default function Navbar({
                 onClick={() => setIsMobileMenuOpen(false)}
               />
 
-              <aside className={`menu min-h-full w-72 p-4 text-base-content ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}>
+              <aside className={`menu min-h-full w-72 p-4 text-base-content ${isDark ? 'bg-gray-800 text-white' : 'bg-white text-black'}`}>
                 <div className="mb-4 flex items-center justify-between border-b-1 border-black dark:border-gray-300 pb-6 pt-2 ">
                   <div className="flex items-center gap-2 ">
                     <Link href="/" className="absolute left-1/2 -translate-x-1/2">
-                  <Image className=" h-18 w-25 rotate-4 " src={lightLogo} alt='img'/>
-                </Link>
+                      <Image className=" h-18 w-25 rotate-4 " src={lightLogo} alt='img' />
+                    </Link>
                   </div>
 
                   <label
@@ -275,7 +285,7 @@ export default function Navbar({
                             setIsDark(false);
                             setMobileMoodOpen(false);
                           }}
-                          className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-200 dark:hover:bg-gray-700"
+                          className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-200 dark:hover:bg-gray-950"
                         >
                           Light
                         </button>
@@ -284,7 +294,7 @@ export default function Navbar({
                             setIsDark(true);
                             setMobileMoodOpen(false);
                           }}
-                          className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-200 dark:hover:bg-gray-700"
+                          className="block w-full px-4 py-2 text-left text-sm hover:bg-gray-200 dark:hover:bg-gray-950"
                         >
                           Dark
                         </button>
@@ -362,13 +372,13 @@ export default function Navbar({
                   </>
                 )}
 
-                 <button
+                <button
                   onClick={toggleTheme}
                   className={`inline-flex items-center justify-between gap-2 rounded-full border border-gray-300 px-3 py-2 text-sm font-medium transition hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 cursor-pointer ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}
                   aria-label="Toggle light and dark mode "
                 >
                   {isDark ? <Moon fill="#FFFF00" className={`h-4 w-4 ${themeIcon}`} /> : <SunDim color="#000000" fill="#e9fa00" className={`h-4 w-4 ${themeIcon}`} />}
-                  {isDark ? 'Dark mode' : 'Light mode'} 
+                  {isDark ? 'Dark mode' : 'Light mode'}
                 </button>
 
               </aside>
@@ -385,7 +395,7 @@ export default function Navbar({
             </div>
 
             <Link href="/" className={`text-2xl font-bold leading-6 ${themeText}`}>
-              <Image className=" h-22 w-35 py-1 rotate-4 " src={lightLogo} alt='img'/>
+              <Image className=" h-22 w-35 py-1 rotate-4 " src={lightLogo} alt='img' />
             </Link>
 
             <div className="flex items-center gap-6">
@@ -402,18 +412,38 @@ export default function Navbar({
               <div className="flex items-center gap-4">
                 <Link href="/wishlist" className="relative rounded-lg p-2 transition-colors hover:bg-gray-300 dark:hover:bg-gray-800">
                   <Heart fill="#ff0000" size={28} className={themeIcon} strokeWidth={2} />
-                  
+
                   <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                     {wishlistCount}
                   </span>
                 </Link>
 
-                <Link href="/cart" className="relative rounded-lg p-2 transition-colors hover:bg-gray-300 dark:hover:bg-gray-800" aria-label="Shopping cart">
-                  <ShoppingCart size={28} className={themeIcon} strokeWidth={2} />
-                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                {/* Desktop */}
+                <div className="relative rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800">
+                  <div className="drawer drawer-end">
+                    <input id="flash-cart-drawer" type="checkbox" className="drawer-toggle" />
+                    <div className="drawer-content">
+                      <label
+                        htmlFor="flash-cart-drawer"
+                        className="drawer-button block cursor-pointer"
+                        aria-label="Shopping cart"
+                      >
+                        <ShoppingCart size={28} className={themeIcon} strokeWidth={2} />
+                      </label>
+                    </div>
+                    <div className="drawer-side">
+                      <label htmlFor="flash-cart-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                      <div className="menu min-h-full w-100 bg-white dark:bg-gray-800 p-4">
+                        <button className=" bg-black dark:bg-white text-white dark:text-black flex items-center justify-center mb-5 font-extrabold leading-11 " ><Link href="/cart">View Cart</Link></button>
+                        <li><button type="button">Checkout</button></li>
+                      </div>
+                    </div>
+                  </div>
+                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                     {cartCount}
                   </span>
-                </Link>
+                </div>
+                {/* Desktop */}
 
                 {/* Account dropdown (desktop) */}
                 <div className="relative" ref={accountMenuRef}>
@@ -476,7 +506,7 @@ export default function Navbar({
             </div>
           </div>
         </div>
-        
+
 
         {/* ---------------- Mobile search dropdown ---------------- */}
         {isSearchOpen && (
@@ -516,23 +546,23 @@ export default function Navbar({
           </div>
         )}
 
-      <div className={`hidden lg:block py-[15px] ${isDark ? 'bg-slate-800' : 'bg-gray-300'}`}>
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-center gap-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-[16px] font-medium leading-6 transition-colors hover:text-red-700 ${themeText} ${isActive(link.href) ? `border-b-2 ${isDark ? 'border-white' : 'border-black'}` : ''}`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+        <div className={`hidden lg:block py-[15px] ${isDark ? 'bg-slate-800' : 'bg-gray-300'}`}>
+          <div className="container mx-auto px-4">
+            <div className="flex items-center justify-center gap-10">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`text-[16px] font-medium leading-6 transition-colors hover:text-red-700 ${themeText} ${isActive(link.href) ? `border-b-2 ${isDark ? 'border-white' : 'border-black'}` : ''}`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </div>
 
+          </div>
         </div>
-      </div>
-      
+
       </nav>
 
     </>
