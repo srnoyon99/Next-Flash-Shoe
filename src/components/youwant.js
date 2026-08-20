@@ -2,6 +2,7 @@
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Heart } from 'lucide-react'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 
 const Youwant = () => {
 
@@ -19,10 +20,7 @@ const Youwant = () => {
 
      return (
           <div className="container mx-auto px-4 py-8">
-               <div className="container flex items-center ">
-                    <div className="h-[20px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
-                    <h2 className=" text-2xl font-bold mb-4 ml-2 ">Which You Want ?</h2>
-               </div>
+               <SectionHeading title="Which You Want ?" />
 
                <div className=" flex items-center justify-center gap-4">
                     {images.map((image, index) => (
