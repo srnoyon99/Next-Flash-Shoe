@@ -198,14 +198,16 @@ export default function Navbar({
                 <div className="flex items-center gap-2 md:gap-3">
                   <button
                     onClick={() => setIsSearchOpen((v) => !v)}
-                    className="rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                    className="rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
                     aria-label="Search"
                   >
                     <Search size={24} className={themeIcon} />
                   </button>
 
                   <Link
+
                     href="/wishlist"
+
                     className="relative rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
                   >
                     <Heart fill="#ff0000" size={24} className={themeIcon} strokeWidth={2} />
@@ -219,15 +221,15 @@ export default function Navbar({
                     <input id="my-drawer-5" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content">
                       {/* Page content here */}
-                      <label htmlFor="my-drawer-5" className="drawer-button">
+                      <label htmlFor="my-drawer-5" className="drawer-button cursor-pointer ">
                         <ShoppingCart size={24} className={themeIcon} strokeWidth={2} />
                       </label>
                     </div>
                     <div className="drawer-side">
                       <label htmlFor="my-drawer-5" aria-label="close sidebar" className="drawer-overlay"></label>
-                      <ul className="menu bg-white dark:bg-gray-600 min-h-full w-80 p-4">
+                      <ul className="menu bg-white dark:bg-gray-600 cursor-pointer min-h-full w-80 p-4">
                         {/* Sidebar content here */}
-                        <li><a>Sidebar Item 1</a></li>
+                        <li> <Link href="/cart" className=" flex items-center justify-center py-2 bg-black dark:bg-white text-white dark:text-black font-extrabold leading-6 mb-6 " > <a>  View Card </a> </Link> </li>
                         <li><a>Sidebar Item 2</a></li>
                       </ul>
                     </div>
@@ -413,10 +415,11 @@ export default function Navbar({
                     </div>
                     <div className="drawer-side">
                       <label htmlFor="flash-cart-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                      <div className="menu min-h-full w-100 bg-white dark:bg-gray-800 p-4">
-                        <button className=" bg-black dark:bg-white text-white dark:text-black flex items-center justify-center mb-5 font-extrabold leading-11 " ><Link href="/cart">View Cart</Link></button>
-                        <li><button type="button">Checkout</button></li>
-                      </div>
+                      <ul className="menu bg-white dark:bg-gray-600 cursor-pointer min-h-full w-80 p-4">
+                        {/* Sidebar content here */}
+                        <li> <Link href="/cart" className=" flex items-center justify-center py-2 bg-black dark:bg-white text-white dark:text-black font-extrabold leading-6 mb-6 " > <a>  View Card </a> </Link> </li>
+                        <li><a>Sidebar Item 2</a></li>
+                      </ul>
                     </div>
                   </div>
                   <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
