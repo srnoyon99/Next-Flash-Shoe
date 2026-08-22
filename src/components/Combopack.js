@@ -1,11 +1,11 @@
 "use client"
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import { Heart } from 'lucide-react'
+import { Fan, Heart, MoveRight } from 'lucide-react'
 import Cummonbutton from './cummonbutton'
 import Addtocardbutton from './addtocardbutton'
 
-const Accessories = () => {
+const Combopack = () => {
 
   const images = [
     { src: '/shoe1.avif', alt: 'Image 1' },
@@ -36,10 +36,18 @@ const Accessories = () => {
   }))
 
   return (
+    <div className=' bg-gray-300 dark:bg-gray-800 rounded-2xl '>
     <div className="container mx-auto px-4 py-8">
+
+      <div className=' flex items-center justify-between'>
       <div className="container flex items-center ">
-        <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
-        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Accessories</h2>
+        <div className=" grid items-center justify-center h-[24px] w-[24px] bg-red-700 mb-4 rounded-3xl animate-spin "><Fan fill='#000000' size={18} strokeWidth={1} /></div>
+        <h2 className=" text-md lg:text-2xl text-black dark:text-white font-bold mb-4 ml-2 ">Exclusive Combo Deals</h2>
+      </div>
+
+      <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
+       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+      </div>
       </div>
 
       <Splide options={{
@@ -58,11 +66,9 @@ const Accessories = () => {
       }}>
 
         {items.map((item, index) => (
-          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs '} key={index}>
+          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs bg-white dark:bg-black '} key={index}>
             <div className="  rounded-3xl grid-rows-1 items-center justify-center">
-              <div className=' flex flex-col items-center justify-center' >
               <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-              </div>
               <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
                <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
                <Addtocardbutton/>
@@ -76,7 +82,8 @@ const Accessories = () => {
       </Splide>
 
     </div>
+    </div>
   )
 }
 
-export default Accessories
+export default Combopack

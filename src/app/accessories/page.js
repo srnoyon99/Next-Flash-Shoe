@@ -4,14 +4,10 @@ import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Heart } from 'lucide-react'
 import Cummonbutton from '@/components/cummonbutton'
 import Addtocardbutton from '@/components/addtocardbutton'
+import Accessoriesitems from '@/components/accessoriesitems'
 
 const page = () => {
   const images = [
-    { src: '/img2.webp', alt: 'Image 1' },
-    { src: '/img3.webp', alt: 'Image 2' },
-    { src: '/img4.webp', alt: 'Image 3' },
-    { src: '/img5.webp', alt: 'Image 4' },
-    { src: '/img6.webp', alt: 'Image 5' },
     { src: '/shoe1.avif', alt: 'Image 1' },
     { src: '/shoe2.avif', alt: 'Image 2' },
     { src: '/shoe3.avif', alt: 'Image 3' },
@@ -66,31 +62,7 @@ const page = () => {
 
       {/* //////////////////Selected Your Products////////////////////// */}
       <div>
-        <Splide options={{
-          type: 'loop',
-          perPage: 4,
-          perMove: 1,
-          gap: '1rem',
-          breakpoints: {
-            640: {
-              perPage: 3,
-            },
-            768: {
-              perPage: 4,
-            },
-          }
-        }}>
-          {selectedProducts.map((product, index) => (
-            <SplideSlide className={'cursor-pointer pt-6 '} key={index}>
-              <div className=" bg-yellow-300/50 rounded-2xl grid-rows-1 items-center justify-center mb-2">
-                <img className=" w-full h-full lg:w-full lg:h-full object-cover " src={product.image.src} alt={product.image.alt} />
-                <div className="text-center ml-2 border-0 border-black">
-                  <h3 className="text-sm lg:text-lg font-bold text-nowrap ">{product.name}</h3>
-                </div>
-              </div>
-            </SplideSlide>
-          ))}
-        </Splide>
+        <Accessoriesitems/>
       </div>
       {/* //////////////////Selected Your Products////////////////////// */}
 
@@ -106,14 +78,12 @@ const page = () => {
           <div className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
             <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
               <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-              <Cummonbutton/>
               <Heart className=' absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
               <Heart className=' absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
               <Addtocardbutton/>
               <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                 <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                 <p className="text-red-500">TK.{item.price || ''}</p>
-                <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
               </div>
             </div>
           </div>

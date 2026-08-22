@@ -4,7 +4,11 @@ import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Heart } from 'lucide-react'
 import Cummonbutton from '@/components/cummonbutton'
 import Addtocardbutton from '@/components/addtocardbutton'
-
+import Image from 'next/image'
+import Nike from '../../../images/nikelogo.png'
+import Adidas from '../../../images/adidaslogo.png'
+import Panda from '../../../images/pandalogo.png'
+import Power from '../../../images/powerlogo.png'
 const BestSeller = () => {
 
   const images = [
@@ -38,21 +42,21 @@ const BestSeller = () => {
   return (
     <div className="container mx-auto px-4 py-8">
 
-      <div className=" inset-0 flex flex-col items-center justify-center bg-opacity-50 mb-12 ">
-        <div className="relative grid items-center justify-center gap-3 ">
-          <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-3xl h-full max-h-64  rounded-full blur-[170px] pointer-events-none" />
-          <h3 className="text-center font-extrabold leading-5 text-transparent text-2xl lg:text-5xl text-nowrap [-webkit-text-stroke:1px_#0D542B] bg-clip-text  bg-red-500 mt-6" >
-            FLASH SHOE
-          </h3>
-          <h3 className="text-2xl lg:text-5xl text-gray-800 dark:text-amber-50 text-center mt-0 lg:mt-5 font-bold leading-5 text-balance lg:text-nowrap bg-clip-text bg-red-500">
-            Your one-stop destination for all your Brands needs
-          </h3>
-        </div>
+      {/* /////////////////Logo/////////////////// */}
+      <div className=' flex items-center justify-center mb-2' >
+        <h1 className=' text-md lg:text-2xl font-bold leading-5'>What's Your Fevriout Brand?</h1>
       </div>
+      <div className=' container flex items-center justify-center gap-5 overflow-hidden ' >
+        <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Nike} alt='img'/>
+        <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-3 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Adidas} alt='img'/>
+        <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Panda} alt='img'/>
+        <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Power} alt='img'/>
+      </div>
+      {/* ////////////////Logo//////////////////// */}
 
       {/* /////////////////Nike////////////////// */}
       <div>
-        <div className=" flex items-center justify-between ">
+        <div className=" flex items-center justify-between mt-8 ">
           <div className=' flex items-center'>
             <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl flex items-center justify-center " />
             <h2 className=" text-2xl font-bold mb-4 ml-2 ">Nike</h2>
@@ -81,14 +85,12 @@ const BestSeller = () => {
             <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
               <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                 <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-                <Cummonbutton />
                 <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
                 <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
-                <Addtocardbutton/>
+                <Addtocardbutton />
                 <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                   <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                   <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
                 </div>
               </div>
             </SplideSlide>
@@ -128,15 +130,12 @@ const BestSeller = () => {
             <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
               <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                 <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-                <Cummonbutton />
-
                 <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
                 <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
-                <Addtocardbutton/>
+                <Addtocardbutton />
                 <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                   <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                   <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
                 </div>
               </div>
             </SplideSlide>
@@ -176,15 +175,12 @@ const BestSeller = () => {
             <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
               <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                 <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-                <Cummonbutton />
-
                 <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
                 <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
-                <Addtocardbutton/>
+                <Addtocardbutton />
                 <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                   <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                   <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
                 </div>
               </div>
             </SplideSlide>
@@ -224,14 +220,12 @@ const BestSeller = () => {
             <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
               <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                 <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-                <Cummonbutton />
                 <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
                 <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
-                <Addtocardbutton/>
+                <Addtocardbutton />
                 <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                   <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                   <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
                 </div>
               </div>
             </SplideSlide>
