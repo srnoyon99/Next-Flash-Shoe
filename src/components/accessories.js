@@ -3,6 +3,7 @@ import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Heart } from 'lucide-react'
 import Cummonbutton from './cummonbutton'
+import Addtocardbutton from './addtocardbutton'
 
 const Accessories = () => {
 
@@ -65,7 +66,7 @@ const Accessories = () => {
               </div>
               <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
                <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
-              <button className="bg-gray-900 dark:bg-gray-400 text-white w-full py-2 h-full mt-2 cursor-pointer hover:bg-red-800 transition duration-300">Add to Cart</button>
+               <Addtocardbutton/>
               <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                 <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                 <p className="text-red-500">TK.{item.price || ''}</p>

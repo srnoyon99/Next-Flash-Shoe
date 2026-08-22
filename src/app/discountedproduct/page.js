@@ -1,6 +1,8 @@
 "use client"
 import React from 'react'
 import { Heart } from 'lucide-react'
+import Cummonbutton from '@/components/cummonbutton'
+import Addtocardbutton from '@/components/addtocardbutton'
 
 const page = () => {
 
@@ -45,17 +47,13 @@ const page = () => {
         </div>
 
         <div className="dropdown dropdown-end">
-  <button tabIndex={0} role="button" className=" py-1 px-3 rounded-2xl bg-green-700 border-1 border-black dark:border-amber-50 cursor-pointer  text-white m-1 mb-5">ITEM </button>
-  <ul tabIndex="-1" className="dropdown-content menu border-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white  rounded-box z-1 w-52 p-2 shadow-2xl">
-    <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1">Man</a></li>
-    <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Woman</a></li>
-    <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Kid's</a></li>
-    <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Party Shoes</a></li>
-    <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">School Shoes</a></li>
-    <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Collage Shoes</a></li>
-  </ul>
-</div>
-
+          <button tabIndex={0} role="button" className=" px-2 rounded-2xl bg-green-700 border-1 border-black dark:border-amber-50 cursor-pointer  text-white m-1 mb-5">ITEM </button>
+          <ul tabIndex="-1" className="dropdown-content menu border-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white  rounded-box z-1 w-52 p-2 shadow-2xl">
+            <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1">Man</a></li>
+            <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Woman</a></li>
+            <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Kid's</a></li>
+          </ul>
+        </div>
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -63,10 +61,10 @@ const page = () => {
           <div className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
             <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
               <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
+              <Cummonbutton />
               <Heart className=' absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
               <Heart className=' absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
-              <p className="text-gray-800 dark:text-white text-center "> {item.size} | {item.size1} | {item.size2}</p>
-              <button className="bg-gray-900 dark:bg-gray-400 text-white w-full py-2 h-full mt-2 cursor-pointer hover:bg-red-800 transition duration-300">Add to Cart</button>
+              <Addtocardbutton/>
               <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                 <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                 <p className="text-red-500">TK.{item.price || ''}</p>

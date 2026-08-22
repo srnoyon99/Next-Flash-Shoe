@@ -24,14 +24,14 @@ const Cummonbutton = () => {
     <div>
       {_items.map((item) => (
         <div key={item.id}>
-          <div className="flex items-center justify-center gap-2">
+          <div className="flex items-center justify-center gap-2 text-black bg-white pb-1 ">
             {item.sizes.map((size) => (
               <button
                 key={size}
                 className={`text-center border border-gray-400 px-2 lg:px-3 lg:py-1 rounded-md cursor-pointer transition-colors ${
                   selectedSize === size
-                    ? 'bg-green-600 text-white border-green-600'
-                    : 'bg-transparent text-gray-800 dark:text-white'
+                    ? 'bg-green-600 text-black border-green-600'
+                    : 'bg-transparent text-gray-800 dark:text-black'
                 }`}
                 onClick={() => handleSizeClick(size)}
               >

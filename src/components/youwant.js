@@ -26,7 +26,7 @@ const Youwant = () => {
 
                <div className=" flex items-center justify-center gap-4">
                     {images.map((image, index) => (
-                         <div className=" hidden lg:block rounded-3xl border-1 border-gray-400/20 min-h-fit shadow-2xs" key={index}>
+                         <div className=" hidden lg:block rounded-3xl border-1 border-gray-400 min-h-fit shadow-2xs" key={index}>
                               <div className="  rounded-3xl flex-col items-center justify-center">
                               <img className=" w-120 h-120 object-cover overflow-hidden rounded-t-3xl cursor-pointer " src={image.src} alt={image.alt} />
                               <h1 className="text-lg font-bold text-center mt-2">{descriptions[index].name}</h1>

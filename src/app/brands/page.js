@@ -2,6 +2,8 @@
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Heart } from 'lucide-react'
+import Cummonbutton from '@/components/cummonbutton'
+import Addtocardbutton from '@/components/addtocardbutton'
 
 const BestSeller = () => {
 
@@ -37,202 +39,204 @@ const BestSeller = () => {
     <div className="container mx-auto px-4 py-8">
 
       <div className=" inset-0 flex flex-col items-center justify-center bg-opacity-50 mb-12 ">
-          <div className="relative grid items-center justify-center gap-3 ">
-            <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-3xl h-full max-h-64  rounded-full blur-[170px] pointer-events-none" />
-            <h3 className="text-center font-extrabold leading-5 text-transparent text-2xl lg:text-5xl text-nowrap [-webkit-text-stroke:1px_#0D542B] bg-clip-text  bg-red-500 mt-6" >
-              FLASH SHOE
-            </h3>
-            <h3 className="text-2xl lg:text-5xl text-gray-800 dark:text-amber-50 text-center mt-0 lg:mt-5 font-bold leading-5 text-balance lg:text-nowrap bg-clip-text bg-red-500">
-              Your one-stop destination for all your Brands needs
-            </h3>
-          </div>
+        <div className="relative grid items-center justify-center gap-3 ">
+          <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-3xl h-full max-h-64  rounded-full blur-[170px] pointer-events-none" />
+          <h3 className="text-center font-extrabold leading-5 text-transparent text-2xl lg:text-5xl text-nowrap [-webkit-text-stroke:1px_#0D542B] bg-clip-text  bg-red-500 mt-6" >
+            FLASH SHOE
+          </h3>
+          <h3 className="text-2xl lg:text-5xl text-gray-800 dark:text-amber-50 text-center mt-0 lg:mt-5 font-bold leading-5 text-balance lg:text-nowrap bg-clip-text bg-red-500">
+            Your one-stop destination for all your Brands needs
+          </h3>
         </div>
+      </div>
 
       {/* /////////////////Nike////////////////// */}
       <div>
-      <div className=" flex items-center justify-between ">
-        <div className=' flex items-center'>
-        <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl flex items-center justify-center " />
-        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Nike</h2>
+        <div className=" flex items-center justify-between ">
+          <div className=' flex items-center'>
+            <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl flex items-center justify-center " />
+            <h2 className=" text-2xl font-bold mb-4 ml-2 ">Nike</h2>
+          </div>
+          <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
+            All
+          </button>
         </div>
-        <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
-          All
-        </button>
-      </div>
 
-      <Splide options={{
-        type: 'loop',
-        perPage: 5,
-        perMove: 1,
-        gap: '1rem',
-        breakpoints: {
-          640: {
-            perPage: 2,
+        <Splide options={{
+          type: 'loop',
+          perPage: 5,
+          perMove: 1,
+          gap: '1rem',
+          breakpoints: {
+            640: {
+              perPage: 2,
+            },
+            1024: {
+              perPage: 3,
+            },
           },
-          1024: {
-            perPage: 3,
-          },
-        },
-      }}>
+        }}>
 
-        {items.map((item, index) => (
-          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
-            <div className="  rounded-3xl grid-rows-1 items-center justify-center">
-              <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-              <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-               <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
-              <p className="text-gray-800 dark:text-white text-center "> {item.size} | {item.size1} | {item.size2}</p>
-              <button className="bg-gray-900 dark:bg-gray-400 text-white w-full py-2 h-full mt-2 cursor-pointer hover:bg-red-800 transition duration-300">Add to Cart</button>
-              <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
-                <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
-                <p className="text-red-500">TK.{item.price || ''}</p>
-                <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
+          {items.map((item, index) => (
+            <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
+              <div className="  rounded-3xl grid-rows-1 items-center justify-center">
+                <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
+                <Cummonbutton />
+                <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
+                <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+                <Addtocardbutton/>
+                <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
+                  <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
+                  <p className="text-red-500">TK.{item.price || ''}</p>
+                  <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
+                </div>
               </div>
-            </div>
-          </SplideSlide>
-        ))}
-      </Splide>
+            </SplideSlide>
+          ))}
+        </Splide>
       </div>
       {/* /////////////////Nike////////////////// */}
 
       {/* /////////////////Adites////////////////// */}
-       <div className=' mt-10 '>
-      <div className=" flex items-center justify-between ">
-        <div className=' flex items-center'>
-        <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl " />
-        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Adites</h2>
+      <div className=' mt-10 '>
+        <div className=" flex items-center justify-between ">
+          <div className=' flex items-center'>
+            <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl " />
+            <h2 className=" text-2xl font-bold mb-4 ml-2 ">Adites</h2>
+          </div>
+          <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
+            All
+          </button>
         </div>
-        <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
-          All
-        </button>
-      </div>
 
-      <Splide options={{
-        type: 'loop',
-        perPage: 5,
-        perMove: 1,
-        gap: '1rem',
-        breakpoints: {
-          640: {
-            perPage: 2,
+        <Splide options={{
+          type: 'loop',
+          perPage: 5,
+          perMove: 1,
+          gap: '1rem',
+          breakpoints: {
+            640: {
+              perPage: 2,
+            },
+            1024: {
+              perPage: 3,
+            },
           },
-          1024: {
-            perPage: 3,
-          },
-        },
-      }}>
+        }}>
 
-        {items.map((item, index) => (
-          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
-            <div className="  rounded-3xl grid-rows-1 items-center justify-center">
-              <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-              <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-               <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
-              <p className="text-gray-800 dark:text-white text-center "> {item.size} | {item.size1} | {item.size2}</p>
-              <button className="bg-gray-900 dark:bg-gray-400 text-white w-full py-2 h-full mt-2 cursor-pointer hover:bg-red-800 transition duration-300">Add to Cart</button>
-              <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
-                <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
-                <p className="text-red-500">TK.{item.price || ''}</p>
-                <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
+          {items.map((item, index) => (
+            <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
+              <div className="  rounded-3xl grid-rows-1 items-center justify-center">
+                <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
+                <Cummonbutton />
+
+                <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
+                <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+                <Addtocardbutton/>
+                <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
+                  <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
+                  <p className="text-red-500">TK.{item.price || ''}</p>
+                  <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
+                </div>
               </div>
-            </div>
-          </SplideSlide>
-        ))}
-      </Splide>
+            </SplideSlide>
+          ))}
+        </Splide>
       </div>
       {/* /////////////////Adites////////////////// */}
 
-       {/* /////////////////Panda////////////////// */}
-       <div className=' mt-10 '>
-      <div className=" flex items-center justify-between ">
-        <div className=' flex items-center'>
-        <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl " />
-        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Panda</h2>
+      {/* /////////////////Panda////////////////// */}
+      <div className=' mt-10 '>
+        <div className=" flex items-center justify-between ">
+          <div className=' flex items-center'>
+            <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl " />
+            <h2 className=" text-2xl font-bold mb-4 ml-2 ">Panda</h2>
+          </div>
+          <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
+            All
+          </button>
         </div>
-        <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
-          All
-        </button>
-      </div>
 
-      <Splide options={{
-        type: 'loop',
-        perPage: 5,
-        perMove: 1,
-        gap: '1rem',
-        breakpoints: {
-          640: {
-            perPage: 2,
+        <Splide options={{
+          type: 'loop',
+          perPage: 5,
+          perMove: 1,
+          gap: '1rem',
+          breakpoints: {
+            640: {
+              perPage: 2,
+            },
+            1024: {
+              perPage: 3,
+            },
           },
-          1024: {
-            perPage: 3,
-          },
-        },
-      }}>
+        }}>
 
-        {items.map((item, index) => (
-          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
-            <div className="  rounded-3xl grid-rows-1 items-center justify-center">
-              <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-              <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-               <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
-              <p className="text-gray-800 dark:text-white text-center "> {item.size} | {item.size1} | {item.size2}</p>
-              <button className="bg-gray-900 dark:bg-gray-400 text-white w-full py-2 h-full mt-2 cursor-pointer hover:bg-red-800 transition duration-300">Add to Cart</button>
-              <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
-                <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
-                <p className="text-red-500">TK.{item.price || ''}</p>
-                <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
+          {items.map((item, index) => (
+            <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
+              <div className="  rounded-3xl grid-rows-1 items-center justify-center">
+                <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
+                <Cummonbutton />
+
+                <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
+                <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+                <Addtocardbutton/>
+                <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
+                  <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
+                  <p className="text-red-500">TK.{item.price || ''}</p>
+                  <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
+                </div>
               </div>
-            </div>
-          </SplideSlide>
-        ))}
-      </Splide>
+            </SplideSlide>
+          ))}
+        </Splide>
       </div>
       {/* /////////////////Panda////////////////// */}
 
-        {/* /////////////////Power////////////////// */}
-       <div className=' mt-10 '>
-      <div className=" flex items-center justify-between ">
-        <div className=' flex items-center'>
-        <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl " />
-        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Power</h2>
+      {/* /////////////////Power////////////////// */}
+      <div className=' mt-10 '>
+        <div className=" flex items-center justify-between ">
+          <div className=' flex items-center'>
+            <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl " />
+            <h2 className=" text-2xl font-bold mb-4 ml-2 ">Power</h2>
+          </div>
+          <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
+            All
+          </button>
         </div>
-        <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
-          All
-        </button>
-      </div>
 
-      <Splide options={{
-        type: 'loop',
-        perPage: 5,
-        perMove: 1,
-        gap: '1rem',
-        breakpoints: {
-          640: {
-            perPage: 2,
+        <Splide options={{
+          type: 'loop',
+          perPage: 5,
+          perMove: 1,
+          gap: '1rem',
+          breakpoints: {
+            640: {
+              perPage: 2,
+            },
+            1024: {
+              perPage: 3,
+            },
           },
-          1024: {
-            perPage: 3,
-          },
-        },
-      }}>
+        }}>
 
-        {items.map((item, index) => (
-          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
-            <div className="  rounded-3xl grid-rows-1 items-center justify-center">
-              <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-              <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-               <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
-              <p className="text-gray-800 dark:text-white text-center "> {item.size} | {item.size1} | {item.size2}</p>
-              <button className="bg-gray-900 dark:bg-gray-400 text-white w-full py-2 h-full mt-2 cursor-pointer hover:bg-red-800 transition duration-300">Add to Cart</button>
-              <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
-                <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
-                <p className="text-red-500">TK.{item.price || ''}</p>
-                <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
+          {items.map((item, index) => (
+            <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
+              <div className="  rounded-3xl grid-rows-1 items-center justify-center">
+                <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
+                <Cummonbutton />
+                <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
+                <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+                <Addtocardbutton/>
+                <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
+                  <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
+                  <p className="text-red-500">TK.{item.price || ''}</p>
+                  <p className="text-gray-800 dark:text-white">Color: {item.color} | {item.color1} | {item.color2}</p>
+                </div>
               </div>
-            </div>
-          </SplideSlide>
-        ))}
-      </Splide>
+            </SplideSlide>
+          ))}
+        </Splide>
       </div>
       {/* /////////////////Power////////////////// */}
 

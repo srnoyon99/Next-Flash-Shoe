@@ -229,7 +229,7 @@ export default function Navbar({
                       <label htmlFor="my-drawer-5" aria-label="close sidebar" className="drawer-overlay"></label>
                       <ul className="menu bg-white dark:bg-gray-600 cursor-pointer min-h-full w-80 p-4">
                         {/* Sidebar content here */}
-                        <li> <Link href="/cart" className=" flex items-center justify-center py-2 bg-black dark:bg-white text-white dark:text-black font-extrabold leading-6 mb-6 " > <a>  View Card </a> </Link> </li>
+                        <li> <Link href="/cart" className=" flex items-center justify-center py-2 bg-black dark:bg-white text-white dark:text-black font-extrabold leading-6 mb-6 " >  View Card  </Link> </li>
                         <li><a>Sidebar Item 2</a></li>
                       </ul>
                     </div>
@@ -417,7 +417,7 @@ export default function Navbar({
                       <label htmlFor="flash-cart-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                       <ul className="menu bg-white dark:bg-gray-600 cursor-pointer min-h-full w-80 p-4">
                         {/* Sidebar content here */}
-                        <li> <Link href="/cart" className=" flex items-center justify-center py-2 bg-black dark:bg-white text-white dark:text-black font-extrabold leading-6 mb-6 " > <a>  View Card </a> </Link> </li>
+                        <li> <Link href="/cart" className=" flex items-center justify-center py-2 bg-black dark:bg-white text-white dark:text-black font-extrabold leading-6 mb-6 " > View Card </Link> </li>
                         <li><a>Sidebar Item 2</a></li>
                       </ul>
                     </div>
