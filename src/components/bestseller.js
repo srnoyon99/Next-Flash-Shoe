@@ -8,7 +8,7 @@ import Addtocardbutton from './addtocardbutton'
 const BestSeller = () => {
 
   const images = [
-    { src: '/shoe1.avif', alt: 'Image 1' },
+    { src: '/shoe1.avif', alt: 'Image 1' }, 
     { src: '/shoe2.avif', alt: 'Image 2' },
     { src: '/shoe3.avif', alt: 'Image 3' },
     { src: '/shoe4.webp', alt: 'Image 4' },
