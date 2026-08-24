@@ -60,8 +60,7 @@ const Footer = () => {
 
                     <div className="relative ">
                         <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-3xl h-full max-h-64 bg-green-500 rounded-full blur-[170px] pointer-events-none"/>
-                        <h3 className="text-center font-extrabold leading-[0.7] text-transparent text-[clamp(3rem,10vw,8
-rem)] text-nowrap [-webkit-text-stroke:1px_#0D542B] mt-6" >
+                        <h3 className="text-center font-extrabold leading-[0.7] text-transparent text-[clamp(3rem,10vw,8rem)] text-nowrap [-webkit-text-stroke:1px_#0D542B] mt-6" >
                             FLASH COMFORT
                         </h3>
                     </div>

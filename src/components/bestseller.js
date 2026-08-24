@@ -2,7 +2,6 @@
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Heart } from 'lucide-react'
-import Cummonbutton from './cummonbutton'
 import Addtocardbutton from './addtocardbutton'
 
 const BestSeller = () => {

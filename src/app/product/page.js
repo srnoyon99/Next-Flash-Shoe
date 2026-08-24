@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { Star } from 'lucide-react';
-import Cummonbutton from '@/components/cummonbutton';
+import Saggation from '@/components/Saggation';
 
 /* ------------------------------------------------------------------ */
 /*  Sample data — replace with data fetched from your API / CMS        */
@@ -22,6 +22,18 @@ const product = {
     '/shoe1.avif',
   ],
 };
+
+const SIZE_OPTIONS = [
+  { id: '40', label: '40', price: 950 },
+  { id: '41', label: '41', price: 1750 },
+  { id: '42', label: '42', price: 3300, oldPrice: 3600 },
+];
+
+const COLOR_OPTIONS = [
+  { id: 'natural', label: 'Natural Brown', swatch: '#5A3825' },
+  { id: 'golden', label: 'Golden Box', swatch: '#C99A3D' },
+  { id: 'premium', label: 'Premium Black Box', swatch: '#2B2B2B' },
+];
 
 const description = {
   paragraphs: [
@@ -153,7 +165,7 @@ function ProductGallery({ images = [], productName = 'Product' }) {
             type="button"
             onClick={() => setActiveIndex(idx)}
             aria-label={`View image ${idx + 1}`}
-            className={` relative shrink-0 w-16 h-16 sm:w-full sm:h-24 rounded-lg border-2 overflow-hidden transition-colors ${
+            className={` relative shrink-0 w-16 h-16 sm:w-full sm:h-24 rounded-lg border-2 overflow-hidden transition-colors cursor-pointer ${
               activeIndex === idx ? 'border-orange-500' : 'border-gray-200 hover:border-gray-300'
             }`}
           >
@@ -196,7 +208,7 @@ function ProductGallery({ images = [], productName = 'Product' }) {
               type="button"
               onClick={goPrev}
               aria-label="Previous image"
-              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-1.5 shadow-sm text-gray-500"
+              className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-1.5 shadow-sm text-gray-800 cursor-pointer "
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
                 <path
@@ -210,7 +222,7 @@ function ProductGallery({ images = [], productName = 'Product' }) {
               type="button"
               onClick={goNext}
               aria-label="Next image"
-              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-1.5 shadow-sm text-gray-500"
+              className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white rounded-full p-1.5 shadow-sm text-gray-800 cursor-pointer "
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
                 <path
@@ -233,13 +245,19 @@ function ProductGallery({ images = [], productName = 'Product' }) {
 
 function ProductInfo({ product }) {
   const [quantity, setQuantity] = useState(1);
+  const [selectedSize, setSelectedSize] = useState(SIZE_OPTIONS[1].id);
+  const [selectedColor, setSelectedColor] = useState(COLOR_OPTIONS[0].id);
+
+  const sizeInfo = SIZE_OPTIONS.find((size) => size.id === selectedSize);
+  const colorInfo = COLOR_OPTIONS.find((color) => color.id === selectedColor);
 
   const decrement = () => setQuantity((q) => Math.max(1, q - 1));
   const increment = () => setQuantity((q) => q + 1);
 
   const handleAddToCart = () => {
-    // Hook this up to your cartSlice / Redux dispatch as needed
-    toast.success(`${product.name} (x${quantity}) added to cart`);
+    toast.success(
+      `${product.name} (${sizeInfo.label}, ${colorInfo.label}, x${quantity}) added to cart`
+    );
   };
 
   const handleBuyNow = () => {
@@ -248,7 +266,7 @@ function ProductInfo({ product }) {
 
   const handleWhatsApp = () => {
     const message = encodeURIComponent(
-      `Hi, I'd like to order ${quantity} x ${product.name} (Price: ৳${product.price})`
+      `Hi, I'd like to order ${quantity} x ${product.name} (${sizeInfo.label}, ${colorInfo.label}, Price: ৳${sizeInfo.price})`
     );
     window.open(`https://wa.me/?text=${message}`, '_blank');
   };
@@ -261,16 +279,63 @@ function ProductInfo({ product }) {
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl sm:text-3xl font-semibold text-gray-900 dark:text-amber-200">{product.name}</h1>
 
-      <p className="text-2xl sm:text-3xl font-bold text-orange-500">
-        ৳{product.price.toLocaleString()}
-      </p>
+                  <div className="mt-4 flex items-baseline gap-3">
+              <span className="text-2xl font-bold text-[#f48721] ">৳{sizeInfo.price.toLocaleString()}</span>
+              {sizeInfo.oldPrice && (
+                <span className="text-lg text-gray-400 linethroug ">৳{sizeInfo.oldPrice.toLocaleString()}</span>
+              )}
+            </div>
 
-{/* ////////////Size Button//////////// */}
-<div className=' flex items-center gap-3' >
-     <p> Size: </p>
-              <Cummonbutton/>
+      <p className="mt-4 text-sm leading-relaxed text-gray-600 dark:text-amber-50 ">{description.paragraphs[0]}</p>
+
+ {/* Size selector */}
+            <div className="mt-6">
+              <p className="mb-2 text-sm font-medium text-gray-700 dark:text-amber-200 ">
+                Size: <span className="font-semibold text-gray-900 dark:text-white ">{sizeInfo.label}</span>
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {SIZE_OPTIONS.map((size) => (
+                  <button
+                    key={size.id}
+                    type="button"
+                    onClick={() => setSelectedSize(size.id)}
+                    className={`rounded-md border px-4 py-2 text-sm font-medium transition cursor-pointer ${
+                      selectedSize === size.id
+                        ? 'border-orange-500 bg-orange-50 dark:bg-gray-600 text-orange-600'
+                        : 'border-gray-200 text-gray-700 dark:text-white hover:border-gray-300'
+                    }`}
+                  >
+                    {size.label}
+                  </button>
+                ))}
               </div>
-{/* ////////////Size Button//////////// */}
+            </div>
+
+            {/* Color selector */}
+            <div className="mt-5">
+              <p className="mb-2 text-sm font-medium text-gray-700 dark:text-amber-200">
+                Color: <span className="font-semibold text-gray-900 dark:text-white ">{colorInfo.label}</span>
+              </p>
+              <div className="flex items-center gap-3 ">
+                {COLOR_OPTIONS.map((color) => (
+                  <button
+                    key={color.id}
+                    type="button"
+                    onClick={() => setSelectedColor(color.id)}
+                    aria-label={color.label}
+                    aria-pressed={selectedColor === color.id}
+                    className={`flex h-9 w-9 items-center justify-center rounded-full border-2 transition cursor-pointer ${
+                      selectedColor === color.id ? 'border-orange-500' : 'border-transparent'
+                    }`}
+                  >
+                    <span
+                      className="h-7 w-7 rounded-full border border-black/10"
+                      style={{ backgroundColor: color.swatch }}
+                    />
+                  </button>
+                ))}
+              </div>
+            </div>
 
       <hr className="border-gray-200" />
 
@@ -401,7 +466,10 @@ function DescriptionTab({ description }) {
 /* ------------------------------------------------------------------ */
 
 function ReviewsTab({ stats, reviews }) {
-  const total = stats?.breakdown ? Object.values(stats.breakdown).reduce((a, b) => a + b, 0) : 0;
+  const totalReviews = reviews.length;
+  const averageRating = totalReviews
+    ? reviews.reduce((sum, review) => sum + review.rating, 0) / totalReviews
+    : 0;
 
   return (
     <div className="bg-white dark:bg-gray-700 rounded-xl border border-gray-200 p-6">
@@ -412,7 +480,7 @@ function ReviewsTab({ stats, reviews }) {
         <div className="md:pr-10 ml-0 lg:ml-12">
           <p className="text-gray-500 dark:text-white text-sm mb-1">Total Reviews</p>
           <div className="flex items-center gap-2">
-            <span className="text-3xl font-bold text-red-700">{formatCount(stats.totalReviews)}</span>
+            <span className="text-3xl font-bold text-red-700">{formatCount(totalReviews)}</span>
             {stats.growthPercent != null && (
               <span className="inline-flex items-center gap-1 text-xs font-medium text-green-600 bg-green-50 dark:bg-gray-900 rounded-full px-2 py-0.5">
                 {stats.growthPercent}%
@@ -433,8 +501,8 @@ function ReviewsTab({ stats, reviews }) {
         <div className="md:px-10 mr-0 lg:mr-12 ">
           <p className="text-gray-500 dark:text-white text-sm mb-1">Average Rating</p>
           <div className="flex items-center gap-2">
-            <span className="text-3xl font-bold text-yellow-500">{stats.averageRating.toFixed(1)}</span>
-            <Stars rating={stats.averageRating} />
+            <span className="text-3xl font-bold text-yellow-500">{averageRating.toFixed(1)}</span>
+            <Stars rating={averageRating} />
           </div>
           <p className="text-gray-400 dark:text-white text-xs mt-1">Average rating this year</p>
         </div>
@@ -528,6 +596,11 @@ function SubmitReviewTab({ onSubmit }) {
   };
 
   const handleSubmit = () => {
+    if (!name.trim()) {
+      toast.error('Please enter your name');
+      return;
+    }
+
     if (!comment.trim()) {
       toast.error('Please write your opinion about the product');
       return;
@@ -563,11 +636,12 @@ function SubmitReviewTab({ onSubmit }) {
       </p>
 
       <label className="block text-gray-700 font-medium mb-2" htmlFor="review-name">
-        Your Name
+        Your Name *
       </label>
       <input
         type="text"
         id="review-name"
+        required
         value={name}
         onChange={(e) => setName(e.target.value)}
         placeholder="Write Your Name..."
@@ -579,6 +653,7 @@ function SubmitReviewTab({ onSubmit }) {
       </label>
       <textarea
         id="review-comment"
+        required
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         placeholder="Write Your Review Here..."
@@ -644,7 +719,7 @@ function SubmitReviewTab({ onSubmit }) {
                 onClick={() => setRating(i)}
                 onMouseEnter={() => setHoverRating(i)}
                 aria-label={`Rate ${i} star${i > 1 ? 's' : ''}`}
-                className="p-0.5"
+                className="p-0.5 cursor-pointer "
               >
                 <Star strokeWidth={0.75} fill={displayRating ? "#FFD700" : "none" } className={`w-7 h-7 transition-colors ${i <= displayRating ? 'text-amber-600' : 'text-transparent'}`} >
                   <path
@@ -661,7 +736,7 @@ function SubmitReviewTab({ onSubmit }) {
         <button
           type="button"
           onClick={handleSubmit}
-          className="rounded-lg bg-gray-900 hover:bg-black text-white font-semibold py-3 px-8 transition-colors self-start sm:self-auto"
+          className="rounded-lg bg-gray-900 hover:bg-black text-white font-semibold py-3 px-8 transition-colors self-start sm:self-auto cursor-pointer "
         >
           SUBMIT REVIEW
         </button>
@@ -707,7 +782,7 @@ function ProductTabs({ description, reviewStats, initialReviews }) {
             }`}
           >
             {tab.label}
-            {tab.id === 'reviews' ? ` (${stats.totalReviews})` : ''}
+            {tab.id === 'reviews' ? ` (${reviews.length})` : ''}
           </button>
         ))}
       </div>
@@ -738,6 +813,11 @@ export default function page() {
 
         <ProductTabs description={description} reviewStats={initialReviewStats} initialReviews={initialReviews} />
       </div>
+
+      <div>
+        <Saggation/>
+      </div>
+
     </main>
   );
 }

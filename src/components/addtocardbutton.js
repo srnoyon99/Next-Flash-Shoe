@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const addtocardbutton = () => {
+const Addtocardbutton = () => {
     const [isAdded, setIsAdded] = useState(false);
 
     const handleClick = () => {
@@ -19,4 +19,4 @@ const addtocardbutton = () => {
     );
 };
 
-export default addtocardbutton;
+export default Addtocardbutton;
