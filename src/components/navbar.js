@@ -21,8 +21,15 @@ import {
   Moon,
   Sun,
   SunDim,
+  Trash2,
 } from 'lucide-react';
 import Image from 'next/image';
+
+const INITIAL_ITEMS = [
+  { id: 1, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
+  { id: 2, name: 'Black Seed Honey 1kg', image: '/shoe2.avif', price: 1600, qty: 1 },
+   { id: 3, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
+];
 
 
 export default function Navbar({
@@ -39,6 +46,7 @@ export default function Navbar({
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [isThemeLoaded, setIsThemeLoaded] = useState(false);
+  const [items, setItems] = useState(INITIAL_ITEMS);
 
   const [accountMenuOpen, setAccountMenuOpen] = useState(false);
   const [mobileAccountOpen, setMobileAccountOpen] = useState(false);
@@ -47,6 +55,15 @@ export default function Navbar({
   const accountMenuRef = useRef(null);
   const mobileAccountRef = useRef(null);
   const mobileMoodRef = useRef(null);
+
+  function SectionTitle({ children }) {
+    return (
+      <h2 className="flex items-center gap-2 text-[15px] font-semibold text-gray-800">
+        <span className="h-4 w-[3px] rounded-sm bg-orange-500" />
+        {children}
+      </h2>
+    );
+  }
 
   // ---- theme handling -----------------------------------------------
   useLayoutEffect(() => {
@@ -77,6 +94,25 @@ export default function Navbar({
   }, [isDark, isThemeLoaded]);
 
   const toggleTheme = () => setIsDark((prev) => !prev);
+
+  const handleQty = (id, direction) => {
+    setItems((currentItems) => currentItems.map((item) => {
+      if (item.id !== id) return item;
+      const nextQty = direction === 'inc' ? item.qty + 1 : item.qty - 1;
+      return { ...item, qty: Math.max(1, nextQty) };
+    }));
+  };
+
+  const handleRemove = (id) => {
+    setItems((currentItems) => currentItems.filter((item) => item.id !== id));
+  };
+
+  const handleViewCart = (drawerId) => (event) => {
+    event.preventDefault();
+    const drawer = document.getElementById(drawerId);
+    if (drawer) drawer.checked = false;
+    router.push('/cart');
+  };
 
   // ---- sticky header on scroll ---------------------------------------
   useEffect(() => {
@@ -227,11 +263,81 @@ export default function Navbar({
                     </div>
                     <div className="drawer-side">
                       <label htmlFor="my-drawer-5" aria-label="close sidebar" className="drawer-overlay"></label>
-                      <ul className="menu bg-white dark:bg-gray-600 cursor-pointer min-h-full w-80 p-4">
-                        {/* Sidebar content here */}
-                        <li> <Link href="/cart" className=" flex items-center justify-center py-2 bg-black dark:bg-white text-white dark:text-black font-extrabold leading-6 mb-6 " >  View Card  </Link> </li>
-                        <li><a>Sidebar Item 2</a></li>
-                      </ul>
+                      <div className="menu min-h-full w-[min(70vw,28rem)] bg-white p-4 dark:bg-gray-600">
+
+                        <label
+                          htmlFor="my-drawer-5"
+                          className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-red-700"
+                          aria-label="Close cart drawer"
+                        >
+                          <X className={`h-5 w-5 ${themeIcon}`} />
+                        </label>
+
+                          {/* Order review Mobile */}
+                          <section className=" mt-3 rounded-xl bg-gray-200 p-3 shadow-sm dark:bg-gray-800 sm:p-2">
+                            <SectionTitle> <span className=' text-black dark:text-white '>Order review</span></SectionTitle>
+                            <div className=" max-h-177 overflow-y-auto  mt-4 divide-y divide-gray-100">
+                              {items.map((item) => (
+                                <div key={item.id} className="flex flex-wrap items-center gap-3 py-4 first:pt-0 last:pb-0 sm:flex-nowrap sm:gap-4">
+                                  <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white bg-white dark:bg-gray-700">
+                                    <Image src={item.image} alt={item.name} fill sizes="64px" className="object-contain" />
+                                  </div>
+                                  <div className="min-w-0 flex-1">
+                                    <p className="text-sm text-black dark:text-amber-200 font-bold ">{item.name}</p>
+                                    <div className="mt-2 flex items-center gap-2">
+                                      <span className="text-[12px] text-gray-800 dark:text-white ">Qty:</span>
+                                      <div className="flex items-center overflow-hidden rounded-md border border-white">
+                                        <button
+                                          type="button"
+                                          onClick={() => handleQty(item.id, 'dec')}
+                                          className="flex h-5 w-5 items-center justify-center bg-gray-50 dark:bg-gray-700 text-sm text-gray-600 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
+                                          aria-label="Decrease quantity"
+                                        >
+                                          -
+                                        </button>
+                                        <span className="flex h-5 w-6 items-center justify-center bg-white dark:bg-gray-600 text-sm text-gray-800 dark:text-white">
+                                          {item.qty}
+                                        </span>
+
+                                        <div >
+                                        <button
+                                          type="button"
+                                          onClick={() => handleQty(item.id, 'inc')}
+                                          className="flex h-5 w-5 items-center justify-center bg-gray-50 dark:bg-gray-700 text-sm text-gray-600 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
+                                          aria-label="Increase quantity"
+                                        >
+                                          +
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div className=" flex items-center mt-3" >
+                                  <p className="whitespace-nowrap px-2 text-sm text-black dark:text-white font-bold ">
+                                    ৳{(item.price * item.qty).toLocaleString()}.00
+                                  </p>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleRemove(item.id)}
+                                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-red-500 text-white hover:bg-red-600 cursor-pointer"
+                                    aria-label="Remove item"
+                                  >
+                                    <Trash2 size={14} />
+                                  </button>
+                                  </div>
+                                  </div>
+                                </div>
+                              ))}
+                              {items.length === 0 && (
+                                <p className="py-6 text-center text-sm text-gray-500">Your cart is empty.</p>
+                              )}
+                            </div>
+                          </section>
+
+                          <Link href="/cart" onClick={handleViewCart('my-drawer-5')} className="flex flex-col mt-auto items-center justify-center bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
+                          View Cart
+                        </Link>
+                      </div>
                     </div>
                   </div>
                   {/* Mobile */}
@@ -268,7 +374,7 @@ export default function Navbar({
                 <div className="mb-4 space-y-2">
                   <div className="relative" ref={mobileMoodRef}>
                     {mobileMoodOpen && (
-                      <div className="absolute z-10 mt-1 w-full rounded-lg border border-gray-200 bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-800">
+                      <div className="absolute z-10 mt-1 w-full rounded-lg border border-white bg-white py-1 shadow-lg dark:border-gray-700 dark:bg-gray-800">
                         <button
                           onClick={() => {
                             setIsDark(false);
@@ -415,11 +521,78 @@ export default function Navbar({
                     </div>
                     <div className="drawer-side">
                       <label htmlFor="flash-cart-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                      <ul className="menu bg-white dark:bg-gray-600 cursor-pointer min-h-full w-80 p-4">
-                        {/* Sidebar content here */}
-                        <li> <Link href="/cart" className=" flex items-center justify-center py-2 bg-black dark:bg-white text-white dark:text-black font-extrabold leading-6 mb-6 " > View Card </Link> </li>
-                        <li><a>Sidebar Item 2</a></li>
-                      </ul>
+                      <div className="menu min-h-full w-[min(100vw,28rem)] bg-white p-4 dark:bg-gray-600">
+
+                        <label
+                          htmlFor="flash-cart-drawer"
+                          className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-full hover:bg-red-200 dark:hover:bg-red-500 "
+                          aria-label="Close cart drawer"
+                        >
+                          <X className={`h-5 w-5 ${themeIcon}`} />
+                        </label>
+
+                          {/* Order review Dasktop */}
+                          <section className=" max-h-200 overflow-y-auto rounded-xl bg-gray-200 p-4 shadow-sm dark:bg-gray-800 sm:p-6 mt-3 ">
+                            <SectionTitle> <span className=' text-black dark:text-white '>Order review</span></SectionTitle>
+                            {/* Product */}
+                            <div className="mt-4 divide-y divide-gray-100 ">
+                              {items.map((item) => (
+                                <div key={item.id} className="flex flex-wrap items-center gap-3 py-4 first:pt-0 last:pb-0 sm:flex-nowrap sm:gap-4">
+                                  <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white bg-white dark:bg-gray-700">
+                                    <Image src={item.image} alt={item.name} fill sizes="64px" className="object-contain" />
+                                  </div>
+                                  <div className="min-w-0 flex-1">
+                                    <p className="text-sm text-black dark:text-amber-200 font-bold ">{item.name}</p>
+                                    <div className="mt-2 flex items-center gap-2">
+                                      <span className="text-sm text-gray-700 dark:text-white ">Qty:</span>
+                                      <div className="flex items-center overflow-hidden rounded-md border border-white">
+                                        <button
+                                          type="button"
+                                          onClick={() => handleQty(item.id, 'dec')}
+                                          className="flex h-7 w-7 items-center justify-center bg-gray-50 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
+                                          aria-label="Decrease quantity"
+                                        >
+                                          -
+                                        </button>
+                                        <span className="flex h-7 w-8 items-center justify-center bg-white dark:bg-gray-600 text-sm text-black dark:text-white">
+                                          {item.qty}
+                                        </span>
+                                        <button
+                                          type="button"
+                                          onClick={() => handleQty(item.id, 'inc')}
+                                          className="flex h-7 w-7 items-center justify-center bg-gray-50 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
+                                          aria-label="Increase quantity"
+                                        >
+                                          +
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <p className="whitespace-nowrap px-2 text-sm text-black dark:text-white font-bold ">
+                                    ৳{(item.price * item.qty).toLocaleString()}.00
+                                  </p>
+                                  <button
+                                    type="button"
+                                    onClick={() => handleRemove(item.id)}
+                                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-red-500 text-white hover:bg-red-600 cursor-pointer "
+                                    aria-label="Remove item"
+                                  >
+                                    <Trash2 size={16} />
+                                  </button>
+                                </div>
+                              ))}
+                              {items.length === 0 && (
+                                <p className="py-6 text-center text-sm text-gray-500">Your cart is empty.</p>
+                              )}
+                            </div>
+                            {/* Product */}
+                            </section>
+
+                        <Link href="/cart" onClick={handleViewCart('flash-cart-drawer')} className="flex flex-col items-center justify-center mt-auto bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
+                          View Cart
+                        </Link>
+
+                          </div>
                     </div>
                   </div>
                   <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
@@ -488,7 +661,7 @@ export default function Navbar({
 
         {/* ---------------- Mobile search dropdown ---------------- */}
         {isSearchOpen && (
-          <div className="border-b border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900 lg:hidden">
+          <div className="border-b border-white bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900 lg:hidden">
             <div className="container mx-auto px-4 py-6">
               <div className="mx-auto max-w-2xl">
                 <div className="relative">

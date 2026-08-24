@@ -4,10 +4,14 @@ import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { toast } from 'react-toastify';
+import Cashon from "../../../images/cashondelivery.svg"
+import Card from "../../../images/cardpayment.svg"
+import Bkash from "../../../images/bkashpyment.png"
+import Nagad from "../../../images/nagadicon.png"
 
 const INITIAL_ITEMS = [
-  { id: 1, name: 'Black Seed Honey 1kg', image: '/images/products/black-seed-honey.jpg', price: 1600, qty: 1 },
-  { id: 2, name: 'Black Seed Honey 1kg', image: '/images/products/black-seed-honey.jpg', price: 1600, qty: 1 },
+  { id: 1, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
+  { id: 2, name: 'Black Seed Honey 1kg', image: '/shoe2.avif', price: 1600, qty: 1 },
 ];
 
 const DELIVERY_COST = 70;
@@ -277,39 +281,39 @@ export default function page() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F3F4F6] px-4 py-8 sm:px-8">
+    <div className="min-h-screen bg-white dark:bg-black px-4 py-8 sm:px-8">
       <div className="mx-auto grid max-w-[1550px] grid-cols-1 gap-6 lg:grid-cols-[1.45fr_1fr]">
         {/* ================= LEFT COLUMN ================= */}
         <div className="space-y-6">
           {/* Order review */}
-          <section className="rounded-xl bg-white p-6 shadow-sm">
-            <SectionTitle>Order review</SectionTitle>
+          <section className="rounded-xl bg-gray-200 dark:bg-gray-800 p-6 shadow-sm">
+            <SectionTitle> <span className=' text-black dark:text-white '>Order review</span></SectionTitle>
             <div className="mt-4 divide-y divide-gray-100">
               {items.map((item) => (
                 <div key={item.id} className="flex items-center gap-4 py-4 first:pt-0 last:pb-0">
-                  <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-gray-200 bg-white">
-                    <Image src={item.image} alt={item.name} fill sizes="64px" className="object-contain p-1.5" />
+                  <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-gray-200 bg-white dark:bg-gray-700">
+                    <Image src={item.image} alt={item.name} fill sizes="64px" className="object-contain" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm text-gray-800">{item.name}</p>
+                    <p className="text-sm text-black dark:text-amber-200 font-bold ">{item.name}</p>
                     <div className="mt-2 flex items-center gap-2">
-                      <span className="text-sm text-gray-500">Qty:</span>
+                      <span className="text-sm text-gray-700 dark:text-white ">Qty:</span>
                       <div className="flex items-center overflow-hidden rounded-md border border-gray-200">
                         <button
                           type="button"
                           onClick={() => handleQty(item.id, 'dec')}
-                          className="flex h-7 w-7 items-center justify-center bg-gray-100 text-sm text-gray-600 hover:bg-gray-200"
+                          className="flex h-7 w-7 items-center justify-center bg-gray-100 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
                           aria-label="Decrease quantity"
                         >
                           -
                         </button>
-                        <span className="flex h-7 w-8 items-center justify-center bg-white text-sm text-gray-800">
+                        <span className="flex h-7 w-8 items-center justify-center bg-white dark:bg-gray-600 text-sm text-black dark:text-white">
                           {item.qty}
                         </span>
                         <button
                           type="button"
                           onClick={() => handleQty(item.id, 'inc')}
-                          className="flex h-7 w-7 items-center justify-center bg-gray-100 text-sm text-gray-600 hover:bg-gray-200"
+                          className="flex h-7 w-7 items-center justify-center bg-gray-100 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
                           aria-label="Increase quantity"
                         >
                           +
@@ -317,7 +321,7 @@ export default function page() {
                       </div>
                     </div>
                   </div>
-                  <p className="whitespace-nowrap px-2 text-sm text-gray-800">
+                  <p className="whitespace-nowrap px-2 text-sm text-black dark:text-white font-bold ">
                     ৳{(item.price * item.qty).toLocaleString()}.00
                   </p>
                   <button
@@ -337,8 +341,8 @@ export default function page() {
           </section>
 
           {/* Shipping address */}
-          <section className="rounded-xl bg-white p-6 shadow-sm">
-            <SectionTitle>Shipping Address</SectionTitle>
+          <section className="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm">
+            <SectionTitle> <span className=' text-black dark:text-white ' >Shipping Address</span></SectionTitle>
             <div className="mt-4">
               <AddressFields
                 form={form}
@@ -353,13 +357,13 @@ export default function page() {
           </section>
 
           {/* Billing address */}
-          <section className="rounded-xl bg-white p-6 shadow-sm">
+          <section className="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm">
             <div className="flex items-center justify-between">
-              <SectionTitle>Billing Address</SectionTitle>
+              <SectionTitle> <span className=' text-black dark:text-white '>Billing Address</span> </SectionTitle>
               <button
                 type="button"
                 onClick={() => setBillingOpen((prev) => !prev)}
-                className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-orange-500"
+                className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-orange-500 cursor-pointer "
                 aria-pressed={billingOpen}
                 aria-label="Toggle separate billing address"
               >
@@ -385,9 +389,9 @@ export default function page() {
         {/* ================= RIGHT COLUMN ================= */}
         <div className="space-y-6">
           {/* Payment method */}
-          <section className="rounded-xl bg-white p-6 shadow-sm">
-            <SectionTitle>Payment method</SectionTitle>
-            <div className="mt-4 grid grid-cols-2 gap-3">
+          <section className="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm">
+            <SectionTitle> <span className=' text-black dark:text-white '>Payment method</span> </SectionTitle>
+            <div className="mt-4 grid grid-cols-2 gap-3 ">
               <PaymentOption
                 label="Cash On Delivery"
                 selected={paymentMethod === 'cod'}
@@ -416,14 +420,14 @@ export default function page() {
           </section>
 
           {/* Coupon */}
-          <section className="rounded-xl bg-white p-6 shadow-sm">
+          <section className="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm">
             <button
               type="button"
               onClick={() => setCouponOpen((prev) => !prev)}
-              className="flex w-full items-center justify-between text-sm text-gray-700"
+              className="flex w-full items-center justify-between text-sm text-gray-700 dark:text-white "
             >
               Have any coupon or gift voucher?
-              <ChevronDownIcon className={`transition-transform ${couponOpen ? 'rotate-180' : ''}`} />
+              <ChevronDownIcon className={` cursor-pointer transition-transform ${couponOpen ? 'rotate-180' : ''}`} />
             </button>
             {couponOpen && (
               <div className="mt-3 flex gap-2">
@@ -437,7 +441,7 @@ export default function page() {
                 <button
                   type="button"
                   onClick={handleApplyCoupon}
-                  className="rounded-md bg-gray-800 px-4 py-2 text-sm font-medium text-white hover:bg-gray-900"
+                  className="rounded-md bg-gray-800 dark:bg-gray-500 px-4 py-2 text-sm font-medium text-white hover:bg-gray-900 dark:hover:bg-gray-600 cursor-pointer "
                 >
                   Apply
                 </button>
@@ -446,14 +450,14 @@ export default function page() {
           </section>
 
             {/* Special notes (optional) */}
-      <section className=' rounded-xl bg-white p-6 shadow-sm '>
+      <section className=' rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm '>
         <button
           type="button"
           onClick={handleNotesToggle(setForm)}
-          className="flex items-center gap-2 text-sm text-gray-700"
+          className="flex items-center gap-2 text-sm text-gray-700 dark:text-white "
         >
           <span
-            className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 border-orange-500"
+            className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 border-orange-500 cursor-pointer"
             aria-hidden="true"
           >
             {form.notesOpen && <span className="h-2 w-2 rounded-full bg-orange-500" />}
@@ -476,14 +480,14 @@ export default function page() {
       </section>
 
           {/* Totals */}
-          <section className="rounded-xl bg-white p-6 shadow-sm">
+          <section className="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm">
             <div className="flex items-center justify-between py-1.5">
-              <span className="text-sm text-gray-500">Sub total</span>
-              <span className="text-sm text-gray-800">{subtotal.toLocaleString()}.00 BDT</span>
+              <span className="text-sm text-gray-500 dark:text-white ">Sub total</span>
+              <span className="text-sm text-gray-800 dark:text-white/80 ">{subtotal.toLocaleString()}.00 BDT</span>
             </div>
             <div className="flex items-center justify-between py-1.5">
-              <span className="text-sm text-gray-500">Delivery cost</span>
-              <span className="text-sm text-gray-800">{DELIVERY_COST.toFixed(2)} BDT</span>
+              <span className="text-sm text-gray-500 dark:text-white">Delivery cost</span>
+              <span className="text-sm text-gray-800 dark:text-white/80">{DELIVERY_COST.toFixed(2)} BDT</span>
             </div>
             {discount > 0 && (
               <div className="flex items-center justify-between py-1.5">
@@ -492,8 +496,8 @@ export default function page() {
               </div>
             )}
             <div className="mt-2 flex items-center justify-between">
-              <span className="text-base font-semibold text-gray-900">Total</span>
-              <span className="text-base font-semibold text-gray-900">{total.toLocaleString()}.00BDT</span>
+              <span className="text-base font-semibold text-gray-900 dark:text-white">Total</span>
+              <span className="text-base font-semibold text-gray-900 dark:text-white/80">{total.toLocaleString()}.00BDT</span>
             </div>
           </section>
 
@@ -502,13 +506,13 @@ export default function page() {
             <button
               type="button"
               onClick={() => setAgreed((prev) => !prev)}
-              className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 border-orange-500"
+              className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 border-orange-500 cursor-pointer "
               aria-pressed={agreed}
               aria-label="Agree to terms"
             >
               {agreed && <span className="h-2 w-2 rounded-full bg-orange-500" />}
             </button>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 dark:text-white ">
               I have read and agree to the{' '}
               <Link href="/terms" className="text-orange-500 hover:underline">Terms and Conditions</Link>,{' '}
               <Link href="/privacy" className="text-orange-500 hover:underline">Privacy Policy</Link> &{' '}
@@ -521,7 +525,7 @@ export default function page() {
             type="button"
             onClick={handlePlaceOrder}
             disabled={submitting}
-            className="w-full rounded-md bg-orange-500 py-3.5 text-sm font-bold tracking-wide text-white transition hover:bg-orange-600 disabled:opacity-60"
+            className="w-full rounded-md bg-orange-500 py-3.5 text-sm font-bold tracking-wide text-white transition hover:bg-orange-600 disabled:opacity-60 cursor-pointer"
           >
             {submitting ? 'PLACING ORDER…' : 'PLACE ORDER'}
           </button>
@@ -555,7 +559,7 @@ function AddressFields({ form, onChange, onDivisionChange, onDistrictChange, onV
           className="rounded-md border border-gray-200 px-3 py-2.5 text-sm placeholder-gray-400 focus:border-orange-400 focus:outline-none"
         />
         <div className="flex items-center overflow-hidden rounded-md border border-gray-200 focus-within:border-orange-400">
-          <span className="border-r border-gray-200 bg-gray-100 px-3 py-2.5 text-sm text-gray-600">88</span>
+          <span className="border-r border-gray-200 bg-gray-100 dark:bg-gray-700 px-3 py-2.5 text-sm text-gray-600 dark:text-white">+88</span>
           <input
             type="tel"
             value={form.phone}
@@ -657,7 +661,7 @@ function SearchableSelect({
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex w-full items-center justify-between rounded-md border border-gray-200 px-3 py-2.5 text-left text-sm text-gray-700 focus:border-orange-400 focus:outline-none"
+        className="flex w-full items-center justify-between rounded-md border border-gray-200 px-3 py-2.5 text-left text-sm text-gray-700 dark:text-white focus:border-orange-400 focus:outline-none"
       >
         <span className="truncate">
           {selected ? (
@@ -731,7 +735,7 @@ function PaymentOption({ label, selected, onClick, icon }) {
     <button
       type="button"
       onClick={onClick}
-      className={`relative flex items-center gap-2.5 rounded-md border px-3 py-3 text-left text-sm font-medium text-gray-700 transition ${
+      className={`relative flex items-center gap-2.5 rounded-md border px-3 py-3 text-left text-sm font-medium cursor-pointer text-gray-700 dark:text-white transition ${
         selected ? 'border-orange-400' : 'border-gray-200 hover:border-gray-300'
       }`}
     >
@@ -774,30 +778,24 @@ function ChevronDownIcon({ className = '' }) {
 
 function CodIcon() {
   return (
-    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-gradient-to-br from-emerald-400 via-amber-300 to-pink-400 text-white">
-      <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
-        <path d="M2 5.5A1.5 1.5 0 013.5 4h9A1.5 1.5 0 0114 5.5v.5h1a1 1 0 011 1v6a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 011 13V6.5A1 1 0 012 5.5z" />
-      </svg>
+    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded text-white">
+     <Image src={Cashon} alt='img'/>
     </span>
   );
 }
 
 function CardIcon() {
   return (
-    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded bg-gradient-to-br from-blue-600 to-indigo-800 text-white">
-      <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
-        <path d="M2 5a2 2 0 012-2h12a2 2 0 012 2v1H2V5zm0 3h16v5a2 2 0 01-2 2H4a2 2 0 01-2-2V8zm2 4a1 1 0 000 2h3a1 1 0 100-2H4z" />
-      </svg>
+    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded rounded-2xl text-white">
+      <Image src={Card} alt='img'/>
     </span>
   );
 }
 
 function BkashIcon() {
   return (
-    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-pink-600 text-white">
-      <svg viewBox="0 0 20 20" fill="currentColor" className="h-3 w-3">
-        <path d="M10 2l2.5 5.5L18 10l-5.5 2.5L10 18l-2.5-5.5L2 10l5.5-2.5z" />
-      </svg>
+    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white">
+      <Image src={Bkash} alt='img'/>
     </span>
   );
 }
@@ -805,9 +803,7 @@ function BkashIcon() {
 function NagadIcon() {
   return (
     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-orange-700 text-white">
-      <svg viewBox="0 0 20 20" fill="currentColor" className="h-3.5 w-3.5">
-        <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm0 3.5a1 1 0 011 1V9h1.5a1 1 0 110 2H11v2.5a1 1 0 11-2 0V11H7.5a1 1 0 110-2H9V6.5a1 1 0 011-1z" />
-      </svg>
+      <Image src={Nagad} alt='img'/>
     </span>
   );
 }
