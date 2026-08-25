@@ -4,6 +4,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Fan, Heart, MoveRight } from 'lucide-react'
 import Cummonbutton from './cummonbutton'
 import Addtocardbutton from './addtocardbutton'
+import Wishlistheart from './Wishlistheart'
 
 const Combopack = () => {
 
@@ -69,8 +70,7 @@ const Combopack = () => {
           <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs bg-white dark:bg-black '} key={index}>
             <div className="  rounded-3xl grid-rows-1 items-center justify-center">
               <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-              <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-               <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+              <Wishlistheart/>
                <Addtocardbutton/>
               <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                 <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>

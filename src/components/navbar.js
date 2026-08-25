@@ -22,13 +22,14 @@ import {
   Sun,
   SunDim,
   Trash2,
+  Navigation,
 } from 'lucide-react';
 import Image from 'next/image';
 
 const INITIAL_ITEMS = [
   { id: 1, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
   { id: 2, name: 'Black Seed Honey 1kg', image: '/shoe2.avif', price: 1600, qty: 1 },
-   { id: 3, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
+  { id: 3, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
 ];
 
 
@@ -258,6 +259,9 @@ export default function Navbar({
                     <div className="drawer-content">
                       {/* Page content here */}
                       <label htmlFor="my-drawer-5" className="drawer-button cursor-pointer ">
+                        <span className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                    {cartCount}
+                  </span>
                         <ShoppingCart size={24} className={themeIcon} strokeWidth={2} />
                       </label>
                     </div>
@@ -273,33 +277,33 @@ export default function Navbar({
                           <X className={`h-5 w-5 ${themeIcon}`} />
                         </label>
 
-                          {/* Order review Mobile */}
-                          <section className=" mt-3 rounded-xl bg-gray-200 p-3 shadow-sm dark:bg-gray-800 sm:p-2">
-                            <SectionTitle> <span className=' text-black dark:text-white '>Order review</span></SectionTitle>
-                            <div className=" max-h-177 overflow-y-auto  mt-4 divide-y divide-gray-100">
-                              {items.map((item) => (
-                                <div key={item.id} className="flex flex-wrap items-center gap-3 py-4 first:pt-0 last:pb-0 sm:flex-nowrap sm:gap-4">
-                                  <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white bg-white dark:bg-gray-700">
-                                    <Image src={item.image} alt={item.name} fill sizes="64px" className="object-contain" />
-                                  </div>
-                                  <div className="min-w-0 flex-1">
-                                    <p className="text-sm text-black dark:text-amber-200 font-bold ">{item.name}</p>
-                                    <div className="mt-2 flex items-center gap-2">
-                                      <span className="text-[12px] text-gray-800 dark:text-white ">Qty:</span>
-                                      <div className="flex items-center overflow-hidden rounded-md border border-white">
-                                        <button
-                                          type="button"
-                                          onClick={() => handleQty(item.id, 'dec')}
-                                          className="flex h-5 w-5 items-center justify-center bg-gray-50 dark:bg-gray-700 text-sm text-gray-600 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
-                                          aria-label="Decrease quantity"
-                                        >
-                                          -
-                                        </button>
-                                        <span className="flex h-5 w-6 items-center justify-center bg-white dark:bg-gray-600 text-sm text-gray-800 dark:text-white">
-                                          {item.qty}
-                                        </span>
+                        {/* Order review Mobile */}
+                        <section className=" mt-3 rounded-xl bg-gray-200 p-3 shadow-sm dark:bg-gray-800 sm:p-2">
+                          <SectionTitle> <span className=' text-black dark:text-white '>Order review</span></SectionTitle>
+                          <div className=" max-h-177 overflow-y-auto  mt-4 divide-y divide-gray-100">
+                            {items.map((item) => (
+                              <div key={item.id} className="flex flex-wrap items-center gap-3 py-4 first:pt-0 last:pb-0 sm:flex-nowrap sm:gap-4">
+                                <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white bg-white dark:bg-gray-700">
+                                  <Image src={item.image} alt={item.name} fill sizes="64px" className="object-contain" />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                  <p className="text-sm text-black dark:text-amber-200 font-bold ">{item.name}</p>
+                                  <div className="mt-2 flex items-center gap-2">
+                                    <span className="text-[12px] text-gray-800 dark:text-white ">Qty:</span>
+                                    <div className="flex items-center overflow-hidden rounded-md border border-white">
+                                      <button
+                                        type="button"
+                                        onClick={() => handleQty(item.id, 'dec')}
+                                        className="flex h-5 w-5 items-center justify-center bg-gray-50 dark:bg-gray-700 text-sm text-gray-600 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
+                                        aria-label="Decrease quantity"
+                                      >
+                                        -
+                                      </button>
+                                      <span className="flex h-5 w-6 items-center justify-center bg-white dark:bg-gray-600 text-sm text-gray-800 dark:text-white">
+                                        {item.qty}
+                                      </span>
 
-                                        <div >
+                                      <div >
                                         <button
                                           type="button"
                                           onClick={() => handleQty(item.id, 'inc')}
@@ -313,28 +317,28 @@ export default function Navbar({
                                   </div>
 
                                   <div className=" flex items-center mt-3" >
-                                  <p className="whitespace-nowrap px-2 text-sm text-black dark:text-white font-bold ">
-                                    ৳{(item.price * item.qty).toLocaleString()}.00
-                                  </p>
-                                  <button
-                                    type="button"
-                                    onClick={() => handleRemove(item.id)}
-                                    className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-red-500 text-white hover:bg-red-600 cursor-pointer"
-                                    aria-label="Remove item"
-                                  >
-                                    <Trash2 size={14} />
-                                  </button>
-                                  </div>
+                                    <p className="whitespace-nowrap px-2 text-sm text-black dark:text-white font-bold ">
+                                      ৳{(item.price * item.qty).toLocaleString()}.00
+                                    </p>
+                                    <button
+                                      type="button"
+                                      onClick={() => handleRemove(item.id)}
+                                      className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-red-500 text-white hover:bg-red-600 cursor-pointer"
+                                      aria-label="Remove item"
+                                    >
+                                      <Trash2 size={14} />
+                                    </button>
                                   </div>
                                 </div>
-                              ))}
-                              {items.length === 0 && (
-                                <p className="py-6 text-center text-sm text-gray-500">Your cart is empty.</p>
-                              )}
-                            </div>
-                          </section>
+                              </div>
+                            ))}
+                            {items.length === 0 && (
+                              <p className="py-6 text-center text-sm text-gray-500">Your cart is empty.</p>
+                            )}
+                          </div>
+                        </section>
 
-                          <Link href="/cart" onClick={handleViewCart('my-drawer-5')} className="flex flex-col mt-auto items-center justify-center bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
+                        <Link href="/cart" onClick={handleViewCart('my-drawer-5')} className="flex flex-col mt-auto items-center justify-center bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
                           View Cart
                         </Link>
                       </div>
@@ -399,35 +403,36 @@ export default function Navbar({
 
                   <div className="relative" ref={mobileAccountRef}>
                     <button
+                      type="button"
                       onClick={() => setMobileAccountOpen((v) => !v)}
-                      className="flex w-full items-center justify-between rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-600 dark:text-white"
+                      aria-expanded={mobileAccountOpen}
+                      aria-haspopup="menu"
+                      className="flex w-full items-center justify-between rounded-lg border border-gray-300 px-4 py-2 text-sm dark:border-gray-600 dark:text-white cursor-pointer "
                     >
-                      Account <ChevronDown size={16} />
+                      Account
+                      <ChevronDown
+                        size={16}
+                        className={`transition-transform ${mobileAccountOpen ? 'rotate-180' : ''}`}
+                      />
                     </button>
                     {mobileAccountOpen && (
-                      <div className={`absolute right-0 z-10 mt-1 min-w-56 space-y-3 rounded-xl border border-gray-200 bg-white p-2 shadow-lg backdrop-blur-[100px] dark:border-gray-700 dark:bg-black/80 dark:text-white`}>
+                      <div className=" left-0 top-full z-10 mt-1 w-full min-w-56 space-y-1 rounded-xl border border-gray-200 bg-white p-2 backdrop-blur-[100px] dark:border-gray-700 dark:bg-gray-800 dark:text-white " role="menu">
                         {currentUser ? (
                           <>
                             <p className="text-sm text-gray-500 dark:text-gray-300">{currentUser.email}</p>
-                            <Link href="/account" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                            <Link href="/account" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <User size={20} /> Manage My Account
                             </Link>
-                            <Link href="/orders" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <ShoppingBag size={20} /> My Order
-                            </Link>
-                            <Link href="/cancellations" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <XCircle size={20} /> My Cancellation
-                            </Link>
-                            <Link href="/reviews" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <Star size={20} /> My Reviews
+                            <Link href="/orders" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <Navigation size={20} /> Order Tracking
                             </Link>
                           </>
                         ) : (
                           <>
-                            <Link href="signin" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                            <Link href="/signin" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <User size={20} /> Sign In
                             </Link>
-                            <Link href="signup" className="flex items-center gap-4 rounded-2xl p-2 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                            <Link href="/signup" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <UserPlus size={20} /> Create Account
                             </Link>
                           </>
@@ -443,7 +448,7 @@ export default function Navbar({
                       <Link
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block rounded-lg px-4 py-3 text-base font-semibold transition-colors hover:bg-red-700 ${themeText} ${isActive(link.href) ? 'bg-gray-100 dark:bg-slate-600' : ''}`}
+                        className={`block rounded-lg px-4 py-3 text-base font-semibold transition-colors hover:bg-gray-950 ${themeText} ${isActive(link.href) ? 'bg-gray-100 dark:bg-slate-600' : ''}`}
                       >
                         {link.label}
                       </Link>
@@ -462,10 +467,10 @@ export default function Navbar({
 
                 <button
                   onClick={toggleTheme}
-                  className={`inline-flex items-center justify-between gap-2 rounded-full border border-gray-300 px-3 py-2 text-sm font-medium transition hover:bg-gray-100 dark:border-gray-600 dark:hover:bg-gray-800 cursor-pointer ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}
+                  className={`inline-flex items-center justify-between gap-2 rounded-full border border-gray-300 px-3 py-2 text-sm font-medium transition mt-10 hover:bg-yellow-300 dark:border-gray-600 dark:hover:bg-gray-800 cursor-pointer ${isDark ? 'bg-black text-white' : 'bg-yellow-100 text-black leading-2 font-bold '}`}
                   aria-label="Toggle light and dark mode "
                 >
-                  {isDark ? <Moon fill="#FFFF00" className={`h-4 w-4 ${themeIcon}`} /> : <SunDim color="#000000" fill="#e9fa00" className={`h-4 w-4 ${themeIcon}`} />}
+                  {isDark ? <Moon fill="#FFFF00" className={`h-4 w-4 ${themeIcon}`} /> : <SunDim color="#8B0000" fill="#8B0000" className={`h-4 w-4 ${themeIcon}`} />}
                   {isDark ? 'Dark mode' : 'Light mode'}
                 </button>
 
@@ -531,68 +536,68 @@ export default function Navbar({
                           <X className={`h-5 w-5 ${themeIcon}`} />
                         </label>
 
-                          {/* Order review Dasktop */}
-                          <section className=" max-h-200 overflow-y-auto rounded-xl bg-gray-200 p-4 shadow-sm dark:bg-gray-800 sm:p-6 mt-3 ">
-                            <SectionTitle> <span className=' text-black dark:text-white '>Order review</span></SectionTitle>
-                            {/* Product */}
-                            <div className="mt-4 divide-y divide-gray-100 ">
-                              {items.map((item) => (
-                                <div key={item.id} className="flex flex-wrap items-center gap-3 py-4 first:pt-0 last:pb-0 sm:flex-nowrap sm:gap-4">
-                                  <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white bg-white dark:bg-gray-700">
-                                    <Image src={item.image} alt={item.name} fill sizes="64px" className="object-contain" />
-                                  </div>
-                                  <div className="min-w-0 flex-1">
-                                    <p className="text-sm text-black dark:text-amber-200 font-bold ">{item.name}</p>
-                                    <div className="mt-2 flex items-center gap-2">
-                                      <span className="text-sm text-gray-700 dark:text-white ">Qty:</span>
-                                      <div className="flex items-center overflow-hidden rounded-md border border-white">
-                                        <button
-                                          type="button"
-                                          onClick={() => handleQty(item.id, 'dec')}
-                                          className="flex h-7 w-7 items-center justify-center bg-gray-50 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
-                                          aria-label="Decrease quantity"
-                                        >
-                                          -
-                                        </button>
-                                        <span className="flex h-7 w-8 items-center justify-center bg-white dark:bg-gray-600 text-sm text-black dark:text-white">
-                                          {item.qty}
-                                        </span>
-                                        <button
-                                          type="button"
-                                          onClick={() => handleQty(item.id, 'inc')}
-                                          className="flex h-7 w-7 items-center justify-center bg-gray-50 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
-                                          aria-label="Increase quantity"
-                                        >
-                                          +
-                                        </button>
-                                      </div>
+                        {/* Order review Dasktop */}
+                        <section className=" max-h-200 overflow-y-auto rounded-xl bg-gray-200 p-4 shadow-sm dark:bg-gray-800 sm:p-6 mt-3 ">
+                          <SectionTitle> <span className=' text-black dark:text-white '>Order review</span></SectionTitle>
+                          {/* Product */}
+                          <div className="mt-4 divide-y divide-gray-100 ">
+                            {items.map((item) => (
+                              <div key={item.id} className="flex flex-wrap items-center gap-3 py-4 first:pt-0 last:pb-0 sm:flex-nowrap sm:gap-4">
+                                <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white bg-white dark:bg-gray-700">
+                                  <Image src={item.image} alt={item.name} fill sizes="64px" className="object-contain" />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                  <p className="text-sm text-black dark:text-amber-200 font-bold ">{item.name}</p>
+                                  <div className="mt-2 flex items-center gap-2">
+                                    <span className="text-sm text-gray-700 dark:text-white ">Qty:</span>
+                                    <div className="flex items-center overflow-hidden rounded-md border border-white">
+                                      <button
+                                        type="button"
+                                        onClick={() => handleQty(item.id, 'dec')}
+                                        className="flex h-7 w-7 items-center justify-center bg-gray-50 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
+                                        aria-label="Decrease quantity"
+                                      >
+                                        -
+                                      </button>
+                                      <span className="flex h-7 w-8 items-center justify-center bg-white dark:bg-gray-600 text-sm text-black dark:text-white">
+                                        {item.qty}
+                                      </span>
+                                      <button
+                                        type="button"
+                                        onClick={() => handleQty(item.id, 'inc')}
+                                        className="flex h-7 w-7 items-center justify-center bg-gray-50 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
+                                        aria-label="Increase quantity"
+                                      >
+                                        +
+                                      </button>
                                     </div>
                                   </div>
-                                  <p className="whitespace-nowrap px-2 text-sm text-black dark:text-white font-bold ">
-                                    ৳{(item.price * item.qty).toLocaleString()}.00
-                                  </p>
-                                  <button
-                                    type="button"
-                                    onClick={() => handleRemove(item.id)}
-                                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-red-500 text-white hover:bg-red-600 cursor-pointer "
-                                    aria-label="Remove item"
-                                  >
-                                    <Trash2 size={16} />
-                                  </button>
                                 </div>
-                              ))}
-                              {items.length === 0 && (
-                                <p className="py-6 text-center text-sm text-gray-500">Your cart is empty.</p>
-                              )}
-                            </div>
-                            {/* Product */}
-                            </section>
+                                <p className="whitespace-nowrap px-2 text-sm text-black dark:text-white font-bold ">
+                                  ৳{(item.price * item.qty).toLocaleString()}.00
+                                </p>
+                                <button
+                                  type="button"
+                                  onClick={() => handleRemove(item.id)}
+                                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-red-500 text-white hover:bg-red-600 cursor-pointer "
+                                  aria-label="Remove item"
+                                >
+                                  <Trash2 size={16} />
+                                </button>
+                              </div>
+                            ))}
+                            {items.length === 0 && (
+                              <p className="py-6 text-center text-sm text-gray-500">Your cart is empty.</p>
+                            )}
+                          </div>
+                          {/* Product */}
+                        </section>
 
                         <Link href="/cart" onClick={handleViewCart('flash-cart-drawer')} className="flex flex-col items-center justify-center mt-auto bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
                           View Cart
                         </Link>
 
-                          </div>
+                      </div>
                     </div>
                   </div>
                   <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">

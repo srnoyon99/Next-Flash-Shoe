@@ -1,8 +1,9 @@
 "use client"
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import { Heart } from 'lucide-react'
+import { Heart, MoveRight } from 'lucide-react'
 import Addtocardbutton from './addtocardbutton'
+import Wishlistheart from './Wishlistheart'
 
 const BestSeller = () => {
 
@@ -36,9 +37,16 @@ const BestSeller = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+
+      <div className=' flex items-center justify-between'>
       <div className="container flex items-center ">
-        <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
+        <div className="h-[27px] w-[13px] bg-red-700 mb-4 rounded-3xl " />
         <h2 className=" text-2xl font-bold mb-4 ml-2 ">Best Seller</h2>
+      </div>
+
+      <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
+       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+      </div>
       </div>
 
       <Splide options={{
@@ -60,8 +68,7 @@ const BestSeller = () => {
           <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs '} key={index}>
             <div className="  rounded-3xl grid-rows-1 items-center justify-center">
               <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-              <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-               <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+              <Wishlistheart/>
                <Addtocardbutton/>
               <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                 <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>

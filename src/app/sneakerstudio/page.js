@@ -3,9 +3,10 @@ import React from 'react'
 import Image from 'next/image'
 import discountedProductImage from '../../../public/discountproduct.webp'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import { Heart } from 'lucide-react'
+import { Heart, MoveRight } from 'lucide-react'
 import Cummonbutton from '@/components/cummonbutton'
 import Addtocardbutton from '@/components/addtocardbutton'
+import Wishlistheart from '@/components/Wishlistheart'
 
 const page = () => {
   const images = [
@@ -56,15 +57,16 @@ const page = () => {
 
         {/* /////////////Man Sneakers/////////////// */}
         <div className=' mt-10 '>
-        <div className=" flex items-center justify-between ">
-          <div className=' flex items-center'>
-            <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl " />
-            <h2 className=" text-2xl font-bold mb-4 ml-2 ">Man Sneakers</h2>
-          </div>
-          <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
-            All
-          </button>
-        </div>
+        <div className=' flex items-center justify-between'>
+      <div className="container flex items-center ">
+        <div className="h-[27px] w-[13px] bg-red-700 mb-4 rounded-3xl " />
+        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Man Sneakers</h2>
+      </div>
+
+      <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
+       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+      </div>
+      </div>
 
         <Splide options={{
           type: 'loop',
@@ -85,8 +87,7 @@ const page = () => {
             <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
               <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                 <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-                <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-                <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+                <Wishlistheart/>
                 <Addtocardbutton/>
                 <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                   <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
@@ -100,15 +101,16 @@ const page = () => {
 
         {/* /////////////Woman Sneakers/////////////// */}
         <div className=' mt-10 '>
-        <div className=" flex items-center justify-between ">
-          <div className=' flex items-center'>
-            <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl " />
-            <h2 className=" text-2xl font-bold mb-4 ml-2 ">Women Sneakers</h2>
-          </div>
-          <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
-            All
-          </button>
-        </div>
+        <div className=' flex items-center justify-between'>
+      <div className="container flex items-center ">
+        <div className="h-[27px] w-[13px] bg-red-700 mb-4 rounded-3xl " />
+        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Woman Sneakers</h2>
+      </div>
+
+      <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
+       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+      </div>
+      </div>
 
         <Splide options={{
           type: 'loop',
@@ -129,8 +131,7 @@ const page = () => {
             <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
               <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                 <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-                <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-                <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+                <Wishlistheart/>
                 <Addtocardbutton/>
                 <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                   <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
@@ -144,15 +145,17 @@ const page = () => {
 
         {/* /////////////Kid's Sneakers/////////////// */}
         <div className=' mt-10 '>
-        <div className=" flex items-center justify-between ">
-          <div className=' flex items-center'>
-            <div className="h-[30px] w-[20px] bg-red-700 mb-4 rounded-2xl " />
-            <h2 className=" text-2xl font-bold mb-4 ml-2 ">Kids Sneakers</h2>
-          </div>
-          <button className=' px-2 py-1 bg-green-800 rounded-3xl cursor-pointer text-amber-50 font-bold mb-2 ' >
-            All
-          </button>
-        </div>
+        <div className=' flex items-center justify-between'>
+      <div className="container flex items-center ">
+        <div className="h-[27px] w-[13px] bg-red-700 mb-4 rounded-3xl " />
+        <h2 className=" text-2xl font-bold mb-4 ml-2 ">Kid's Sneakers</h2>
+      </div>
+
+      <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
+       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+      </div>
+      </div>
+
 
         <Splide options={{
           type: 'loop',
@@ -173,8 +176,7 @@ const page = () => {
             <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
               <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                 <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-                <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-                <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+                <Wishlistheart/>
                 <Addtocardbutton/>
                 <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                   <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>

@@ -2,9 +2,10 @@
 @plugin "daisyui" {
    themes: light --default, dark --prefersdark;
  }
-@import '@splidejs/react-splide/css';
-@custom-variant dark (&:where(.dark, .dark *));
-
+ @custom-variant dark (&:where(.dark, .dark *));
+ 
+ @import '@splidejs/react-splide/css';
+ 
 .container {
     margin-inline: auto;
     padding-inline: 24px;

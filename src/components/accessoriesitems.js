@@ -4,19 +4,19 @@ import { Splide, SplideSlide } from '@splidejs/react-splide'
 
 const Accessoriesitems = () => {
        const images = [
-    { src: '/img2.webp', alt: 'Image 1' },
-    { src: '/img3.webp', alt: 'Image 2' },
-    { src: '/img4.webp', alt: 'Image 3' },
-    { src: '/img5.webp', alt: 'Image 4' },
-    { src: '/img6.webp', alt: 'Image 5' },
+    { src: '/bag.jpeg', alt: 'Image 3' },
+    { src: '/ledisbag.jpeg', alt: 'Image 4' },
+    { src: '/belt.jpeg', alt: 'Image 2' },
+    { src: '/wallet.jpeg', alt: 'Image 3' },
+    { src: '/accessories.jpeg', alt: 'Image 3' },
      ]
 
   const products = [
-    { name: 'Lides Bag' },
-    { name: 'Money Bag' },
-    { name: 'Backpack' },
-    { name: 'Belt' },
-    { name: 'Shoes Polish' },
+    { name: ' Bag ' },
+    { name: ' Ledies Bag ' },
+    { name: ' Belt ' },
+    { name: ' Wallet ' },
+    { name: ' Accessories ' },
   ]
 
     const selectedProducts = products.map((product, index) => ({
@@ -29,8 +29,7 @@ const Accessoriesitems = () => {
             {/* //////////////////Selected Your Products////////////////////// */}
       <div>
         <Splide options={{
-          type: 'loop',
-          perPage: 6,
+          perPage: 5,
           perMove: 1,
           gap: '1rem',
           breakpoints: {

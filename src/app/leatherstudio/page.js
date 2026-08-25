@@ -5,6 +5,7 @@ import letherstudio from '../../../public/letherstudio.webp'
 import Image from 'next/image'
 import Cummonbutton from '@/components/cummonbutton'
 import Addtocardbutton from '@/components/addtocardbutton'
+import Wishlistheart from '@/components/Wishlistheart'
 
 const page = () => {
 
@@ -46,15 +47,9 @@ const page = () => {
           <div className="relative grid items-center justify-center gap-3 ">
             <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-3xl h-full max-h-64  rounded-full blur-[170px] pointer-events-none" />
             <h3 className="text-center font-extrabold leading-10 text-transparent dark:text-white text-2xl lg:text-5xl text-nowrap [-webkit-text-stroke:1px_#0D542B] bg-clip-text  bg-red-500 mt-6" >
-              FLASH SHOE
-            </h3>
-            <h3 className="text-2xl lg:text-5xl text-gray-800 dark:text-gray-200 text-center mt-0 lg:mt-5 font-bold leading-5 text-balance lg:text-nowrap bg-clip-text bg-red-500">
-              Your one-stop destination for all your sneaker needs
+              FLASH LEATHER
             </h3>
           </div>
-          <p className="text-center text-sm lg:text-lg text-gray-800 dark:text-gray-100 mt-2 lg:mt-6 max-w-full lg:max-w-180 pt-3">
-            Every occasion deserves a different look. A stylish one for a movie date, a powerful one for a morning run and a casual one for a meetup with friends. Sneaker Studio at Bata is where you can ace them all.
-          </p>
         </div>
         {/* /////////////Bennar///////////////// */}
 
@@ -84,8 +79,7 @@ const page = () => {
             <div className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
               <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
                 <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-                <Heart className=' absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-                <Heart className=' absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+                <Wishlistheart/>
                 <Addtocardbutton />
                 <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                   <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
