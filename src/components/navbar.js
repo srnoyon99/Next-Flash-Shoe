@@ -448,7 +448,7 @@ export default function Navbar({
                       <Link
                         href={link.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block rounded-lg px-4 py-3 text-base font-semibold transition-colors hover:bg-gray-950 ${themeText} ${isActive(link.href) ? 'bg-gray-100 dark:bg-slate-600' : ''}`}
+                        className={`block rounded-lg px-4 py-3 text-base font-semibold transition-colors hover:bg-gray-200 dark:hover:bg-gray-950 ${themeText} ${isActive(link.href) ? 'bg-blue-100 dark:bg-slate-600' : ''}`}
                       >
                         {link.label}
                       </Link>
@@ -467,7 +467,7 @@ export default function Navbar({
 
                 <button
                   onClick={toggleTheme}
-                  className={`inline-flex items-center justify-between gap-2 rounded-full border border-gray-300 px-3 py-2 text-sm font-medium transition mt-10 hover:bg-yellow-300 dark:border-gray-600 dark:hover:bg-gray-800 cursor-pointer ${isDark ? 'bg-black text-white' : 'bg-yellow-100 text-black leading-2 font-bold '}`}
+                  className={`inline-flex items-center justify-between gap-2 rounded-full border border-gray-300 px-3 py-2 text-sm font-medium transition mt-10 hover:bg-white dark:border-gray-600 dark:hover:bg-gray-800 cursor-pointer ${isDark ? 'bg-black text-white' : 'bg-blue-200 text-black leading-2 font-bold '}`}
                   aria-label="Toggle light and dark mode "
                 >
                   {isDark ? <Moon fill="#FFFF00" className={`h-4 w-4 ${themeIcon}`} /> : <SunDim color="#8B0000" fill="#8B0000" className={`h-4 w-4 ${themeIcon}`} />}
