@@ -5,6 +5,7 @@ import { Fan, Heart, MoveRight } from 'lucide-react'
 import Cummonbutton from './cummonbutton'
 import Addtocardbutton from './addtocardbutton'
 import Wishlistheart from './Wishlistheart'
+import Link from 'next/link'
 
 const Combopack = () => {
 
@@ -47,7 +48,7 @@ const Combopack = () => {
       </div>
 
       <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
-       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+      <Link href={'/combodeals'} > <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> </Link>
       </div>
       </div>
 

@@ -1,9 +1,10 @@
 "use client"
 import React from 'react'
+import Panda from '../../../images/pandalogo.png'
 import Addtocardbutton from '@/components/addtocardbutton'
-import Accessoriesitems from '@/components/accessoriesitems'
 import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const page = () => {
   const images = [
@@ -60,22 +61,22 @@ const page = () => {
     <div className="container mx-auto px-4 py-4">
 
       <div className=' flex items-center justify-start gap-2' >
-       <Link href={'/'} > <p className=' text-sm cursor-pointer ' >Home</p> </Link>
+       <Link href={'/brands'} > <p className=' text-sm cursor-pointer ' >Brands</p> </Link>
         <p className=' text-sm cursor-pointer ' >/</p>
-        <p className=' text-sm cursor-pointer text-green-700 ' >Accessories</p>
+        <p className=' text-sm cursor-pointer text-green-700 ' >Panda</p>
       </div>
 
-      {/* //////////////////Selected Your Products////////////////////// */}
-      <div>
-        <Accessoriesitems/>
-      </div>
-      {/* //////////////////Selected Your Products////////////////////// */}
+      {/* /////////////////Logo/////////////////// */}
+            <div className=' container flex items-center justify-center overflow-hidden ' >
+              <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Panda} alt='img'/>
+            </div>
+            {/* ////////////////Logo//////////////////// */}
 
       {/* //////////////////ALL Products////////////////////// */}
       <div className=" pt-8 ">
          <div className="flex items-center ">
           <div className="h-[20px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
-          <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">All Products</h2>
+          <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">Panda</h2>
         </div>
 
        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 ">

@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Cummonbutton from '@/components/cummonbutton'
 import Addtocardbutton from '@/components/addtocardbutton'
 import Wishlistheart from '@/components/Wishlistheart'
+import Link from 'next/link'
 
 const page = () => {
 
@@ -41,7 +42,14 @@ const page = () => {
 
   return (
     <div>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-4">
+
+        <div className=' flex items-center justify-start gap-2' >
+       <Link href={'/'} > <p className=' text-sm cursor-pointer ' >Home</p> </Link>
+        <p className=' text-sm cursor-pointer ' >/</p>
+        <p className=' text-sm cursor-pointer text-green-700 ' >Accessories</p>
+      </div>
+
         {/* //////////////Bennar//////////////// */}
         <div className=" inset-0 flex flex-col items-center justify-center bg-opacity-50">
           <div className="relative grid items-center justify-center gap-3 ">

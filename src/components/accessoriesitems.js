@@ -4,18 +4,20 @@ import { Splide, SplideSlide } from '@splidejs/react-splide'
 
 const Accessoriesitems = () => {
        const images = [
+    { src: '/all.jpeg', alt: 'Image 3' },
     { src: '/bag.jpeg', alt: 'Image 3' },
     { src: '/ledisbag.jpeg', alt: 'Image 4' },
-    { src: '/belt.jpeg', alt: 'Image 2' },
     { src: '/wallet.jpeg', alt: 'Image 3' },
+    { src: '/belt.jpeg', alt: 'Image 2' },
     { src: '/accessories.jpeg', alt: 'Image 3' },
      ]
 
   const products = [
+    { name: ' See All ' },
     { name: ' Bag ' },
     { name: ' Ledies Bag ' },
-    { name: ' Belt ' },
     { name: ' Wallet ' },
+    { name: ' Belt ' },
     { name: ' Accessories ' },
   ]
 

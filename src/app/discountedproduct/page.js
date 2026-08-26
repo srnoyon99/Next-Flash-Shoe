@@ -4,6 +4,7 @@ import { Heart } from 'lucide-react'
 import Cummonbutton from '@/components/cummonbutton'
 import Addtocardbutton from '@/components/addtocardbutton'
 import Wishlistheart from '@/components/Wishlistheart'
+import Link from 'next/link'
 
 const page = () => {
 
@@ -38,7 +39,13 @@ const page = () => {
   }))
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
+
+      <div className=' flex items-center justify-start gap-2 mb-7' >
+       <Link href={'/'} > <p className=' text-sm cursor-pointer ' >Home</p> </Link>
+        <p className=' text-sm cursor-pointer ' >/</p>
+        <p className=' text-sm cursor-pointer text-green-700 ' >Discountproduct</p>
+      </div>
 
       <div className="container flex items-center justify-between ">
 

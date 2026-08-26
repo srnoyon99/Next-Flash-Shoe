@@ -512,7 +512,7 @@ export default function Navbar({
                 </Link>
 
                 {/* Desktop */}
-                <div className="relative rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800">
+                <div className="relative rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800">
                   <div className="drawer drawer-end">
                     <input id="flash-cart-drawer" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content">
@@ -600,7 +600,7 @@ export default function Navbar({
                       </div>
                     </div>
                   </div>
-                  <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
+                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
                     {cartCount}
                   </span>
                 </div>

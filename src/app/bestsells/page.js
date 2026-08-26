@@ -62,20 +62,14 @@ const page = () => {
       <div className=' flex items-center justify-start gap-2' >
        <Link href={'/'} > <p className=' text-sm cursor-pointer ' >Home</p> </Link>
         <p className=' text-sm cursor-pointer ' >/</p>
-        <p className=' text-sm cursor-pointer text-green-700 ' >Accessories</p>
+        <p className=' text-sm cursor-pointer text-green-700 ' >Bestsells</p>
       </div>
-
-      {/* //////////////////Selected Your Products////////////////////// */}
-      <div>
-        <Accessoriesitems/>
-      </div>
-      {/* //////////////////Selected Your Products////////////////////// */}
 
       {/* //////////////////ALL Products////////////////////// */}
       <div className=" pt-8 ">
          <div className="flex items-center ">
           <div className="h-[20px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
-          <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">All Products</h2>
+          <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">Best Seller</h2>
         </div>
 
        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 ">

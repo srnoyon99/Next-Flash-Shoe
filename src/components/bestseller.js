@@ -4,6 +4,7 @@ import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Heart, MoveRight } from 'lucide-react'
 import Addtocardbutton from './addtocardbutton'
 import Wishlistheart from './Wishlistheart'
+import Link from 'next/link'
 
 const BestSeller = () => {
 
@@ -45,7 +46,7 @@ const BestSeller = () => {
       </div>
 
       <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
-       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+      <Link href={'/bestsells'} ><p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> </Link> 
       </div>
       </div>
 

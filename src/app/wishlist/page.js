@@ -3,6 +3,7 @@ import React from 'react'
 import { Heart } from 'lucide-react'
 import Saggation from '@/components/Saggation'
 import Addtocardbutton from '@/components/addtocardbutton'
+import Wishlistheart from '@/components/Wishlistheart'
 
 const page = () => {
 
@@ -45,8 +46,7 @@ const page = () => {
             <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
               <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
               <Addtocardbutton/>
-              <Heart className=' absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-              <Heart className=' absolute lg:hidden top-7 right-5' color="#000000" size={25} strokeWidth={2} />
+             <Wishlistheart/>
               <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                 <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                 <p className="text-red-500">TK.{item.price || ''}</p>

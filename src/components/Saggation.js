@@ -2,6 +2,7 @@ import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 import { Heart } from 'lucide-react'
 import Addtocardbutton from './addtocardbutton'
+import Wishlistheart from './Wishlistheart'
 
 const Saggation = () => {
 
@@ -44,7 +45,7 @@ const Saggation = () => {
                          gap: '1rem',
                          breakpoints: {
                               640: {
-                                   perPage: 3,
+                                   perPage: 2,
                               },
                               1024: {
                                    perPage: 3,
@@ -57,8 +58,7 @@ const Saggation = () => {
                                    <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                                         <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
                                         <Addtocardbutton/>
-                                        <Heart className='absolute hidden lg:block top-7 right-5' color="#000000" size={30} strokeWidth={2} />
-                                        <Heart className='absolute lg:hidden top-7 right-5' color="#000000" size={20} strokeWidth={2} />
+                                        <Wishlistheart/>
                                         <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                                              <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                                              <p className="text-red-500">TK.{item.price || ''}</p>

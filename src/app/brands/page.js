@@ -1,8 +1,7 @@
 "use client"
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import { Heart, MoveRight } from 'lucide-react'
-import Cummonbutton from '@/components/cummonbutton'
+import { MoveRight } from 'lucide-react'
 import Addtocardbutton from '@/components/addtocardbutton'
 import Image from 'next/image'
 import Nike from '../../../images/nikelogo.png'
@@ -10,6 +9,7 @@ import Adidas from '../../../images/adidaslogo.png'
 import Panda from '../../../images/pandalogo.png'
 import Power from '../../../images/powerlogo.png'
 import Wishlistheart from '@/components/Wishlistheart'
+import Link from 'next/link'
 const BestSeller = () => {
 
   const images = [
@@ -41,17 +41,23 @@ const BestSeller = () => {
   }))
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
+
+      <div className=' flex items-center justify-start gap-2 mb-4' >
+       <Link href={'/'} > <p className=' text-sm cursor-pointer ' >Home</p> </Link>
+        <p className=' text-sm cursor-pointer ' >/</p>
+        <p className=' text-sm cursor-pointer text-green-700 ' >Brands</p>
+      </div>
 
       {/* /////////////////Logo/////////////////// */}
       <div className=' flex items-center justify-center mb-2' >
         <h1 className=' text-md lg:text-2xl font-bold leading-5'>What's Your Fevriout Brand?</h1>
       </div>
       <div className=' container flex items-center justify-center gap-5 overflow-hidden ' >
-        <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Nike} alt='img'/>
-        <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-3 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Adidas} alt='img'/>
-        <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Panda} alt='img'/>
-        <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Power} alt='img'/>
+       <Link href={'/nike'} > <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Nike} alt='img'/> </Link>
+       <Link href={'/adidas'} > <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-3 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Adidas} alt='img'/> </Link>
+       <Link href={'/panda'} > <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Panda} alt='img'/> </Link>
+       <Link href={'/power'} > <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Power} alt='img'/> </Link>
       </div>
       {/* ////////////////Logo//////////////////// */}
 
@@ -64,7 +70,7 @@ const BestSeller = () => {
       </div>
 
       <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
-       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+      <Link href={'/nike'}> <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> </Link>
       </div>
       </div>
 
@@ -109,7 +115,7 @@ const BestSeller = () => {
       </div>
 
       <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
-       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+      <Link href={'/adidas'}><p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> </Link> 
       </div>
       </div>
 
@@ -154,7 +160,7 @@ const BestSeller = () => {
               </div>
         
               <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
-               <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+              <Link href={'/panda'}> <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> </Link>
               </div>
               </div>
 
@@ -199,7 +205,7 @@ const BestSeller = () => {
               </div>
         
               <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
-               <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+              <Link href={'/power'}> <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> </Link>
               </div>
               </div>
 
