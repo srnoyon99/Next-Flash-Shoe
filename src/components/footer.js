@@ -26,14 +26,14 @@ const Footer = () => {
                                 height={40}
                             />
                             <div className='w-full max-w-52 h-0.5 bg-linear-to-r from-[#fbfbfc] dark:to-[#24212D]/0 '></div>
-                            <p className='text-sm text-white mt-6 max-w-[350px] leading-relaxed'>PrebuiltUI is a growing collection of beautifully designed, production-ready Tailwind CSS UI components.</p>
+                            <p className='text-sm text-white mt-6 max-w-[350px] leading-relaxed'>Flash is an e-commerce platform dedicated to providing safe and reliable Fashon to every home. </p>
                         </div>
 
                         <div className="w-[45%] md:w-[45%] lg:w-[15%] flex flex-col items-start text-left">
-                            <h3 className='text-2 text-white font-bold leading-5 border-b-1 '>Important Links</h3>
+                            <h3 className='text-2 text-white font-bold leading-5 border-b-1 '>Important</h3>
                             <div className="flex flex-col gap-2 mt-6">
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Home</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>About</a>
+                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>About us</a>
+                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Contact us</a>
                                 <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Portfolio</a>
                                 <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Contact</a>
                                 <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>FAQ</a>
@@ -47,6 +47,17 @@ const Footer = () => {
                                 <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Instagram</a>
                                 <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Youtube</a>
                                 <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>TikTok</a>
+                            </div>
+                        </div>
+
+                        <div className="w-[45%] md:w-[45%] lg:w-[15%] flex flex-col items-start text-left">
+                            <h3 className='text-2 text-white font-bold leading-5 border-b-1 '>Important</h3>
+                            <div className="flex flex-col gap-2 mt-6">
+                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>About us</a>
+                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Contact us</a>
+                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Portfolio</a>
+                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Contact</a>
+                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>FAQ</a>
                             </div>
                         </div>
 

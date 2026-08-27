@@ -2,23 +2,23 @@
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
 
-const Accessoriesitems = () => {
+const Accessoriesitems = ({ selectedCategory, onCategoryChange }) => {
        const images = [
-    { src: '/all.jpeg', alt: 'Image 3' },
-    { src: '/bag.jpeg', alt: 'Image 3' },
-    { src: '/ledisbag.jpeg', alt: 'Image 4' },
-    { src: '/wallet.jpeg', alt: 'Image 3' },
-    { src: '/belt.jpeg', alt: 'Image 2' },
-    { src: '/accessories.jpeg', alt: 'Image 3' },
+    { src: '/all.jpeg', alt: 'All accessories' },
+    { src: '/bag.jpeg', alt: 'Bags' },
+    { src: '/ledisbag.jpeg', alt: 'Ladies bags' },
+    { src: '/wallet.jpeg', alt: 'Wallets' },
+    { src: '/belt.jpeg', alt: 'Belts' },
+    { src: '/accessories.jpeg', alt: 'Other accessories' },
      ]
 
   const products = [
-    { name: ' See All ' },
-    { name: ' Bag ' },
-    { name: ' Ledies Bag ' },
-    { name: ' Wallet ' },
-    { name: ' Belt ' },
-    { name: ' Accessories ' },
+    { key: 'all', name: 'See All' },
+    { key: 'bag', name: 'Bag' },
+    { key: 'ladiesBag', name: 'Ladies Bag' },
+    { key: 'wallet', name: 'Wallet' },
+    { key: 'belt', name: 'Belt' },
+    { key: 'others', name: 'Others' },
   ]
 
     const selectedProducts = products.map((product, index) => ({
@@ -45,12 +45,17 @@ const Accessoriesitems = () => {
         }}>
           {selectedProducts.map((product, index) => (
             <SplideSlide className={'cursor-pointer pt-6 '} key={index}>
-              <div className=" bg-yellow-300/50 rounded-2xl grid-rows-1 items-center justify-center mb-2 overflow-hidden">
+              <button
+                type="button"
+                aria-pressed={selectedCategory === product.key}
+                onClick={() => onCategoryChange(product.key)}
+                className={`w-full cursor-pointer bg-yellow-300/50 rounded-2xl grid-rows-1 items-center justify-center mb-2 overflow-hidden border-2 ${selectedCategory === product.key ? 'border-orange-500' : 'border-transparent'}`}
+              >
                 <img className=" w-full h-full lg:w-full lg:h-full object-cover " src={product.image.src} alt={product.image.alt} />
                 <div className="text-center ml-2 border-0 border-black">
                   <h3 className="text-sm lg:text-lg font-bold text-nowrap ">{product.name}</h3>
                 </div>
-              </div>
+              </button>
             </SplideSlide>
           ))}
         </Splide>

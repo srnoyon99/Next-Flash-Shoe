@@ -2,16 +2,17 @@
 import React from 'react'
 
 import { Splide, SplideSlide } from '@splidejs/react-splide'
+import Link from 'next/link'
 
 const Products = () => {
   const images = [
-    { src: '/lethershoe.jpeg', alt: 'Image 1' },
-    { src: '/snakers.jpeg', alt: 'Image 2' },
-    { src: '/bag.jpeg', alt: 'Image 3' },
-    { src: '/ledisbag.jpeg', alt: 'Image 4' },
-    { src: '/ledisshoe.jpeg', alt: 'Image 1' },
-    { src: '/belt.jpeg', alt: 'Image 2' },
-    { src: '/wallet.jpeg', alt: 'Image 3' },
+    { src: '/lethershoe.jpeg', alt: 'Image 1', link: '/leathershoe' },
+    { src: '/snakers.jpeg', alt: 'Image 2', link: '/snakers' },
+    { src: '/bag.jpeg', alt: 'Image 3', link: '/bag' },
+    { src: '/ledisbag.jpeg', alt: 'Image 4', link: '/lediesbag' },
+    { src: '/ledisshoe.jpeg', alt: 'Image 1', link: '/lediesshoe' },
+    { src: '/belt.jpeg', alt: 'Image 2', link: '/belt' },
+    { src: '/wallet.jpeg', alt: 'Image 3', link: '/wallet' },
   ]
 
   const products = [
@@ -46,12 +47,13 @@ const Products = () => {
       }}>
         {images.map((image, index) => (
           <SplideSlide className={'cursor-pointer  '} key={index}>
-            {/* ///////////// SM/MD//////////// */}
             <div className=" flex flex-col bg-yellow-300/30 rounded-2xl items-center justify-center mb-2 overflow-hidden">
+            <Link href={image.link} >
               <img className=" object-cover overflow-hidden " src={image.src} alt={image.alt} />
               <div className="text-center ml-2 border-0 border-black">
                 <h3 className="text-sm lg:text-lg font-bold text-nowrap ">{products[index].name}</h3>
               </div>
+              </Link>
             </div>
           </SplideSlide>
         ))}

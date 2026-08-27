@@ -178,14 +178,14 @@ export default function Navbar({
 
 
       {/* ---------------- Top promo bar (mobile) ---------------- */}
-      <div className="block lg:hidden bg-gray-600 py-[15px]">
+      {/* <div className="block lg:hidden bg-gray-600 py-[15px]">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between gap-2">
             <p className="text-[13px] text-amber-50 truncate">
               Summer Sale Free Delivery - OFF 50%!
             </p>
             <Link
-              href="/shop"
+              href="/shopnow"
               className="shrink-0 text-[13px] font-semibold text-amber-50 underline underline-offset-1"
             >
               Shop Now
@@ -200,8 +200,7 @@ export default function Navbar({
             </select>
           </div>
         </div>
-      </div>
-
+      </div> */}
       {/* ---------------- Main navbar ---------------- */}
       <nav
         ref={navbarRef}

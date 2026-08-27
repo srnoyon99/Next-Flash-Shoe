@@ -9,6 +9,7 @@ import { Navigation, Pagination, Keyboard, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Link from 'next/link';
 
 // Replace these with your own image paths (e.g. files in /public/images/)
 const slides = [
@@ -50,6 +51,7 @@ export default function SwiperDemo() {
       >
         {slides.map((src, i) => (
           <SwiperSlide key={i} className="relative bg-neutral-700">
+            <Link href={'/shopnow'}>
             <Image
               src={src}
               alt={`Slide ${i + 1}`}
@@ -58,6 +60,7 @@ export default function SwiperDemo() {
               className="object-cover cursor-pointer "
               priority={i === 0}
             />
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>

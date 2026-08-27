@@ -1,7 +1,6 @@
 "use client"
 import React from 'react'
 import Addtocardbutton from '@/components/addtocardbutton'
-import Accessoriesitems from '@/components/accessoriesitems'
 import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
 

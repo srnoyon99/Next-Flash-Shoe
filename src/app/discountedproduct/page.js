@@ -1,7 +1,5 @@
 "use client"
 import React from 'react'
-import { Heart } from 'lucide-react'
-import Cummonbutton from '@/components/cummonbutton'
 import Addtocardbutton from '@/components/addtocardbutton'
 import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
@@ -57,9 +55,10 @@ const page = () => {
         <div className="dropdown dropdown-end">
           <button tabIndex={0} role="button" className=" px-2 rounded-2xl bg-green-700 border-1 border-black dark:border-amber-50 cursor-pointer  text-white m-1 mb-5">ITEM </button>
           <ul tabIndex="-1" className="dropdown-content menu border-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white  rounded-box z-1 w-52 p-2 shadow-2xl">
-            <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1">Man</a></li>
-            <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Woman</a></li>
-            <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Kid's</a></li>
+            <li><Link href={'/discountedproduct'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 border-orange-500 ">All Product</Link></li>
+            <li><Link href={'/manproduct'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Man</Link></li>
+            <li><Link href={'/womanproduct'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Woman</Link></li>
+            <li><Link href={'/kidsproduct'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Kid's</Link></li>
           </ul>
         </div>
       </div>

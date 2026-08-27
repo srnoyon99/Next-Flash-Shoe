@@ -1,14 +1,14 @@
 "use client"
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import { Heart } from 'lucide-react'
+import Link from 'next/link'
 
 const Youwant = () => {
 
      const images = [
-          { src: '/whichman.webp', alt: 'Image 1' },
-          { src: '/whichwomen.webp', alt: 'Image 2' },
-          { src: '/whichkides.webp', alt: 'Image 3' },
+          { src: '/whichman.webp', alt: 'Image 1', link: '/manproduct' },
+          { src: '/whichwomen.webp', alt: 'Image 2', link: '/womanproduct' },
+          { src: '/whichkides.webp', alt: 'Image 3', link: '/kidsproduct' },
      ]
 
      const descriptions = [
@@ -28,10 +28,12 @@ const Youwant = () => {
                     {images.map((image, index) => (
                          <div className=" hidden lg:block rounded-3xl border-1 border-gray-400 min-h-fit shadow-2xs" key={index}>
                               <div className="  rounded-3xl flex-col items-center justify-center">
+                              <Link href={image.link}>
                               <img className=" w-120 h-120 object-cover overflow-hidden rounded-t-3xl cursor-pointer " src={image.src} alt={image.alt} />
                               <h1 className="text-lg font-bold text-center mt-2">{descriptions[index].name}</h1>
                               <p className="text-gray-800 dark:text-white text-center mt-2">{descriptions[index].pragraph}</p>
                               <div className=" bg-transparent text-center text-black dark:text-white border-gray-400/20 rounded-2xl leading-5 font-bold cursor-pointer py-3 h-full mt-2 transition duration-300">{descriptions[index].Button}</div>
+                              </Link>
                               </div>
                          </div>
                          
@@ -51,10 +53,12 @@ const Youwant = () => {
                          {images.map((image, index) => (
                               <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
                                    <div className="  rounded-3xl grid-rows-1 items-center justify-center">
+                                        <Link href={image.link}>
                                         <img className=" w-full h-full lg:w-full lg:h-full object-cover overflow-hidden rounded-t-3xl " src={image.src} alt={image.alt} />
                                         <h1 className="text-lg font-bold text-center mt-2">{descriptions[index].name}</h1>
                                         <p className="text-gray-800 dark:text-white text-center mt-2">{descriptions[index].pragraph}</p>
                                         <div className=" bg-transparent text-center text-black dark:text-white border-gray-400/20 rounded-2xl leading-5 font-bold cursor-pointer py-3 h-full mt-2 transition duration-300">{descriptions[index].Button}</div>
+                                        </Link>
                                    </div>
                               </SplideSlide>
                          ))}

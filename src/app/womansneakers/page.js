@@ -1,14 +1,10 @@
 "use client"
 import React from 'react'
-import { useState } from 'react'
 import Addtocardbutton from '@/components/addtocardbutton'
-import Accessoriesitems from '@/components/accessoriesitems'
 import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
 
 const page = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all')
-
   const images = [
     { src: '/shoe1.avif', alt: 'Image 1' },
     { src: '/shoe2.avif', alt: 'Image 2' },
@@ -20,6 +16,14 @@ const page = () => {
     { src: '/shoe8.avif', alt: 'Image 8' },
     { src: '/shoe9.avif', alt: 'Image 9' },
     { src: '/shoe10.avif', alt: 'Image 10' },
+  ]
+
+  const products = [
+    { name: 'Lides Bag' },
+    { name: 'Money Bag' },
+    { name: 'Backpack' },
+    { name: 'Belt' },
+    { name: 'Shoes Polish' },
   ]
 
   const producstname = [
@@ -41,18 +45,13 @@ const page = () => {
     { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
   ]
 
-  const categoryLabels = {
-    all: 'All Products',
-    bag: 'Bag',
-    ladiesBag: 'Ladies Bag',
-    wallet: 'Wallet',
-    belt: 'Belt',
-    others: 'Others',
-  }
-
-  const categoryProducts = producstname.map((product, index) => ({
+  const selectedProducts = products.map((product, index) => ({
     ...product,
-    name: selectedCategory === 'all' ? product.name : `${categoryLabels[selectedCategory]} Product ${index + 1}`,
+    image: images[index % images.length] || images[0],
+  }))
+
+  const productImages = producstname.map((product, index) => ({
+    ...product,
     image: images[index % images.length] || images[0],
   }))
 
@@ -60,26 +59,20 @@ const page = () => {
     <div className="container mx-auto px-4 py-4">
 
       <div className=' flex items-center justify-start gap-2' >
-       <Link href={'/'} > <p className=' text-sm cursor-pointer ' >Home</p> </Link>
+       <Link href={'/sneakerstudio'} > <p className=' text-sm cursor-pointer ' >Sneakerstudio</p> </Link>
         <p className=' text-sm cursor-pointer ' >/</p>
-        <p className=' text-sm cursor-pointer text-green-700 ' >Accessories</p>
+        <p className=' text-sm cursor-pointer text-green-700 ' >Womansneakers</p>
       </div>
-
-      {/* //////////////////Selected Your Products////////////////////// */}
-      <div>
-        <Accessoriesitems selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory}/>
-      </div>
-      {/* //////////////////Selected Your Products////////////////////// */}
 
       {/* //////////////////ALL Products////////////////////// */}
       <div className=" pt-8 ">
          <div className="flex items-center ">
           <div className="h-[20px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
-          <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">{categoryLabels[selectedCategory]}</h2>
+          <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">Woman Sneaker's</h2>
         </div>
 
        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 ">
-        {categoryProducts.map((item, index) => (
+        {productImages.map((item, index) => (
           <div className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
             <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
               <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />

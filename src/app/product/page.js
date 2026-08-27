@@ -430,10 +430,25 @@ function DescriptionTab({ description }) {
 
   return (
     <div className="bg-white dark:bg-gray-700 rounded-xl border border-gray-200 p-6">
-      <h3 className="text-lg font-semibold text-gray-900 dark:text-amber-200 relative inline-block pb-2 mb-4">
+      <div className=" text-lg font-semibold text-gray-900 dark:text-amber-200 relative inline-block pb-2 mb-4">
+        <div className=' flex items-center justify-between gap-10' >
+          <div>
         Product Details
         <span className="absolute left-0 bottom-0 h-0.5 w-10 bg-orange-500" />
-      </h3>
+        </div>
+        <div  >
+           <select className="self-end bg-gray-500 dark:bg-gray-500 text-amber-50 text-xs shrink-0 rounded-md cursor-pointer outline-none mb-1 ">
+              <option className="bg-white dark:bg-black text-black dark:text-amber-50 cursor-pointer" value="english">
+                EN
+              </option>
+              <option className="bg-white dark:bg-black text-black dark:text-amber-50 cursor-pointer" value="bengali">
+                BN
+              </option>
+            </select>
+        </div>
+        </div>
+        
+      </div>
 
       {description.paragraphs?.map((p, idx) => (
         <p key={idx} className="text-gray-600 dark:text-amber-50 leading-relaxed mb-3">

@@ -7,6 +7,7 @@ import { Heart, MoveRight } from 'lucide-react'
 import Cummonbutton from '@/components/cummonbutton'
 import Addtocardbutton from '@/components/addtocardbutton'
 import Wishlistheart from '@/components/Wishlistheart'
+import Link from 'next/link'
 
 const page = () => {
   const images = [
@@ -64,7 +65,7 @@ const page = () => {
       </div>
 
       <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
-       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+       <Link href={'/mansneakers'} className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></Link> 
       </div>
       </div>
 
@@ -108,7 +109,7 @@ const page = () => {
       </div>
 
       <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
-       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+       <Link href={'/womansneakers'} className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></Link> 
       </div>
       </div>
 
@@ -152,7 +153,7 @@ const page = () => {
       </div>
 
       <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
-       <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> 
+       <Link href={'/kidssneakers'} className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></Link> 
       </div>
       </div>
 

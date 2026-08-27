@@ -55,7 +55,6 @@ const JustLanded = () => {
                </div>
                <div className="mb-7">
                     <Splide options={{
-                         type: 'loop',
                          perPage: 7,
                          perMove: 1,
                          gap: '1rem',

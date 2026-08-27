@@ -50,18 +50,6 @@ const page = () => {
         <p className=' text-sm cursor-pointer text-green-700 ' >Accessories</p>
       </div>
 
-        {/* //////////////Bennar//////////////// */}
-        <div className=" inset-0 flex flex-col items-center justify-center bg-opacity-50">
-          <div className="relative grid items-center justify-center gap-3 ">
-            <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-3xl h-full max-h-64  rounded-full blur-[170px] pointer-events-none" />
-            <h3 className="text-center font-extrabold leading-10 text-transparent dark:text-white text-2xl lg:text-5xl text-nowrap [-webkit-text-stroke:1px_#0D542B] bg-clip-text  bg-red-500 mt-6" >
-              FLASH LEATHER
-            </h3>
-          </div>
-        </div>
-        {/* /////////////Bennar///////////////// */}
-
-
         <div className="container flex items-center justify-between pt-5 ">
 
           <div className=" flex items-center justify-center " >
@@ -72,11 +60,10 @@ const page = () => {
           <div className="dropdown dropdown-end">
             <button tabIndex={0} role="button" className=" py-1 px-3 rounded-2xl bg-green-700 border-1 border-black dark:border-amber-50 cursor-pointer  text-white m-1 mb-5">ITEM </button>
             <ul tabIndex="-1" className="dropdown-content menu border-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white  rounded-box z-1 w-52 p-2 shadow-2xl">
-              <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1">Shoes</a></li>
-              <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Belt</a></li>
-              <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Money Bag</a></li>
-              <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Leather Bags</a></li>
-              <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Ledis Items</a></li>
+              <li><Link href={'/leathershoe'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1">Shoes</Link></li>
+              <li><Link href={'/belt'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Belt</Link></li>
+              <li><Link href={'/wallet'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Money Bag</Link></li>
+              <li><Link href={'/leatherbags'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Leather Bags</Link></li>
             </ul>
           </div>
 

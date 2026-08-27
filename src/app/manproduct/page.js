@@ -1,13 +1,10 @@
 "use client"
 import React from 'react'
-import { useState } from 'react'
 import Addtocardbutton from '@/components/addtocardbutton'
-import Accessoriesitems from '@/components/accessoriesitems'
 import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
 
 const page = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all')
 
   const images = [
     { src: '/shoe1.avif', alt: 'Image 1' },
@@ -22,15 +19,7 @@ const page = () => {
     { src: '/shoe10.avif', alt: 'Image 10' },
   ]
 
-  const producstname = [
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '42', size2: '38' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '42', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '41', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
+  const products = [
     { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '42', size2: '38' },
     { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '42', size1: '44', size2: '46' },
     { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
@@ -41,45 +30,41 @@ const page = () => {
     { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
   ]
 
-  const categoryLabels = {
-    all: 'All Products',
-    bag: 'Bag',
-    ladiesBag: 'Ladies Bag',
-    wallet: 'Wallet',
-    belt: 'Belt',
-    others: 'Others',
-  }
-
-  const categoryProducts = producstname.map((product, index) => ({
+  // Pair products with images safely to avoid undefined accesses
+  const items = products.map((product, idx) => ({
     ...product,
-    name: selectedCategory === 'all' ? product.name : `${categoryLabels[selectedCategory]} Product ${index + 1}`,
-    image: images[index % images.length] || images[0],
+    image: images[idx] || images[0],
   }))
 
   return (
     <div className="container mx-auto px-4 py-4">
 
-      <div className=' flex items-center justify-start gap-2' >
+      <div className=' flex items-center justify-start gap-2 mb-7' >
        <Link href={'/'} > <p className=' text-sm cursor-pointer ' >Home</p> </Link>
         <p className=' text-sm cursor-pointer ' >/</p>
-        <p className=' text-sm cursor-pointer text-green-700 ' >Accessories</p>
+        <p className=' text-sm cursor-pointer text-green-700 ' >Discountproduct</p>
       </div>
 
-      {/* //////////////////Selected Your Products////////////////////// */}
-      <div>
-        <Accessoriesitems selectedCategory={selectedCategory} onCategoryChange={setSelectedCategory}/>
-      </div>
-      {/* //////////////////Selected Your Products////////////////////// */}
+      <div className="container flex items-center justify-between ">
 
-      {/* //////////////////ALL Products////////////////////// */}
-      <div className=" pt-8 ">
-         <div className="flex items-center ">
+        <div className=" flex items-center justify-center " >
           <div className="h-[20px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
-          <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">{categoryLabels[selectedCategory]}</h2>
+          <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">Man Discounted Products</h2>
         </div>
 
-       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 ">
-        {categoryProducts.map((item, index) => (
+        <div className="dropdown dropdown-end">
+          <button tabIndex={0} role="button" className=" px-2 rounded-2xl bg-green-700 border-1 border-black dark:border-amber-50 cursor-pointer  text-white m-1 mb-5">ITEM </button>
+          <ul tabIndex="-1" className="dropdown-content menu border-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white  rounded-box z-1 w-52 p-2 shadow-2xl">
+            <li><Link href={'/discountedproduct'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mb-1 ">All Product</Link></li>
+            <li><a className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 border-orange-500 ">Man</a></li>
+             <li><Link href={'/womanproduct'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Woman</Link></li>
+            <li><Link href={'/kidsproduct'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Kid's</Link></li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        {items.map((item, index) => (
           <div className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
             <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
               <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
@@ -98,8 +83,7 @@ const page = () => {
         <button className="bg-gray-900 dark:bg-gray-400 text-white dark:text-black py-1 px-4 rounded-lg hover:bg-red-700 transition duration-300 cursor-pointer"> Prev</button>
         <button className="bg-gray-900 dark:bg-gray-400 text-white dark:text-black py-1 px-4 rounded-lg hover:bg-green-500 transition duration-300 cursor-pointer"> Next</button>
       </div>
-      </div>
-      {/* //////////////////ALL Products////////////////////// */}
+
     </div>
   )
 }
