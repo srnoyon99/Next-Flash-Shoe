@@ -327,7 +327,7 @@ export default function page() {
                   <button
                     type="button"
                     onClick={() => handleRemove(item.id)}
-                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-red-500 text-white hover:bg-red-600"
+                    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-red-500 text-white hover:bg-red-600 cursor-pointer"
                     aria-label="Remove item"
                   >
                     <TrashIcon />
@@ -340,6 +340,8 @@ export default function page() {
             </div>
           </section>
 
+          {items.length > 0 && (
+            <>
           {/* Shipping address */}
           <section className="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm">
             <SectionTitle> <span className=' text-black dark:text-white ' >Shipping Address</span></SectionTitle>
@@ -384,9 +386,12 @@ export default function page() {
               </div>
             )}
           </section>
+            </>
+          )}
         </div>
 
         {/* ================= RIGHT COLUMN ================= */}
+        {items.length > 0 && (
         <div className="space-y-6">
           {/* Payment method */}
           <section className="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm">
@@ -530,6 +535,7 @@ export default function page() {
             {submitting ? 'PLACING ORDER…' : 'PLACE ORDER'}
           </button>
         </div>
+        )}
       </div>
     </div>
   );

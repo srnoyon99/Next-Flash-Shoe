@@ -278,7 +278,7 @@ export default function Navbar({
 
                         {/* Order review Mobile */}
                         <section className=" mt-3 rounded-xl bg-gray-200 p-3 shadow-sm dark:bg-gray-800 sm:p-2">
-                          <SectionTitle> <span className=' text-black dark:text-white '>Order review</span></SectionTitle>
+                          <SectionTitle> <span className=' text-black dark:text-white '>Order Review</span></SectionTitle>
                           <div className=" max-h-177 overflow-y-auto  mt-4 divide-y divide-gray-100">
                             {items.map((item) => (
                               <div key={item.id} className="flex flex-wrap items-center gap-3 py-4 first:pt-0 last:pb-0 sm:flex-nowrap sm:gap-4">
@@ -337,9 +337,11 @@ export default function Navbar({
                           </div>
                         </section>
 
-                        <Link href="/cart" onClick={handleViewCart('my-drawer-5')} className="flex flex-col mt-auto items-center justify-center bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
-                          View Cart
-                        </Link>
+                        {items.length > 0 && (
+                          <Link href="/cart" onClick={handleViewCart('my-drawer-5')} className="flex flex-col mt-auto items-center justify-center bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
+                            CHECKOUT
+                          </Link>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -537,7 +539,7 @@ export default function Navbar({
 
                         {/* Order review Dasktop */}
                         <section className=" max-h-200 overflow-y-auto rounded-xl bg-gray-200 p-4 shadow-sm dark:bg-gray-800 sm:p-6 mt-3 ">
-                          <SectionTitle> <span className=' text-black dark:text-white '>Order review</span></SectionTitle>
+                          <SectionTitle> <span className=' text-black dark:text-white '>Order Review</span></SectionTitle>
                           {/* Product */}
                           <div className="mt-4 divide-y divide-gray-100 ">
                             {items.map((item) => (
@@ -592,9 +594,11 @@ export default function Navbar({
                           {/* Product */}
                         </section>
 
-                        <Link href="/cart" onClick={handleViewCart('flash-cart-drawer')} className="flex flex-col items-center justify-center mt-auto bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
-                          View Cart
-                        </Link>
+                        {items.length > 0 && (
+                          <Link href="/cart" onClick={handleViewCart('flash-cart-drawer')} className="flex flex-col items-center justify-center mt-auto bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
+                            CHECKOUT
+                          </Link>
+                        )}
 
                       </div>
                     </div>
