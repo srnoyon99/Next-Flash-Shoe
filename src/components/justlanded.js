@@ -1,12 +1,12 @@
 "use client"
 import React from 'react'
+import { useState } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import { Heart } from 'lucide-react'
-import Cummonbutton from './cummonbutton'
 import Addtocardbutton from './addtocardbutton'
 import Wishlistheart from './Wishlistheart'
 
 const JustLanded = () => {
+     const [selectedCategory, setSelectedCategory] = useState('sneakers')
 
      const images = [
           { src: '/shoe1.avif', alt: 'Image 1' },
@@ -31,20 +31,27 @@ const JustLanded = () => {
      ]
 
      const sliderOptions = [
-          { name: 'Sneakers' },
-          { name: 'Party Shoes' },
-          { name: 'Casual Shoes' },
-          { name: 'Formal Shoes' },
-          { name: 'Leather Items' },
-          { name: 'Sports Shoes' },
-          { name: 'Slippers' },
-          { name: 'Sandals' },
+          { key: 'sneakers', name: 'Sneakers' },
+          { key: 'leatherShoes', name: 'Leather Shoes' },
+          { key: 'sandals', name: 'Sandals' },
+          { key: 'bag', name: 'Bag' },
+          { key: 'belt', name: 'Belt' },
+          { key: 'wallet', name: 'Wallet' },
+          { key: 'ladiesBag', name: 'Ladies Bag' },
+          { key: 'ladiesShoes', name: 'Ladies Shoes' },
      ]
+
+     const selectedOption = sliderOptions.find((option) => option.key === selectedCategory)
 
      // Pair products with images safely to avoid undefined accesses
      const items = products.map((product, idx) => ({
           ...product,
           image: images[idx] || images[0],
+     }))
+
+     const selectedItems = items.map((item, index) => ({
+          ...item,
+          name: `${selectedOption.name} Product ${index + 1}`,
      }))
 
      return (
@@ -55,7 +62,7 @@ const JustLanded = () => {
                </div>
                <div className="mb-7">
                     <Splide options={{
-                         perPage: 7,
+                         perPage: 8,
                          perMove: 1,
                          gap: '1rem',
                          breakpoints: {
@@ -67,9 +74,16 @@ const JustLanded = () => {
                               },
                          },
                     }}>
-                         {sliderOptions.map((option, index) => (
-                              <SplideSlide className={' border-1 rounded-3xl border-gray-400/50 cursor-pointer mb-7 '} key={index}>
-                                   <h3 className=" text-4 lg:text-5 md:text-xl font-bold text-center py-2  ">{option.name}</h3>
+                         {sliderOptions.map((option) => (
+                              <SplideSlide className="mb-7" key={option.key}>
+                                   <button
+                                        type="button"
+                                        aria-pressed={selectedCategory === option.key}
+                                        onClick={() => setSelectedCategory(option.key)}
+                                        className={`w-full cursor-pointer rounded-3xl border-1 py-2 ${selectedCategory === option.key ? 'border-orange-400 bg-orange-50 dark:bg-gray-900 ' : 'border-gray-400/50 bg-transparent'}`}
+                                   >
+                                        <h3 className="text-sm lg:text-5 md:text-lg font-bold text-center">{option.name}</h3>
+                                   </button>
                               </SplideSlide>
                          ))}
                     </Splide>
@@ -93,14 +107,14 @@ const JustLanded = () => {
                }}>
 
 
-                    {items.map((item, index) => (
+                    {selectedItems.map((item, index) => (
                          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs '} key={index}>
                               <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                                    <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
                                    <Wishlistheart/>
                                    <Addtocardbutton/>
                                    <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
-                                        <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
+                                        <h3 className="text-lg font-bold break-all ">{item.name}</h3>
                                         <p className="text-red-500">TK.{item.price || ''}</p>
                                    </div>
                               </div>

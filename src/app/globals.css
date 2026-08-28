@@ -108,3 +108,8 @@
     transform: translate(1246px, -130px);
     display: none;
 }
+
+img {
+    vertical-align: middle;
+    display: inline;
+}

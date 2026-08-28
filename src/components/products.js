@@ -8,16 +8,18 @@ const Products = () => {
   const images = [
     { src: '/lethershoe.jpeg', alt: 'Image 1', link: '/leathershoe' },
     { src: '/snakers.jpeg', alt: 'Image 2', link: '/snakers' },
-    { src: '/bag.jpeg', alt: 'Image 3', link: '/bag' },
-    { src: '/ledisbag.jpeg', alt: 'Image 4', link: '/lediesbag' },
-    { src: '/ledisshoe.jpeg', alt: 'Image 1', link: '/lediesshoe' },
-    { src: '/belt.jpeg', alt: 'Image 2', link: '/belt' },
-    { src: '/wallet.jpeg', alt: 'Image 3', link: '/wallet' },
+    { src: '/sandals.png', alt: 'Image 3', link: '/sandals' },
+    { src: '/bag.jpeg', alt: 'Image 4', link: '/bag' },
+    { src: '/ledisbag.jpeg', alt: 'Image 5', link: '/lediesbag' },
+    { src: '/ledisshoe.jpeg', alt: 'Image 6', link: '/lediesshoe' },
+    { src: '/belt.jpeg', alt: 'Image 7', link: '/belt' },
+    { src: '/wallet.jpeg', alt: 'Image 8', link: '/wallet' },
   ]
 
   const products = [
     { name: ' Lether Shoe ' },
     { name: ' Snakers ' },
+    { name: ' Sandals ' },
     { name: ' Bag ' },
     { name: ' Ledies Bag ' },
     { name: ' Ledies Shoe ' },
@@ -33,7 +35,7 @@ const Products = () => {
       </div>
 
       <Splide options={{
-        perPage: 7,
+        perPage: 8,
         perMove: 1,
         gap: '1rem',
         breakpoints: {
