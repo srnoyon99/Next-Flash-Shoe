@@ -17,159 +17,765 @@ const INITIAL_ITEMS = [
 const DELIVERY_COST = 70;
 
 // ---------------------------------------------------------------------------
-// Bangladesh Divisions and Districts (English + Bangla names)
+// Bangladesh Districts (English + Bangla names) — flat list, 64 districts
 // ---------------------------------------------------------------------------
-const DIVISIONS = [
+const DISTRICT = [
   { en: 'Dhaka', bn: 'ঢাকা' },
+  { en: 'Faridpur', bn: 'ফরিদপুর' },
+  { en: 'Gazipur', bn: 'গাজীপুর' },
+  { en: 'Gopalganj', bn: 'গোপালগঞ্জ' },
+  { en: 'Kishoreganj', bn: 'কিশোরগঞ্জ' },
+  { en: 'Madaripur', bn: 'মাদারীপুর' },
+  { en: 'Manikganj', bn: 'মানিকগঞ্জ' },
+  { en: 'Munshiganj', bn: 'মুন্সিগঞ্জ' },
+  { en: 'Narayanganj', bn: 'নারায়ণগঞ্জ' },
+  { en: 'Narsingdi', bn: 'নরসিংদী' },
+  { en: 'Rajbari', bn: 'রাজবাড়ী' },
+  { en: 'Shariatpur', bn: 'শরীয়তপুর' },
+  { en: 'Tangail', bn: 'টাঙ্গাইল' },
+  { en: 'Bandarban', bn: 'বান্দরবান' },
+  { en: 'Brahmanbaria', bn: 'ব্রাহ্মণবাড়িয়া' },
+  { en: 'Chandpur', bn: 'চাঁদপুর' },
   { en: 'Chattogram', bn: 'চট্টগ্রাম' },
+  { en: 'Cumilla', bn: 'কুমিল্লা' },
+  { en: "Cox's Bazar", bn: 'কক্সবাজার' },
+  { en: 'Feni', bn: 'ফেনী' },
+  { en: 'Khagrachari', bn: 'খাগড়াছড়ি' },
+  { en: 'Lakshmipur', bn: 'লক্ষ্মীপুর' },
+  { en: 'Noakhali', bn: 'নোয়াখালী' },
+  { en: 'Rangamati', bn: 'রাঙ্গামাটি' },
+  { en: 'Bogura', bn: 'বগুড়া' },
+  { en: 'Joypurhat', bn: 'জয়পুরহাট' },
+  { en: 'Naogaon', bn: 'নওগাঁ' },
+  { en: 'Natore', bn: 'নাটোর' },
+  { en: 'Chapainawabganj', bn: 'চাঁপাইনবাবগঞ্জ' },
+  { en: 'Pabna', bn: 'পাবনা' },
   { en: 'Rajshahi', bn: 'রাজশাহী' },
+  { en: 'Sirajganj', bn: 'সিরাজগঞ্জ' },
+  { en: 'Bagerhat', bn: 'বাগেরহাট' },
+  { en: 'Chuadanga', bn: 'চুয়াডাঙ্গা' },
+  { en: 'Jashore', bn: 'যশোর' },
+  { en: 'Jhenaidah', bn: 'ঝিনাইদহ' },
   { en: 'Khulna', bn: 'খুলনা' },
+  { en: 'Kushtia', bn: 'কুষ্টিয়া' },
+  { en: 'Magura', bn: 'মাগুরা' },
+  { en: 'Meherpur', bn: 'মেহেরপুর' },
+  { en: 'Narail', bn: 'নড়াইল' },
+  { en: 'Satkhira', bn: 'সাতক্ষীরা' },
+  { en: 'Barguna', bn: 'বরগুনা' },
   { en: 'Barishal', bn: 'বরিশাল' },
+  { en: 'Bhola', bn: 'ভোলা' },
+  { en: 'Jhalokati', bn: 'ঝালকাঠি' },
+  { en: 'Patuakhali', bn: 'পটুয়াখালী' },
+  { en: 'Pirojpur', bn: 'পিরোজপুর' },
+  { en: 'Habiganj', bn: 'হবিগঞ্জ' },
+  { en: 'Moulvibazar', bn: 'মৌলভীবাজার' },
+  { en: 'Sunamganj', bn: 'সুনামগঞ্জ' },
   { en: 'Sylhet', bn: 'সিলেট' },
+  { en: 'Dinajpur', bn: 'দিনাজপুর' },
+  { en: 'Gaibandha', bn: 'গাইবান্ধা' },
+  { en: 'Kurigram', bn: 'কুড়িগ্রাম' },
+  { en: 'Lalmonirhat', bn: 'লালমনিরহাট' },
+  { en: 'Nilphamari', bn: 'নীলফামারী' },
+  { en: 'Panchagarh', bn: 'পঞ্চগড়' },
   { en: 'Rangpur', bn: 'রংপুর' },
+  { en: 'Thakurgaon', bn: 'ঠাকুরগাঁও' },
+  { en: 'Jamalpur', bn: 'জামালপুর' },
   { en: 'Mymensingh', bn: 'ময়মনসিংহ' },
+  { en: 'Netrokona', bn: 'নেত্রকোনা' },
+  { en: 'Sherpur', bn: 'শেরপুর' },
 ];
 
-const DISTRICTS_BY_DIVISION = {
-  Dhaka: [
-    { en: 'Dhaka', bn: 'ঢাকা' },
-    { en: 'Faridpur', bn: 'ফরিদপুর' },
-    { en: 'Gazipur', bn: 'গাজীপুর' },
-    { en: 'Gopalganj', bn: 'গোপালগঞ্জ' },
-    { en: 'Kishoreganj', bn: 'কিশোরগঞ্জ' },
-    { en: 'Madaripur', bn: 'মাদারীপুর' },
-    { en: 'Manikganj', bn: 'মানিকগঞ্জ' },
-    { en: 'Munshiganj', bn: 'মুন্সিগঞ্জ' },
-    { en: 'Narayanganj', bn: 'নারায়ণগঞ্জ' },
-    { en: 'Narsingdi', bn: 'নরসিংদী' },
-    { en: 'Rajbari', bn: 'রাজবাড়ী' },
-    { en: 'Shariatpur', bn: 'শরীয়তপুর' },
-    { en: 'Tangail', bn: 'টাঙ্গাইল' },
-  ],
-  Chattogram: [
-    { en: 'Bandarban', bn: 'বান্দরবান' },
-    { en: 'Brahmanbaria', bn: 'ব্রাহ্মণবাড়িয়া' },
-    { en: 'Chandpur', bn: 'চাঁদপুর' },
-    { en: 'Chattogram', bn: 'চট্টগ্রাম' },
-    { en: 'Cumilla', bn: 'কুমিল্লা' },
-    { en: "Cox's Bazar", bn: 'কক্সবাজার' },
-    { en: 'Feni', bn: 'ফেনী' },
-    { en: 'Khagrachari', bn: 'খাগড়াছড়ি' },
-    { en: 'Lakshmipur', bn: 'লক্ষ্মীপুর' },
-    { en: 'Noakhali', bn: 'নোয়াখালী' },
-    { en: 'Rangamati', bn: 'রাঙ্গামাটি' },
-  ],
-  Rajshahi: [
-    { en: 'Bogura', bn: 'বগুড়া' },
-    { en: 'Joypurhat', bn: 'জয়পুরহাট' },
-    { en: 'Naogaon', bn: 'নওগাঁ' },
-    { en: 'Natore', bn: 'নাটোর' },
-    { en: 'Chapainawabganj', bn: 'চাঁপাইনবাবগঞ্জ' },
-    { en: 'Pabna', bn: 'পাবনা' },
-    { en: 'Rajshahi', bn: 'রাজশাহী' },
-    { en: 'Sirajganj', bn: 'সিরাজগঞ্জ' },
-  ],
-  Khulna: [
-    { en: 'Bagerhat', bn: 'বাগেরহাট' },
-    { en: 'Chuadanga', bn: 'চুয়াডাঙ্গা' },
-    { en: 'Jashore', bn: 'যশোর' },
-    { en: 'Jhenaidah', bn: 'ঝিনাইদহ' },
-    { en: 'Khulna', bn: 'খুলনা' },
-    { en: 'Kushtia', bn: 'কুষ্টিয়া' },
-    { en: 'Magura', bn: 'মাগুরা' },
-    { en: 'Meherpur', bn: 'মেহেরপুর' },
-    { en: 'Narail', bn: 'নড়াইল' },
-    { en: 'Satkhira', bn: 'সাতক্ষীরা' },
-  ],
-  Barishal: [
-    { en: 'Barguna', bn: 'বরগুনা' },
-    { en: 'Barishal', bn: 'বরিশাল' },
-    { en: 'Bhola', bn: 'ভোলা' },
-    { en: 'Jhalokati', bn: 'ঝালকাঠি' },
-    { en: 'Patuakhali', bn: 'পটুয়াখালী' },
-    { en: 'Pirojpur', bn: 'পিরোজপুর' },
-  ],
-  Sylhet: [
-    { en: 'Habiganj', bn: 'হবিগঞ্জ' },
-    { en: 'Moulvibazar', bn: 'মৌলভীবাজার' },
-    { en: 'Sunamganj', bn: 'সুনামগঞ্জ' },
-    { en: 'Sylhet', bn: 'সিলেট' },
-  ],
-  Rangpur: [
-    { en: 'Dinajpur', bn: 'দিনাজপুর' },
-    { en: 'Gaibandha', bn: 'গাইবান্ধা' },
-    { en: 'Kurigram', bn: 'কুড়িগ্রাম' },
-    { en: 'Lalmonirhat', bn: 'লালমনিরহাট' },
-    { en: 'Nilphamari', bn: 'নীলফামারী' },
-    { en: 'Panchagarh', bn: 'পঞ্চগড়' },
-    { en: 'Rangpur', bn: 'রংপুর' },
-    { en: 'Thakurgaon', bn: 'ঠাকুরগাঁও' },
-  ],
-  Mymensingh: [
-    { en: 'Jamalpur', bn: 'জামালপুর' },
-    { en: 'Mymensingh', bn: 'ময়মনসিংহ' },
-    { en: 'Netrokona', bn: 'নেত্রকোনা' },
-    { en: 'Sherpur', bn: 'শেরপুর' },
-  ],
-};
-
-// Sample City/Village (Upazila-level) names per district, in English + Bangla.
+// Sample Police Station (Thana) names per district, in English + Bangla.
 // This is illustrative only — swap in your full dataset (or fetch it from an
 // API keyed by district) for production use. The picker below also lets the
 // customer type a name that isn't in the list, so coverage gaps aren't a dead end.
-const VILLAGES_BY_DISTRICT = {
+const POLICE_STATION_BY_DISTRICT = {
   Dhaka: [
-    { en: 'Dhamrai', bn: 'ধামরাই' },
-    { en: 'Savar', bn: 'সাভার' },
-    { en: 'Keraniganj', bn: 'কেরানীগঞ্জ' },
-    { en: 'Nawabganj', bn: 'নবাবগঞ্জ' },
-    { en: 'Dohar', bn: 'দোহার' },
+    { en: 'Adabor', bn: 'আদাবর' },
+    { en: 'Badda', bn: 'বাড্ডা' },
+    { en: 'Banani', bn: 'বনানী' },
+    { en: 'Bangshal', bn: 'বংশাল' },
+    { en: 'Bimanbandar', bn: 'বিমানবন্দর' },
+    { en: 'Cantonment', bn: 'ক্যান্টনমেন্ট' },
+    { en: 'Chawkbazar', bn: 'চকবাজার' },
+    { en: 'Dakshinkhan', bn: 'দক্ষিণখান' },
+    { en: 'Darus Salam', bn: 'দারুস সালাম' },
+    { en: 'Demra', bn: 'ডেমরা' },
+    { en: 'Dhanmondi', bn: 'ধানমন্ডি' },
+    { en: 'Gendaria', bn: 'গেন্ডারিয়া' },
+    { en: 'Gulshan', bn: 'গুলশান' },
+    { en: 'Hatirjheel', bn: 'হাতিরঝিল' },
+    { en: 'Hazaribagh', bn: 'হাজারীবাগ' },
+    { en: 'Jatrabari', bn: 'যাত্রাবাড়ী' },
+    { en: 'Kadamtali', bn: 'কদমতলী' },
+    { en: 'Kafrul', bn: 'কাফরুল' },
+    { en: 'Kalabagan', bn: 'কলাবাগান' },
+    { en: 'Kamrangirchar', bn: 'কামরাঙ্গীরচর' },
+    { en: 'Khilgaon', bn: 'খিলগাঁও' },
+    { en: 'Khilkhet', bn: 'খিলক্ষেত' },
+    { en: 'Kotwali', bn: 'কোতোয়ালি' },
+    { en: 'Lalbagh', bn: 'লালবাগ' },
+    { en: 'Mirpur', bn: 'মিরপুর' },
+    { en: 'Mohammadpur', bn: 'মোহাম্মদপুর' },
+    { en: 'Motijheel', bn: 'মতিঝিল' },
+    { en: 'Mugda', bn: 'মুগদা' },
+    { en: 'New Market', bn: 'নিউমার্কেট' },
+    { en: 'Pallabi', bn: 'পল্লবী' },
+    { en: 'Paltan', bn: 'পল্টন' },
+    { en: 'Ramna', bn: 'রমনা' },
+    { en: 'Rampura', bn: 'রামপুরা' },
+    { en: 'Rupnagar', bn: 'রূপনগর' },
+    { en: 'Sabujbagh', bn: 'সবুজবাগ' },
+    { en: 'Shah Ali', bn: 'শাহ আলী' },
+    { en: 'Shahbagh', bn: 'শাহবাগ' },
+    { en: 'Shahjahanpur', bn: 'শাহজাহানপুর' },
+    { en: 'Sher-e-Bangla Nagar', bn: 'শেরেবাংলা নগর' },
+    { en: 'Shyampur', bn: 'শ্যামপুর' },
+    { en: 'Sutrapur', bn: 'সূত্রাপুর' },
+    { en: 'Tejgaon', bn: 'তেজগাঁও' },
+    { en: 'Tejgaon Industrial Area', bn: 'তেজগাঁও শিল্পাঞ্চল' },
+    { en: 'Turag', bn: 'তুরাগ' },
+    { en: 'Uttara East', bn: 'উত্তরা পূর্ব' },
+    { en: 'Uttara West', bn: 'উত্তরা পশ্চিম' },
+    { en: 'Uttar Khan', bn: 'উত্তরখান' },
+    { en: 'Vasantek', bn: 'ভাসানটেক' },
+    { en: 'Vatara', bn: 'ভাটারা' },
+    { en: 'Wari', bn: 'ওয়ারী' },
+  ],
+  Faridpur: [
+    { en: 'Faridpur Sadar', bn: 'ফরিদপুর সদর' },
+    { en: 'Boalmari', bn: 'বোয়ালমারী' },
+    { en: 'Alfadanga', bn: 'আলফাডাঙ্গা' },
+    { en: 'Madhukhali', bn: 'মধুখালী' },
+    { en: 'Bhanga', bn: 'ভাঙ্গা' },
+    { en: 'Nagarkanda', bn: 'নগরকান্দা' },
+    { en: 'Charbhadrasan', bn: 'চরভদ্রাসন' },
+    { en: 'Sadarpur', bn: 'সদরপুর' },
+    { en: 'Saltha', bn: 'সালথা' },
+  ],
+  Gazipur: [
+    { en: 'Gazipur Sadar', bn: 'গাজীপুর সদর' },
+    { en: 'Kaliakair', bn: 'কালিয়াকৈর' },
+    { en: 'Kapasia', bn: 'কাপাসিয়া' },
+    { en: 'Sreepur', bn: 'শ্রীপুর' },
+    { en: 'Kaliganj', bn: 'কালীগঞ্জ' },
+  ],
+  Gopalganj: [
+    { en: 'Gopalganj Sadar', bn: 'গোপালগঞ্জ সদর' },
+    { en: 'Kashiani', bn: 'কাশিয়ানী' },
+    { en: 'Muksudpur', bn: 'মুকসুদপুর' },
+    { en: 'Kotalipara', bn: 'কোটালিপাড়া' },
+    { en: 'Tungipara', bn: 'টুঙ্গিপাড়া' },
+  ],
+  Kishoreganj: [
+    { en: 'Kishoreganj Sadar', bn: 'কিশোরগঞ্জ সদর' },
+    { en: 'Hossainpur', bn: 'হোসেনপুর' },
+    { en: 'Pakundia', bn: 'পাকুন্দিয়া' },
+    { en: 'Katiadi', bn: 'কটিয়াদী' },
+    { en: 'Bajitpur', bn: 'বাজিতপুর' },
+    { en: 'Bhairab', bn: 'ভৈরব' },
+    { en: 'Kuliarchar', bn: 'কুলিয়ারচর' },
+    { en: 'Tarail', bn: 'তাড়াইল' },
+    { en: 'Karimganj', bn: 'করিমগঞ্জ' },
+    { en: 'Itna', bn: 'ইটনা' },
+    { en: 'Mithamain', bn: 'মিঠামইন' },
+    { en: 'Ashtagram', bn: 'অষ্টগ্রাম' },
+    { en: 'Nikli', bn: 'নিকলী' },
+  ],
+  Madaripur: [
+    { en: 'Madaripur Sadar', bn: 'মাদারীপুর সদর' },
+    { en: 'Shibchar', bn: 'শিবচর' },
+    { en: 'Kalkini', bn: 'কালকিনি' },
+    { en: 'Rajoir', bn: 'রাজৈর' },
+    { en: 'Dasar', bn: 'ডাসার' },
+  ],
+  Manikganj: [
+    { en: 'Manikganj Sadar', bn: 'মানিকগঞ্জ সদর' },
+    { en: 'Singair', bn: 'সিংগাইর' },
+    { en: 'Shibalaya', bn: 'শিবালয়' },
+    { en: 'Saturia', bn: 'সাটুরিয়া' },
+    { en: 'Harirampur', bn: 'হরিরামপুর' },
+    { en: 'Ghior', bn: 'ঘিওর' },
+    { en: 'Daulatpur', bn: 'দৌলতপুর' },
+  ],
+  Munshiganj: [
+    { en: 'Munshiganj Sadar', bn: 'মুন্সিগঞ্জ সদর' },
+    { en: 'Sirajdikhan', bn: 'সিরাজদিখান' },
+    { en: 'Tongibari', bn: 'টংগীবাড়ী' },
+    { en: 'Srinagar', bn: 'শ্রীনগর' },
+    { en: 'Lohajang', bn: 'লৌহজং' },
+    { en: 'Gazaria', bn: 'গজারিয়া' },
+  ],
+  Narayanganj: [
+    { en: 'Narayanganj Sadar', bn: 'নারায়ণগঞ্জ সদর' },
+    { en: 'Bandar', bn: 'বন্দর' },
+    { en: 'Rupganj', bn: 'রূপগঞ্জ' },
+    { en: 'Sonargaon', bn: 'সোনারগাঁও' },
+    { en: 'Araihazar', bn: 'আড়াইহাজার' },
+  ],
+  Narsingdi: [
+    { en: 'Narsingdi Sadar', bn: 'নরসিংদী সদর' },
+    { en: 'Belabo', bn: 'বেলাবো' },
+    { en: 'Monohardi', bn: 'মনোহরদী' },
+    { en: 'Palash', bn: 'পলাশ' },
+    { en: 'Raipura', bn: 'রায়পুরা' },
+    { en: 'Shibpur', bn: 'শিবপুর' },
+  ],
+  Rajbari: [
+    { en: 'Rajbari Sadar', bn: 'রাজবাড়ী সদর' },
+    { en: 'Goalanda', bn: 'গোয়ালন্দ' },
+    { en: 'Pangsha', bn: 'পাংশা' },
+    { en: 'Baliakandi', bn: 'বালিয়াকান্দি' },
+    { en: 'Kalukhali', bn: 'কালুখালী' },
+  ],
+  Shariatpur: [
+    { en: 'Shariatpur Sadar', bn: 'শরীয়তপুর সদর' },
+    { en: 'Damudya', bn: 'ডামুড্যা' },
+    { en: 'Naria', bn: 'নড়িয়া' },
+    { en: 'Jajira', bn: 'জাজিরা' },
+    { en: 'Bhedarganj', bn: 'ভেদরগঞ্জ' },
+    { en: 'Gosairhat', bn: 'গোসাইরহাট' },
+  ],
+  Tangail: [
+    { en: 'Tangail Sadar', bn: 'টাঙ্গাইল সদর' },
+    { en: 'Sakhipur', bn: 'সখিপুর' },
+    { en: 'Basail', bn: 'বাসাইল' },
+    { en: 'Madhupur', bn: 'মধুপুর' },
+    { en: 'Ghatail', bn: 'ঘাটাইল' },
+    { en: 'Kalihati', bn: 'কালিহাতী' },
+    { en: 'Nagarpur', bn: 'নাগরপুর' },
+    { en: 'Mirzapur', bn: 'মির্জাপুর' },
+    { en: 'Gopalpur', bn: 'গোপালপুর' },
+    { en: 'Delduar', bn: 'দেলদুয়ার' },
+    { en: 'Bhuapur', bn: 'ভূঞাপুর' },
+    { en: 'Dhanbari', bn: 'ধনবাড়ী' },
+  ],
+  Bandarban: [
+    { en: 'Bandarban Sadar', bn: 'বান্দরবান সদর' },
+    { en: 'Thanchi', bn: 'থানচি' },
+    { en: 'Lama', bn: 'লামা' },
+    { en: 'Naikhongchhari', bn: 'নাইক্ষ্যংছড়ি' },
+    { en: 'Ali Kadam', bn: 'আলীকদম' },
+    { en: 'Rowangchhari', bn: 'রোয়াংছড়ি' },
+    { en: 'Ruma', bn: 'রুমা' },
+  ],
+  Brahmanbaria: [
+    { en: 'Brahmanbaria Sadar', bn: 'ব্রাহ্মণবাড়িয়া সদর' },
+    { en: 'Ashuganj', bn: 'আশুগঞ্জ' },
+    { en: 'Nasirnagar', bn: 'নাসিরনগর' },
+    { en: 'Nabinagar', bn: 'নবীনগর' },
+    { en: 'Banchharampur', bn: 'বাঞ্ছারামপুর' },
+    { en: 'Kasba', bn: 'কসবা' },
+    { en: 'Akhaura', bn: 'আখাউড়া' },
+    { en: 'Sarail', bn: 'সরাইল' },
+    { en: 'Bijoynagar', bn: 'বিজয়নগর' },
+  ],
+  Chandpur: [
+    { en: 'Chandpur Sadar', bn: 'চাঁদপুর সদর' },
+    { en: 'Faridganj', bn: 'ফরিদগঞ্জ' },
+    { en: 'Haimchar', bn: 'হাইমচর' },
+    { en: 'Haziganj', bn: 'হাজীগঞ্জ' },
+    { en: 'Kachua', bn: 'কচুয়া' },
+    { en: 'Matlab Uttar', bn: 'মতলব উত্তর' },
+    { en: 'Matlab Dakshin', bn: 'মতলব দক্ষিণ' },
+    { en: 'Shahrasti', bn: 'শাহরাস্তি' },
   ],
   Chattogram: [
-    { en: 'Patiya', bn: 'পটিয়া' },
-    { en: 'Sitakunda', bn: 'সীতাকুণ্ড' },
-    { en: 'Rangunia', bn: 'রাঙ্গুনিয়া' },
+    { en: 'Anwara', bn: 'আনোয়ারা' },
+    { en: 'Banshkhali', bn: 'বাঁশখালী' },
     { en: 'Boalkhali', bn: 'বোয়ালখালী' },
+    { en: 'Chandanaish', bn: 'চন্দনাইশ' },
+    { en: 'Fatikchhari', bn: 'ফটিকছড়ি' },
+    { en: 'Bhujpur', bn: 'ভুজপুর' },
+    { en: 'Hathazari', bn: 'হাটহাজারী' },
+    { en: 'Lohagara', bn: 'লোহাগাড়া' },
+    { en: 'Mirsharai', bn: 'মীরসরাই' },
+    { en: 'Zorarganj', bn: 'জোরারগঞ্জ' },
+    { en: 'Patiya', bn: 'পটিয়া' },
+    { en: 'Rangunia', bn: 'রাঙ্গুনিয়া' },
+    { en: 'South Rangunia', bn: 'দক্ষিণ রাঙ্গুনিয়া' },
+    { en: 'Raozan', bn: 'রাউজান' },
+    { en: 'Sandwip', bn: 'সন্দ্বীপ' },
+    { en: 'Satkania', bn: 'সাতকানিয়া' },
+    { en: 'Sitakunda', bn: 'সীতাকুণ্ড' },
+    { en: 'Akbarshah', bn: 'আকবরশাহ' },
+    { en: 'Bakalia', bn: 'বাকলিয়া' },
+    { en: 'Bandar', bn: 'বন্দর' },
+    { en: 'Bayazid Bostami', bn: 'বায়েজিদ বোস্তামী' },
+    { en: 'Chandgaon', bn: 'চান্দগাঁও' },
+    { en: 'Chawkbazar', bn: 'চকবাজার' },
+    { en: 'Double Mooring', bn: 'ডবলমুরিং' },
+    { en: 'EPZ', bn: 'ইপিজেড' },
+    { en: 'Halishahar', bn: 'হালিশহর' },
+    { en: 'Karnaphuli', bn: 'কর্ণফুলী' },
+    { en: 'Khulshi', bn: 'খুলশী' },
+    { en: 'Kotwali', bn: 'কোতোয়ালী' },
+    { en: 'Pahartali', bn: 'পাহাড়তলী' },
+    { en: 'Panchlaish', bn: 'পাঁচলাইশ' },
+    { en: 'Patenga', bn: 'পতেঙ্গা' },
+    { en: 'Sadarghat', bn: 'সদরঘাট' },
   ],
   Cumilla: [
-    { en: 'Debidwar', bn: 'দেবিদ্বার' },
+    { en: 'Barura', bn: 'বরুড়া' },
+    { en: 'Brahmanpara', bn: 'ব্রাহ্মণপাড়া' },
+    { en: 'Burichang', bn: 'বুড়িচং' },
     { en: 'Chandina', bn: 'চান্দিনা' },
+    { en: 'Chauddagram', bn: 'চৌদ্দগ্রাম' },
+    { en: 'Cumilla Adarsha Sadar', bn: 'কুমিল্লা আদর্শ সদর' },
+    { en: 'Cumilla Sadar Dakshin', bn: 'কুমিল্লা সদর দক্ষিণ' },
+    { en: 'Daudkandi', bn: 'দাউদকান্দি' },
+    { en: 'Debidwar', bn: 'দেবীদ্বার' },
+    { en: 'Homna', bn: 'হোমনা' },
+    { en: 'Laksam', bn: 'লাকসাম' },
+    { en: 'Lalmai', bn: 'লালমাই' },
+    { en: 'Meghna', bn: 'মেঘনা' },
+    { en: 'Monohorgonj', bn: 'মনোহরগঞ্জ' },
     { en: 'Muradnagar', bn: 'মুরাদনগর' },
+    { en: 'Nangalkot', bn: 'নাঙ্গলকোট' },
+    { en: 'Titas', bn: 'তিতাস' },
   ],
   "Cox's Bazar": [
-    { en: 'Teknaf', bn: 'টেকনাফ' },
-    { en: 'Ukhiya', bn: 'উখিয়া' },
+    { en: "Cox's Bazar Sadar", bn: 'কক্সবাজার সদর' },
+    { en: 'Chakaria', bn: 'চকরিয়া' },
+    { en: 'Kutubdia', bn: 'কুতুবদিয়া' },
+    { en: 'Maheshkhali', bn: 'মহেশখালী' },
     { en: 'Ramu', bn: 'রামু' },
+    { en: 'Teknaf', bn: 'টেকনাফ' },
+    { en: 'Ukhia', bn: 'উখিয়া' },
+    { en: 'Pekua', bn: 'পেকুয়া' },
+    { en: 'Eidgaon', bn: 'ঈদগাঁও' },
   ],
-  Sylhet: [
-    { en: 'Beanibazar', bn: 'বিয়ানীবাজার' },
-    { en: 'Golapganj', bn: 'গোলাপগঞ্জ' },
-    { en: 'Jaintiapur', bn: 'জৈন্তাপুর' },
+  Feni: [
+    { en: 'Feni Sadar', bn: 'ফেনী সদর' },
+    { en: 'Chhagalnaiya', bn: 'ছাগলনাইয়া' },
+    { en: 'Daganbhuiyan', bn: 'দাগনভূঞা' },
+    { en: 'Parshuram', bn: 'পরশুরাম' },
+    { en: 'Fulgazi', bn: 'ফুলগাজী' },
+    { en: 'Sonagazi', bn: 'সোনাগাজী' },
+  ],
+  Khagrachari: [
+    { en: 'Khagrachari Sadar', bn: 'খাগড়াছড়ি সদর' },
+    { en: 'Dighinala', bn: 'দীঘিনালা' },
+    { en: 'Panchhari', bn: 'পানছড়ি' },
+    { en: 'Lakshmichhari', bn: 'লক্ষ্মীছড়ি' },
+    { en: 'Mahalchhari', bn: 'মহালছড়ি' },
+    { en: 'Manikchhari', bn: 'মানিকছড়ি' },
+    { en: 'Ramgarh', bn: 'রামগড়' },
+    { en: 'Matiranga', bn: 'মাটিরাঙ্গা' },
+    { en: 'Guimara', bn: 'গুইমারা' },
+  ],
+  Lakshmipur: [
+    { en: 'Lakshmipur Sadar', bn: 'লক্ষ্মীপুর সদর' },
+    { en: 'Raipur', bn: 'রায়পুর' },
+    { en: 'Ramganj', bn: 'রামগঞ্জ' },
+    { en: 'Ramgati', bn: 'রামগতি' },
+    { en: 'Kamalnagar', bn: 'কমলনগর' },
+  ],
+  Noakhali: [
+    { en: 'Noakhali Sadar', bn: 'নোয়াখালী সদর' },
+    { en: 'Begumganj', bn: 'বেগমগঞ্জ' },
+    { en: 'Chatkhil', bn: 'চাটখিল' },
+    { en: 'Companiganj', bn: 'কোম্পানীগঞ্জ' },
+    { en: 'Hatiya', bn: 'হাতিয়া' },
+    { en: 'Senbagh', bn: 'সেনবাগ' },
+    { en: 'Subarnachar', bn: 'সুবর্ণচর' },
+    { en: 'Sonaimuri', bn: 'সোনাইমুড়ী' },
+    { en: 'Kabirhat', bn: 'কবিরহাট' },
+  ],
+  Rangamati: [
+    { en: 'Rangamati Sadar', bn: 'রাঙ্গামাটি সদর' },
+    { en: 'Belaichhari', bn: 'বিলাইছড়ি' },
+    { en: 'Bagaichhari', bn: 'বাঘাইছড়ি' },
+    { en: 'Barkal', bn: 'বরকল' },
+    { en: 'Juraichhari', bn: 'জুরাইছড়ি' },
+    { en: 'Rajasthali', bn: 'রাজস্থলী' },
+    { en: 'Kaptai', bn: 'কাপ্তাই' },
+    { en: 'Langadu', bn: 'লংগদু' },
+    { en: 'Naniarchar', bn: 'নানিয়ারচর' },
+    { en: 'Kaukhali', bn: 'কাউখালী' },
+  ],
+  Bogura: [
+    { en: 'Adamdighi', bn: 'আদমদীঘি' },
+    { en: 'Bogura Sadar', bn: 'বগুড়া সদর' },
+    { en: 'Dhunat', bn: 'ধুনট' },
+    { en: 'Dupchanchia', bn: 'দুপচাঁচিয়া' },
+    { en: 'Gabtali', bn: 'গাবতলী' },
+    { en: 'Kahaloo', bn: 'কাহালু' },
+    { en: 'Nandigram', bn: 'নন্দীগ্রাম' },
+    { en: 'Sariakandi', bn: 'সারিয়াকান্দি' },
+    { en: 'Sahajanpur', bn: 'শাজাহানপুর' },
+    { en: 'Sherpur', bn: 'শেরপুর' },
+    { en: 'Shibganj', bn: 'শিবগঞ্জ' },
+    { en: 'Sonatala', bn: 'সোনাতলা' },
+  ],
+  Joypurhat: [
+    { en: 'Akkelpur', bn: 'আক্কেলপুর' },
+    { en: 'Joypurhat Sadar', bn: 'জয়পুরহাট সদর' },
+    { en: 'Kalai', bn: 'কালাই' },
+    { en: 'Khetlal', bn: 'ক্ষেতলাল' },
+    { en: 'Panchbibi', bn: 'পাঁচবিবি' },
+  ],
+  Naogaon: [
+    { en: 'Atrai', bn: 'আত্রাই' },
+    { en: 'Badalgachhi', bn: 'বদলগাছী' },
+    { en: 'Dhamoirhat', bn: 'ধামইরহাট' },
+    { en: 'Manda', bn: 'মান্দা' },
+    { en: 'Mohadevpur', bn: 'মহাদেবপুর' },
+    { en: 'Naogaon Sadar', bn: 'নওগাঁ সদর' },
+    { en: 'Niamatpur', bn: 'নিয়ামতপুর' },
+    { en: 'Patnitala', bn: 'পত্নীতলা' },
+    { en: 'Porsha', bn: 'পোরশা' },
+    { en: 'Raninagar', bn: 'রাণীনগর' },
+    { en: 'Sapahar', bn: 'সাপাহার' },
+  ],
+  Natore: [
+    { en: 'Bagatipara', bn: 'বাগাতিপাড়া' },
+    { en: 'Baraigram', bn: 'বড়াইগ্রাম' },
+    { en: 'Gurudaspur', bn: 'গুরুদাসপুর' },
+    { en: 'Lalpur', bn: 'লালপুর' },
+    { en: 'Naldanga', bn: 'নলডাঙ্গা' },
+    { en: 'Natore Sadar', bn: 'নাটোর সদর' },
+    { en: 'Singra', bn: 'সিংড়া' },
+  ],
+  Chapainawabganj: [
+    { en: 'Bholahat', bn: 'ভোলাহাট' },
+    { en: 'Chapainawabganj Sadar', bn: 'চাঁপাইনবাবগঞ্জ সদর' },
+    { en: 'Gomastapur', bn: 'গোমস্তাপুর' },
+    { en: 'Nachole', bn: 'নাচোল' },
+    { en: 'Shibganj', bn: 'শিবগঞ্জ' },
+  ],
+  Pabna: [
+    { en: 'Atgharia', bn: 'আটঘরিয়া' },
+    { en: 'Bera', bn: 'বেড়া' },
+    { en: 'Bhangura', bn: 'ভাঙ্গুড়া' },
+    { en: 'Chatmohar', bn: 'চাটমোহর' },
+    { en: 'Faridpur', bn: 'ফরিদপুর' },
+    { en: 'Ishwardi', bn: 'ঈশ্বরদী' },
+    { en: 'Pabna Sadar', bn: 'পাবনা সদর' },
+    { en: 'Santhia', bn: 'সাঁথিয়া' },
+    { en: 'Sujanagar', bn: 'সুজানগর' },
   ],
   Rajshahi: [
-    { en: 'Godagari', bn: 'গোদাগাড়ী' },
-    { en: 'Paba', bn: 'পবা' },
+    { en: 'Bagha', bn: 'বাঘা' },
+    { en: 'Bagmara', bn: 'বাগমারা' },
     { en: 'Charghat', bn: 'চারঘাট' },
+    { en: 'Durgapur', bn: 'দুর্গাপুর' },
+    { en: 'Godagari', bn: 'গোদাগাড়ী' },
+    { en: 'Mohanpur', bn: 'মোহনপুর' },
+    { en: 'Paba', bn: 'পবা' },
+    { en: 'Puthia', bn: 'পুঠিয়া' },
+    { en: 'Tanore', bn: 'তানোর' },
+  ],
+  Sirajganj: [
+    { en: 'Belkuchi', bn: 'বেলকুচি' },
+    { en: 'Chauhali', bn: 'চৌহালী' },
+    { en: 'Kamarkhanda', bn: 'কামারখন্দ' },
+    { en: 'Kazipur', bn: 'কাজীপুর' },
+    { en: 'Raiganj', bn: 'রায়গঞ্জ' },
+    { en: 'Shahjadpur', bn: 'শাহজাদপুর' },
+    { en: 'Sirajganj Sadar', bn: 'সিরাজগঞ্জ সদর' },
+    { en: 'Tarash', bn: 'তাড়াশ' },
+    { en: 'Ullahpara', bn: 'উল্লাপাড়া' },
+  ],
+  Bagerhat: [
+    { en: 'Bagerhat Sadar', bn: 'বাগেরহাট সদর' },
+    { en: 'Chitalmari', bn: 'চিতলমারী' },
+    { en: 'Fakirhat', bn: 'ফকিরহাট' },
+    { en: 'Kachua', bn: 'কচুয়া' },
+    { en: 'Mollahat', bn: 'মোল্লাহাট' },
+    { en: 'Mongla', bn: 'মোংলা' },
+    { en: 'Morrelganj', bn: 'মোড়েলগঞ্জ' },
+    { en: 'Rampal', bn: 'রামপাল' },
+    { en: 'Sarankhola', bn: 'শরণখোলা' },
+  ],
+  Chuadanga: [
+    { en: 'Alamdanga', bn: 'আলমডাঙ্গা' },
+    { en: 'Chuadanga Sadar', bn: 'চুয়াডাঙ্গা সদর' },
+    { en: 'Damurhuda', bn: 'দামুড়হুদা' },
+    { en: 'Jibannagar', bn: 'জীবননগর' },
+  ],
+  Jashore: [
+    { en: 'Abhaynagar', bn: 'অভয়নগর' },
+    { en: 'Bagherpara', bn: 'বাঘারপাড়া' },
+    { en: 'Chaugachha', bn: 'চৌগাছা' },
+    { en: 'Jhikargachha', bn: 'ঝিকরগাছা' },
+    { en: 'Keshabpur', bn: 'কেশবপুর' },
+    { en: 'Jashore Sadar', bn: 'যশোর সদর' },
+    { en: 'Manirampur', bn: 'মণিরামপুর' },
+    { en: 'Sharsha', bn: 'শার্শা' },
+  ],
+  Jhenaidah: [
+    { en: 'Harinakunda', bn: 'হরিণাকুণ্ডু' },
+    { en: 'Jhenaidah Sadar', bn: 'ঝিনাইদহ সদর' },
+    { en: 'Kaliganj', bn: 'কালীগঞ্জ' },
+    { en: 'Kotchandpur', bn: 'কোটচাঁদপুর' },
+    { en: 'Maheshpur', bn: 'মহেশপুর' },
+    { en: 'Shailkupa', bn: 'শৈলকুপা' },
   ],
   Khulna: [
-    { en: 'Dumuria', bn: 'ডুমুরিয়া' },
     { en: 'Batiaghata', bn: 'বটিয়াঘাটা' },
+    { en: 'Dacope', bn: 'দাকোপ' },
+    { en: 'Dumuria', bn: 'ডুমুরিয়া' },
+    { en: 'Dighalia', bn: 'দিঘলিয়া' },
+    { en: 'Koyra', bn: 'কয়রা' },
+    { en: 'Paikgachha', bn: 'পাইকগাছা' },
+    { en: 'Phultala', bn: 'ফুলতলা' },
     { en: 'Rupsha', bn: 'রূপসা' },
+    { en: 'Terokhada', bn: 'তেরখাদা' },
+  ],
+  Kushtia: [
+    { en: 'Bheramara', bn: 'ভেড়ামারা' },
+    { en: 'Daulatpur', bn: 'দৌলতপুর' },
+    { en: 'Khoksa', bn: 'খোকসা' },
+    { en: 'Kumarkhali', bn: 'কুমারখালী' },
+    { en: 'Kushtia Sadar', bn: 'কুষ্টিয়া সদর' },
+    { en: 'Mirpur', bn: 'মিরপুর' },
+  ],
+  Magura: [
+    { en: 'Magura Sadar', bn: 'মাগুরা সদর' },
+    { en: 'Mohammadpur', bn: 'মহম্মদপুর' },
+    { en: 'Shalikha', bn: 'শালিখা' },
+    { en: 'Sreepur', bn: 'শ্রীপুর' },
+  ],
+  Meherpur: [
+    { en: 'Gangni', bn: 'গাংনী' },
+    { en: 'Meherpur Sadar', bn: 'মেহেরপুর সদর' },
+    { en: 'Mujibnagar', bn: 'মুজিবনগর' },
+  ],
+  Narail: [
+    { en: 'Kalia', bn: 'কালিয়া' },
+    { en: 'Lohagara', bn: 'লোহাগড়া' },
+    { en: 'Narail Sadar', bn: 'নড়াইল সদর' },
+  ],
+  Satkhira: [
+    { en: 'Assasuni', bn: 'আশাশুনি' },
+    { en: 'Debhata', bn: 'দেবহাটা' },
+    { en: 'Kalaroa', bn: 'কলারোয়া' },
+    { en: 'Kaliganj', bn: 'কালীগঞ্জ' },
+    { en: 'Satkhira Sadar', bn: 'সাতক্ষীরা সদর' },
+    { en: 'Shyamnagar', bn: 'শ্যামনগর' },
+    { en: 'Tala', bn: 'তালা' },
+  ],
+  Barguna: [
+    { en: 'Amtali', bn: 'আমতলী' },
+    { en: 'Bamna', bn: 'বামনা' },
+    { en: 'Barguna Sadar', bn: 'বরগুনা সদর' },
+    { en: 'Betagi', bn: 'বেতাগী' },
+    { en: 'Patharghata', bn: 'পাথরঘাটা' },
+    { en: 'Taltali', bn: 'তালতলী' },
   ],
   Barishal: [
-    { en: 'Bakerganj', bn: 'বাকেরগঞ্জ' },
+    { en: 'Agailjhara', bn: 'আগৈলঝাড়া' },
     { en: 'Babuganj', bn: 'বাবুগঞ্জ' },
+    { en: 'Bakerganj', bn: 'বাকেরগঞ্জ' },
+    { en: 'Banaripara', bn: 'বানারীপাড়া' },
+    { en: 'Gournadi', bn: 'গৌরনদী' },
+    { en: 'Hizla', bn: 'হিজলা' },
+    { en: 'Barishal Sadar', bn: 'বরিশাল সদর' },
+    { en: 'Mehendiganj', bn: 'মেহেন্দিগঞ্জ' },
     { en: 'Muladi', bn: 'মুলাদী' },
+    { en: 'Wazirpur', bn: 'উজিরপুর' },
+  ],
+  Bhola: [
+    { en: 'Bhola Sadar', bn: 'ভোলা সদর' },
+    { en: 'Burhanuddin', bn: 'বোরহানউদ্দিন' },
+    { en: 'Char Fasson', bn: 'চরফ্যাশন' },
+    { en: 'Daulatkhan', bn: 'দৌলতখান' },
+    { en: 'Lalmohan', bn: 'লালমোহন' },
+    { en: 'Manpura', bn: 'মনপুরা' },
+    { en: 'Tazumuddin', bn: 'তজুমদ্দিন' },
+  ],
+  Jhalokati: [
+    { en: 'Jhalokati Sadar', bn: 'ঝালকাঠি সদর' },
+    { en: 'Kanthalia', bn: 'কাঁঠালিয়া' },
+    { en: 'Nalchity', bn: 'নলছিটি' },
+    { en: 'Rajapur', bn: 'রাজাপুর' },
+  ],
+  Patuakhali: [
+    { en: 'Bauphal', bn: 'বাউফল' },
+    { en: 'Dashmina', bn: 'দশমিনা' },
+    { en: 'Galachipa', bn: 'গলাচিপা' },
+    { en: 'Kalapara', bn: 'কলাপাড়া' },
+    { en: 'Mirzaganj', bn: 'মির্জাগঞ্জ' },
+    { en: 'Patuakhali Sadar', bn: 'পটুয়াখালী সদর' },
+    { en: 'Rangabali', bn: 'রাঙ্গাবালী' },
+    { en: 'Dumki', bn: 'দুমকি' },
+  ],
+  Pirojpur: [
+    { en: 'Bhandaria', bn: 'ভাণ্ডারিয়া' },
+    { en: 'Kawkhali', bn: 'কাউখালী' },
+    { en: 'Mathbaria', bn: 'মঠবাড়িয়া' },
+    { en: 'Nazirpur', bn: 'নাজিরপুর' },
+    { en: 'Pirojpur Sadar', bn: 'পিরোজপুর সদর' },
+    { en: 'Nesarabad/Swarupkati', bn: 'নেছারাবাদ/স্বরূপকাঠী' },
+    { en: 'Indurkani', bn: 'ইন্দুরকানী' },
+  ],
+  Habiganj: [
+    { en: 'Ajmiriganj', bn: 'আজমিরীগঞ্জ' },
+    { en: 'Bahubal', bn: 'বাহুবল' },
+    { en: 'Baniyachong', bn: 'বানিয়াচং' },
+    { en: 'Chunarughat', bn: 'চুনারুঘাট' },
+    { en: 'Habiganj Sadar', bn: 'হবিগঞ্জ সদর' },
+    { en: 'Lakhai', bn: 'লাখাই' },
+    { en: 'Madhavpur', bn: 'মাধবপুর' },
+    { en: 'Nabiganj', bn: 'নবীগঞ্জ' },
+    { en: 'Shayestaganj', bn: 'শায়েস্তাগঞ্জ' },
+  ],
+  Moulvibazar: [
+    { en: 'Barlekha', bn: 'বড়লেখা' },
+    { en: 'Kamalganj', bn: 'কমলগঞ্জ' },
+    { en: 'Kulaura', bn: 'কুলাউড়া' },
+    { en: 'Moulvibazar Sadar', bn: 'মৌলভীবাজার সদর' },
+    { en: 'Rajnagar', bn: 'রাজনগর' },
+    { en: 'Sreemangal', bn: 'শ্রীমঙ্গল' },
+    { en: 'Juri', bn: 'জুড়ী' },
+  ],
+  Sunamganj: [
+    { en: 'Bishwamvarpur', bn: 'বিশ্বম্ভরপুর' },
+    { en: 'Chhatak', bn: 'ছাতক' },
+    { en: 'Shantiganj / Dakshin Sunamganj', bn: 'শান্তিগঞ্জ / দক্ষিণ সুনামগঞ্জ' },
+    { en: 'Derai', bn: 'দিরাই' },
+    { en: 'Dharamapasha', bn: 'ধর্মপাশা' },
+    { en: 'Dowarabazar', bn: 'দোয়ারাবাজার' },
+    { en: 'Jagannathpur', bn: 'জগন্নাথপুর' },
+    { en: 'Jamalganj', bn: 'জামালগঞ্জ' },
+    { en: 'Sullah', bn: 'শাল্লা' },
+    { en: 'Sunamganj Sadar', bn: 'সুনামগঞ্জ সদর' },
+    { en: 'Tahirpur', bn: 'তাহিরপুর' },
+    { en: 'Madhyanagar', bn: 'মধ্যনগর' },
+  ],
+  Sylhet: [
+    { en: 'Balaganj', bn: 'বালাগঞ্জ' },
+    { en: 'Beanibazar', bn: 'বিয়ানীবাজার' },
+    { en: 'Bishwanath', bn: 'বিশ্বনাথ' },
+    { en: 'Companiganj', bn: 'কোম্পানীগঞ্জ' },
+    { en: 'Dakshin Surma', bn: 'দক্ষিণ সুরমা' },
+    { en: 'Fenchuganj', bn: 'ফেঞ্চুগঞ্জ' },
+    { en: 'Golapganj', bn: 'গোলাপগঞ্জ' },
+    { en: 'Gowainghat', bn: 'গোয়াইনঘাট' },
+    { en: 'Jaintiapur', bn: 'জৈন্তাপুর' },
+    { en: 'Kanaighat', bn: 'কানাইঘাট' },
+    { en: 'Sylhet Sadar', bn: 'সিলেট সদর' },
+    { en: 'Zakiganj', bn: 'জকিগঞ্জ' },
+    { en: 'Osmani Nagar', bn: 'ওসমানী নগর' },
+  ],
+  Dinajpur: [
+    { en: 'Birampur', bn: 'বিরামপুর' },
+    { en: 'Birganj', bn: 'বীরগঞ্জ' },
+    { en: 'Biral', bn: 'বিরল' },
+    { en: 'Bochaganj', bn: 'বোচাগঞ্জ' },
+    { en: 'Chirirbandar', bn: 'চিরিরবন্দর' },
+    { en: 'Phulbari', bn: 'ফুলবাড়ী' },
+    { en: 'Ghoraghat', bn: 'ঘোড়াঘাট' },
+    { en: 'Hakimpur', bn: 'হাকিমপুর' },
+    { en: 'Kaharole', bn: 'কাহারোল' },
+    { en: 'Khansama', bn: 'খানসামা' },
+    { en: 'Dinajpur Sadar', bn: 'দিনাজপুর সদর' },
+    { en: 'Nawabganj', bn: 'নবাবগঞ্জ' },
+    { en: 'Parbatipur', bn: 'পার্বতীপুর' },
+  ],
+  Gaibandha: [
+    { en: 'Phulchhari', bn: 'ফুলছড়ি' },
+    { en: 'Gaibandha Sadar', bn: 'গাইবান্ধা সদর' },
+    { en: 'Gobindaganj', bn: 'গোবিন্দগঞ্জ' },
+    { en: 'Palashbari', bn: 'পলাশবাড়ী' },
+    { en: 'Sadullapur', bn: 'সাদুল্লাপুর' },
+    { en: 'Sughatta', bn: 'সাঘাটা' },
+    { en: 'Sundarganj', bn: 'সুন্দরগঞ্জ' },
+  ],
+  Kurigram: [
+    { en: 'Bhurungamari', bn: 'ভুরুঙ্গামারী' },
+    { en: 'Char Rajibpur', bn: 'চর রাজিবপুর' },
+    { en: 'Chilmari', bn: 'চিলমারী' },
+    { en: 'Phulbari', bn: 'ফুলবাড়ী' },
+    { en: 'Kurigram Sadar', bn: 'কুড়িগ্রাম সদর' },
+    { en: 'Nageshwari', bn: 'নাগেশ্বরী' },
+    { en: 'Rajarhat', bn: 'রাজারহাট' },
+    { en: 'Raomari', bn: 'রৌমারী' },
+    { en: 'Ulipur', bn: 'উলিপুর' },
+  ],
+  Lalmonirhat: [
+    { en: 'Aditmari', bn: 'আদিতমারী' },
+    { en: 'Hatibandha', bn: 'হাতীবান্ধা' },
+    { en: 'Kaliganj', bn: 'কালীগঞ্জ' },
+    { en: 'Lalmonirhat Sadar', bn: 'লালমনিরহাট সদর' },
+    { en: 'Patgram', bn: 'পাটগ্রাম' },
+  ],
+  Nilphamari: [
+    { en: 'Dimla', bn: 'ডিমলা' },
+    { en: 'Domar', bn: 'ডোমার' },
+    { en: 'Jaldhaka', bn: 'জলঢাকা' },
+    { en: 'Kishoreganj', bn: 'কিশোরগঞ্জ' },
+    { en: 'Nilphamari Sadar', bn: 'নীলফামারী সদর' },
+    { en: 'Saidpur', bn: 'সৈয়দপুর' },
+  ],
+  Panchagarh: [
+    { en: 'Atwari', bn: 'আটোয়ারী' },
+    { en: 'Boda', bn: 'বোদা' },
+    { en: 'Debiganj', bn: 'দেবীগঞ্জ' },
+    { en: 'Panchagarh Sadar', bn: 'পঞ্চগড় সদর' },
+    { en: 'Tetulia', bn: 'তেতুঁলিয়া' },
   ],
   Rangpur: [
-    { en: 'Mithapukur', bn: 'মিঠাপুকুর' },
-    { en: 'Pirganj', bn: 'পীরগঞ্জ' },
     { en: 'Badarganj', bn: 'বদরগঞ্জ' },
+    { en: 'Gangachhara', bn: 'গঙ্গাচড়া' },
+    { en: 'Kaunia', bn: 'কাউনিয়া' },
+    { en: 'Rangpur Sadar', bn: 'রংপুর সদর' },
+    { en: 'Mithapukur', bn: 'মিঠাপুকুর' },
+    { en: 'Pirgachha', bn: 'পীরগাছা' },
+    { en: 'Pirganj', bn: 'পীরগঞ্জ' },
+    { en: 'Taraganj', bn: 'তারাগঞ্জ' },
+  ],
+  Thakurgaon: [
+    { en: 'Baliadangi', bn: 'বালিয়াডাঙ্গী' },
+    { en: 'Haripur', bn: 'হরিপুর' },
+    { en: 'Pirganj', bn: 'পীরগঞ্জ' },
+    { en: 'Ranisankail', bn: 'রাণীশংকৈল' },
+    { en: 'Thakurgaon Sadar', bn: 'ঠাকুরগাঁও সদর' },
+  ],
+  Jamalpur: [
+    { en: 'Baksiganj', bn: 'বকশীগঞ্জ' },
+    { en: 'Dewanganj', bn: 'দেওয়ানগঞ্জ' },
+    { en: 'Islampur', bn: 'ইসলামপুর' },
+    { en: 'Jamalpur Sadar', bn: 'জামালপুর সদর' },
+    { en: 'Madarganj', bn: 'মাদারগঞ্জ' },
+    { en: 'Melandaha', bn: 'মেলান্দহ' },
+    { en: 'Sarishabari', bn: 'সরিষাবাড়ী' },
   ],
   Mymensingh: [
-    { en: 'Trishal', bn: 'ত্রিশাল' },
-    { en: 'Muktagacha', bn: 'মুক্তাগাছা' },
     { en: 'Bhaluka', bn: 'ভালুকা' },
+    { en: 'Dhobaura', bn: 'ধোবাউড়া' },
+    { en: 'Fulbaria', bn: 'ফুলবাড়ীয়া' },
+    { en: 'Gaffargaon', bn: 'গফরগাঁও' },
+    { en: 'Gauripur', bn: 'গৌরীপুর' },
+    { en: 'Haluaghat', bn: 'হালুয়াঘাট' },
+    { en: 'Ishwarganj', bn: 'ঈশ্বরগঞ্জ' },
+    { en: 'Mymensingh Sadar', bn: 'ময়মনসিংহ সদর' },
+    { en: 'Muktagachha', bn: 'মুক্তাগাছা' },
+    { en: 'Nandail', bn: 'নান্দাইল' },
+    { en: 'Phulpur', bn: 'ফুলপুর' },
+    { en: 'Trisal', bn: 'ত্রিশাল' },
+    { en: 'Tara Khanda', bn: 'তারাকান্দা' },
+  ],
+  Netrokona: [
+    { en: 'Atpara', bn: 'আটপাড়া' },
+    { en: 'Barhatta', bn: 'বারহাট্টা' },
+    { en: 'Durgapur', bn: 'দুর্গাপুর' },
+    { en: 'Khaliajuri', bn: 'খালিয়াজুরী' },
+    { en: 'Kalmakanda', bn: 'কলমাকান্দা' },
+    { en: 'Kendua', bn: 'কেন্দুয়া' },
+    { en: 'Madan', bn: 'মদন' },
+    { en: 'Mohanganj', bn: 'মোহনগঞ্জ' },
+    { en: 'Netrokona Sadar', bn: 'নেত্রকোনা সদর' },
+    { en: 'Purbadhala', bn: 'পূর্বধলা' },
+  ],
+  Sherpur: [
+    { en: 'Jhenaigati', bn: 'ঝিনাইগাতী' },
+    { en: 'Nakla', bn: 'নকলা' },
+    { en: 'Nalitabari', bn: 'নালিতাবাড়ী' },
+    { en: 'Sherpur Sadar', bn: 'শেরপুর সদর' },
+    { en: 'Sreebardi', bn: 'শ্রীবরদী' },
   ],
 };
 
@@ -178,9 +784,8 @@ const DEFAULT_ADDRESS_FORM = {
   phone: '',
   email: '',
   address: '',
-  city: 'Dhaka', // holds the selected Division (English key)
-  area: 'Dhaka', // holds the selected District/City (English key)
-  village: '', // holds the selected City/Village (English key, may be custom typed)
+  district: 'Dhaka', // holds the selected District (English key)
+  policeStation: (POLICE_STATION_BY_DISTRICT['Dhaka'] || [])[0]?.en || '', // holds the selected Police Station (English key, may be custom typed)
   notesOpen: false,
   notes: '',
 };
@@ -221,24 +826,18 @@ export default function page() {
     setter((prev) => ({ ...prev, [field]: value }));
   };
 
-  // Division select -> reset District (and any picked village) to defaults
-  const handleDivisionChange = (setter) => (divisionEn) => {
+  // District select -> reset Police Station to the first option for that district
+  const handleDistrictChange = (setter) => (districtEn) => {
     setter((prev) => ({
       ...prev,
-      city: divisionEn,
-      area: DISTRICTS_BY_DIVISION[divisionEn][0].en,
-      village: '',
+      district: districtEn,
+      policeStation: (POLICE_STATION_BY_DISTRICT[districtEn] || [])[0]?.en || '',
     }));
   };
 
-  // District select -> clear any previously picked village, since the list depends on district
-  const handleDistrictChange = (setter) => (districtEn) => {
-    setter((prev) => ({ ...prev, area: districtEn, village: '' }));
-  };
-
-  // City/Village select (supports a custom typed value)
-  const handleVillageChange = (setter) => (villageEn) => {
-    setter((prev) => ({ ...prev, village: villageEn }));
+  // Police Station select (supports a custom typed value)
+  const handlePoliceStationChange = (setter) => (stationEn) => {
+    setter((prev) => ({ ...prev, policeStation: stationEn }));
   };
 
   // Special notes toggle + textarea, per address
@@ -298,11 +897,11 @@ export default function page() {
                     <p className="text-sm text-black dark:text-amber-200 font-bold ">{item.name}</p>
                     <div className="mt-2 flex items-center gap-2">
                       <span className="text-sm text-gray-700 dark:text-white ">Qty:</span>
-                      <div className="flex items-center overflow-hidden rounded-md border border-gray-200">
+                      <div className="flex items-center overflow-hidden rounded-md border border-gray-300 dark:border-gray-200">
                         <button
                           type="button"
                           onClick={() => handleQty(item.id, 'dec')}
-                          className="flex h-7 w-7 items-center justify-center bg-gray-100 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
+                          className="flex h-7 w-7 items-center justify-center bg-gray-100 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-400 "
                           aria-label="Decrease quantity"
                         >
                           -
@@ -313,7 +912,7 @@ export default function page() {
                         <button
                           type="button"
                           onClick={() => handleQty(item.id, 'inc')}
-                          className="flex h-7 w-7 items-center justify-center bg-gray-100 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-400 "
+                          className="flex h-7 w-7 items-center justify-center bg-gray-100 dark:bg-gray-700 text-sm text-gray-800 dark:text-white cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-400 "
                           aria-label="Increase quantity"
                         >
                           +
@@ -349,9 +948,8 @@ export default function page() {
               <AddressFields
                 form={form}
                 onChange={handleFieldChange(setForm)}
-                onDivisionChange={handleDivisionChange(setForm)}
                 onDistrictChange={handleDistrictChange(setForm)}
-                onVillageChange={handleVillageChange(setForm)}
+                onPoliceStationChange={handlePoliceStationChange(setForm)}
                 onNotesToggle={handleNotesToggle(setForm)}
                 onNotesChange={handleNotesChange(setForm)}
               />
@@ -377,9 +975,8 @@ export default function page() {
                 <AddressFields
                   form={billingForm}
                   onChange={handleFieldChange(setBillingForm)}
-                  onDivisionChange={handleDivisionChange(setBillingForm)}
                   onDistrictChange={handleDistrictChange(setBillingForm)}
-                  onVillageChange={handleVillageChange(setBillingForm)}
+                  onPoliceStationChange={handlePoliceStationChange(setBillingForm)}
                   onNotesToggle={handleNotesToggle(setBillingForm)}
                   onNotesChange={handleNotesChange(setBillingForm)}
                 />
@@ -550,9 +1147,8 @@ function SectionTitle({ children }) {
   );
 }
 
-function AddressFields({ form, onChange, onDivisionChange, onDistrictChange, onVillageChange, onNotesToggle, onNotesChange }) {
-  const districtOptions = DISTRICTS_BY_DIVISION[form.city] || [];
-  const villageOptions = VILLAGES_BY_DISTRICT[form.area] || [];
+function AddressFields({ form, onChange, onDistrictChange, onPoliceStationChange, onNotesToggle, onNotesChange }) {
+  const policeStationOptions = POLICE_STATION_BY_DISTRICT[form.district] || [];
 
   return (
     <div className="space-y-3">
@@ -591,36 +1187,28 @@ function AddressFields({ form, onChange, onDivisionChange, onDistrictChange, onV
       />
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <SearchableSelect
-          options={DIVISIONS}
-          value={form.city}
-          onChange={onDivisionChange}
-          placeholder="Select Division"
-          searchPlaceholder="Search division…"
-        />
-        <SearchableSelect
-          options={districtOptions}
-          value={form.area}
+          options={DISTRICT}
+          value={form.district}
           onChange={onDistrictChange}
-          placeholder="Select District/City"
-          searchPlaceholder="Search district/city…"
+          placeholder="Select Your Zilla"
+          searchPlaceholder="Search district…"
         />
+        <div>
+          <SearchableSelect
+            options={policeStationOptions}
+            value={form.policeStation}
+            onChange={onPoliceStationChange}
+            placeholder="Select Your Thana"
+            searchPlaceholder="Search police station…"
+            allowCustom
+          />
+          {policeStationOptions.length === 0 && (
+            <p className="mt-1 text-xs text-gray-400">
+              No preset list for {form.district} yet — just type the name and pick it.
+            </p>
+          )}
+        </div>
       </div>
-      <div>
-        <SearchableSelect
-          options={villageOptions}
-          value={form.village}
-          onChange={onVillageChange}
-          placeholder="Select or type City / Village"
-          searchPlaceholder="Search city / village…"
-          allowCustom
-        />
-        {villageOptions.length === 0 && (
-          <p className="mt-1 text-xs text-gray-400">
-            No preset list for {form.area} yet — just type the name and pick it.
-          </p>
-        )}
-      </div>
-
     </div>
   );
 }
@@ -667,16 +1255,16 @@ function SearchableSelect({
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        className="flex w-full items-center justify-between rounded-md border border-gray-200 px-3 py-2.5 text-left text-sm text-gray-700 dark:text-white focus:border-orange-400 focus:outline-none"
+        className="flex w-full items-center justify-between rounded-md border border-gray-200 px-3 py-2.5 text-left text-sm text-gray-700 dark:text-white focus:border-orange-400 focus:outline-none cursor-pointer"
       >
         <span className="truncate">
           {selected ? (
             <>
               {selected.en}
-              {selected.bn && <span className="text-gray-400"> ({selected.bn})</span>}
+              {selected.bn && <span className="text-gray-400 cursor-pointer"> ({selected.bn})</span>}
             </>
           ) : (
-            <span className="text-gray-400">{placeholder}</span>
+            <span className="text-gray-400 cursor-pointer">{placeholder}</span>
           )}
         </span>
         <ChevronDownIcon className={`ml-2 shrink-0 text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`} />

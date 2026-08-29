@@ -31,7 +31,7 @@ const Accessoriesitems = ({ selectedCategory, onCategoryChange }) => {
             {/* //////////////////Selected Your Products////////////////////// */}
       <div>
         <Splide options={{
-          perPage: 5,
+          perPage: 6,
           perMove: 1,
           gap: '1rem',
           breakpoints: {
