@@ -1275,7 +1275,7 @@ function SearchableSelect({
           {/* Click-outside catcher */}
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
 
-          <div className="absolute z-20 mt-1 w-full overflow-hidden rounded-md border border-gray-200 bg-white shadow-lg">
+          <div className="absolute z-20 mt-1 w-full overflow-hidden rounded-md border border-gray-200 bg-white dark:bg-gray-700 shadow-lg">
             <div className="border-b border-gray-100 p-2">
               <input
                 type="text"
@@ -1292,7 +1292,7 @@ function SearchableSelect({
                   <button
                     type="button"
                     onClick={() => handleSelect(trimmedQuery)}
-                    className="flex w-full items-center px-3 py-2 text-left text-sm text-orange-600 hover:bg-orange-50"
+                    className="flex w-full items-center px-3 py-2 text-left text-sm text-orange-600 hover:bg-orange-50 cursor-pointer"
                   >
                     Use “{trimmedQuery}”
                   </button>
@@ -1304,11 +1304,11 @@ function SearchableSelect({
                     type="button"
                     onClick={() => handleSelect(option.en)}
                     className={`flex w-full items-center justify-between px-3 py-2 text-left text-sm ${
-                      option.en === value ? 'bg-orange-50 text-orange-600' : 'text-gray-700 hover:bg-gray-50'
+                      option.en === value ? 'bg-orange-50 text-orange-600 cursor-pointer' : 'text-gray-700 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-950 cursor-pointer'
                     }`}
                   >
                     <span>
-                      {option.en} <span className="text-gray-400">({option.bn})</span>
+                      {option.en} <span className="text-gray-400 dark:text-gray-100">({option.bn})</span>
                     </span>
                   </button>
                 </li>
@@ -1396,7 +1396,7 @@ function BkashIcon() {
 
 function NagadIcon() {
   return (
-    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-orange-500 to-orange-700 text-white">
+    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-white">
       <Image src={Nagad} alt='img'/>
     </span>
   );
