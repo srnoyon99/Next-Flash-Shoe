@@ -115,7 +115,7 @@ export default function PrivacyPolicyPage() {
     <main className="max-w-3xl mx-auto px-4 py-10 sm:py-14">
       <div className="flex items-center justify-between gap-4 mb-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-black dark:text-white ">
-          Terms And Conditions
+          Privacy Policy
         </h1>
 
         {/* Language dropdown */}

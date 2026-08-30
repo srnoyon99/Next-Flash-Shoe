@@ -30,11 +30,6 @@ const content = {
 };
 
 const heading = {
-  EN: 'Terms And Conditions',
-  BN: 'শর্তাবলী',
-};
-
-const subheading = {
   EN: 'Refund & Return Policy',
   BN: 'রিফান্ড ও রিটার্ন পলিসি',
 };
@@ -54,7 +49,6 @@ export default function RefundReturnPolicyPage() {
             <h1 className="text-2xl font-bold text-black dark:text-white sm:text-3xl">
               {heading[lang]}
             </h1>
-            <p className="mt-1 text-sm text-gray-500 dark:text-gray-300  ">{subheading[lang]}</p>
           </div>
 
           {/* Dropdown */}

@@ -1,6 +1,8 @@
 "use client"
 import Image from "next/image"
 import logo from "../../images/icon_light.png"
+import Link from "next/link"
+import { Mail, MapPin, PhoneOutgoing } from "lucide-react"
 
 const Footer = () => {
     return (
@@ -26,38 +28,49 @@ const Footer = () => {
                                 height={40}
                             />
                             <div className='w-full max-w-52 h-0.5 bg-linear-to-r from-[#fbfbfc] dark:to-[#24212D]/0 '></div>
-                            <p className='text-sm text-white mt-6 max-w-[350px] leading-relaxed'>Flash is an e-commerce platform dedicated to providing safe and reliable Fashon to every home. </p>
+                            <p className='text-sm text-white mt-6 mb-4 max-w-[350px] leading-relaxed'>Flash is an e-commerce platform dedicated to providing safe and reliable Fashon to every home. </p>
+                            <div>
+                                <p className=" flex items-center justify-start gap-3 text-white "><MapPin /> Mirpur 11 ,Dhaka, Bangladesh </p>
+                                <p className=" flex items-center justify- gap-3 text-white mt-4 "> <PhoneOutgoing /> +8801790535599 </p>
+                                <p className=" flex items-center justify-start gap-3 text-white mt-4 "> <Mail /> flashsupport@gmail.com </p>
+                            </div>
                         </div>
 
                         <div className="w-[45%] md:w-[45%] lg:w-[15%] flex flex-col items-start text-left">
-                            <h3 className='text-2 text-white font-bold leading-5 border-b-1 '>Important</h3>
+                            <h3 className='text-2 text-white font-bold leading-5 border-b-1 '>Information</h3>
                             <div className="flex flex-col gap-2 mt-6">
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>About us</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Contact us</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Portfolio</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Contact</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>FAQ</a>
+                                <Link href="/aboutus" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>About us</Link>
+                                <Link href="/contactus" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Contact us</Link>
+                                <Link href="/privacy" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Privacy Policy</Link>
+                                <Link href="/compamyinformation" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Company Information
+                                </Link>
+                                <Link href="/terms" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Terms and Conditions</Link>
+                                <Link href="/refund" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Refund & Return Policy
+                                </Link>
                             </div>
                         </div>
 
                         <div className="w-[45%] md:w-[45%] lg:w-[15%] flex flex-col items-start text-left">
                             <h3 className='text-2 text-white font-bold leading-5 border-b-1 '>Social Links</h3>
                             <div className="flex flex-col gap-2 mt-6">
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Twitter</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Instagram</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Youtube</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>TikTok</a>
+                                <Link href="/" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Facebook</Link>
+                                <Link href="/" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Instagram</Link>
+                                <Link href="/" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Youtube</Link>
+                                <Link href="/" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>TikTok</Link>
+                                <Link href="/" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Twitter</Link>
                             </div>
                         </div>
 
                         <div className="w-[45%] md:w-[45%] lg:w-[15%] flex flex-col items-start text-left">
-                            <h3 className='text-2 text-white font-bold leading-5 border-b-1 '>Important</h3>
+                            <h3 className='text-2 text-white font-bold leading-5 border-b-1 '>Support</h3>
                             <div className="flex flex-col gap-2 mt-6">
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>About us</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Contact us</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Portfolio</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Contact</a>
-                                <a href="#" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>FAQ</a>
+                                <Link href="/supportcenter" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Support Center</Link>
+                                <Link href="/" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Order Tracking
+                                </Link>
+                                <Link href="/howtoorder" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'> How To Order </Link>
+                                <Link href="/shippingdelivery" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Shipping & Delivery</Link>
+                                <Link href="/payment" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Payment Policy</Link>
+                                <Link href="/faq" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>FAQ</Link>
                             </div>
                         </div>
 
@@ -70,7 +83,7 @@ const Footer = () => {
                     </div>
 
                     <div className="relative ">
-                        <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-3xl h-full max-h-64 bg-green-500 rounded-full blur-[170px] pointer-events-none"/>
+                        <div className="absolute inset-x-0 bottom-0 mx-auto w-full max-w-3xl h-full max-h-64 bg-green-500 rounded-full blur-[170px] pointer-events-none" />
                         <h3 className="text-center font-extrabold leading-[0.7] text-transparent text-[clamp(3rem,10vw,8rem)] text-nowrap [-webkit-text-stroke:1px_#0D542B] mt-6" >
                             FLASH COMFORT
                         </h3>
