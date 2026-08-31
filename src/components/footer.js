@@ -65,7 +65,7 @@ const Footer = () => {
                             <h3 className='text-2 text-white font-bold leading-5 border-b-1 '>Support</h3>
                             <div className="flex flex-col gap-2 mt-6">
                                 <Link href="/supportcenter" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Support Center</Link>
-                                <Link href="/" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Order Tracking
+                                <Link href="/ordertracking" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Order Tracking
                                 </Link>
                                 <Link href="/howtoorder" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'> How To Order </Link>
                                 <Link href="/shippingdelivery" className='text-white hover:text-red-600 dark:hover:text-red-600 transition-colors'>Shipping & Delivery</Link>

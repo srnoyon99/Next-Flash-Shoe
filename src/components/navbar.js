@@ -424,8 +424,11 @@ export default function Navbar({
                             <Link href="/account" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <User size={20} /> Manage My Account
                             </Link>
-                            <Link href="/orders" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <Navigation size={20} /> Order Tracking
+                            <Link href="/myorder" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <ShoppingBag size={20} /> My Order 
+                            </Link>
+                             <Link href="/ordertracking" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <Navigation size={20} /> Order Tracking 
                             </Link>
                           </>
                         ) : (
@@ -433,8 +436,11 @@ export default function Navbar({
                             <Link href="/signin" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <User size={20} /> Sign In
                             </Link>
-                            <Link href="/signup" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <UserPlus size={20} /> Create Account
+                            <Link href="/myorder" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <ShoppingBag size={20} /> My Order
+                            </Link>
+                             <Link href="/ordertracking" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <Navigation size={20} /> Order Tracking
                             </Link>
                           </>
                         )}
@@ -626,14 +632,11 @@ export default function Navbar({
                           <Link href="/account" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <User size={22} /> Manage My Account
                           </Link>
-                          <Link href="/orders" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
+                          <Link href="/ordertracking" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
+                            <Navigation size={22} /> Order Tracking
+                          </Link>
+                          <Link href="/myorder" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <ShoppingBag size={22} /> My Order
-                          </Link>
-                          <Link href="/cancellations" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <XCircle size={22} /> My Cancellation
-                          </Link>
-                          <Link href="/reviews" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <Star size={22} /> My Reviews
                           </Link>
                           <button onClick={handleLogout} className="flex w-full items-center gap-4 cursor-pointer">
                             <LogOut size={22} /> Log Out
@@ -644,8 +647,11 @@ export default function Navbar({
                           <Link href="signin" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <User size={22} /> Sign In
                           </Link>
-                          <Link href="signup" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <UserPlus size={22} /> Create Account
+                           <Link href="/ordertracking" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
+                            <Navigation size={22} /> Order Tracking
+                          </Link>
+                          <Link href="/myorder" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
+                            <ShoppingBag size={22} /> My Order
                           </Link>
                         </>
                       )}
