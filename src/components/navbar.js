@@ -23,6 +23,7 @@ import {
   SunDim,
   Trash2,
   Navigation,
+  CircleX,
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -430,6 +431,9 @@ export default function Navbar({
                              <Link href="/ordertracking" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <Navigation size={20} /> Order Tracking 
                             </Link>
+                            <Link href="/mycancellation" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <CircleX  size={20} /> My Cancellation 
+                            </Link>
                           </>
                         ) : (
                           <>
@@ -441,6 +445,9 @@ export default function Navbar({
                             </Link>
                              <Link href="/ordertracking" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <Navigation size={20} /> Order Tracking
+                            </Link>
+                            <Link href="/mycancellation" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                              <CircleX  size={20} /> My Cancellation 
                             </Link>
                           </>
                         )}
@@ -638,6 +645,12 @@ export default function Navbar({
                           <Link href="/myorder" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <ShoppingBag size={22} /> My Order
                           </Link>
+                          <Link href="/myorder" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
+                            <ShoppingBag size={22} /> My Order
+                          </Link>
+                          <Link href="/mycancellation" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
+                            <CircleX size={22} /> My Cancellation
+                          </Link>
                           <button onClick={handleLogout} className="flex w-full items-center gap-4 cursor-pointer">
                             <LogOut size={22} /> Log Out
                           </button>
@@ -652,6 +665,9 @@ export default function Navbar({
                           </Link>
                           <Link href="/myorder" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <ShoppingBag size={22} /> My Order
+                          </Link>
+                          <Link href="/mycancellation" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
+                            <CircleX size={22} /> My Cancellation
                           </Link>
                         </>
                       )}

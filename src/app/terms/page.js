@@ -34,6 +34,10 @@ const content = {
         body: 'We reserve the right to cancel or reject an order due to incorrect information, product unavailability, or other valid reasons.',
       },
       {
+        title: 'Refusal to Accept Delivery',
+        body: 'If, for any reason, you do not receive the product from the delivery man after confirming the order 100%, you will be required to pay the delivery charge and return the product. If you do not receive his call, or if you cause any financial loss to the company, we reserve the right to take legal action against you.',
+      },
+      {
         title: 'Customer Responsibility',
         body: 'Customers are responsible for providing correct name, phone number, address, and other required information.',
       },
@@ -77,6 +81,10 @@ const content = {
       {
         title: 'অর্ডার বাতিল',
         body: 'ভুল তথ্য, পণ্য স্টকে না থাকা বা অন্য কোনো যুক্তিসঙ্গত কারণে আমরা অর্ডার বাতিল বা প্রত্যাখ্যান করার অধিকার রাখি।',
+      },
+      {
+        title: 'ডেলিভারি গ্রহণ না করা',
+        body: 'কোনো কারণে অর্ডার ১০০% নিশ্চিত করার পরেও যদি আপনি ডেলিভারিম্যানের থেকে পণ্য গ্রহণ না করেন, তাহলে আপনাকে ডেলিভারি চার্জ পরিশোধ করে পণ্যটি ফেরত দিতে হবে। এছাড়া যদি আপনি ডেলিভারিম্যানের ফোন কল রিসিভ না করেন, অথবা আপনার কারণে কোম্পানির কোনো আর্থিক ক্ষতি হয়, সেক্ষেত্রে আমরা আপনার বিরুদ্ধে আইনি ব্যবস্থা নেওয়ার অধিকার রাখি।',
       },
       {
         title: 'গ্রাহকের দায়িত্ব',

@@ -73,10 +73,10 @@ export default function SignupPage() {
                                         </span>
                                    </label>
 
-                                   <a href="#"
+                                   <Link href="/terms"
                                         className="ml-1 text-sm font-medium text-blue-700 dark:text-blue-500 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded">
                                         Terms and Conditions
-                                   </a>
+                                   </Link>
                               </div>
                          </div>
 
