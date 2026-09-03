@@ -47,6 +47,8 @@ export default function Navbar({
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchError, setSearchError] = useState('');
   const [isDark, setIsDark] = useState(false);
   const [isThemeLoaded, setIsThemeLoaded] = useState(false);
   const [items, setItems] = useState(INITIAL_ITEMS);
@@ -115,6 +117,19 @@ export default function Navbar({
     const drawer = document.getElementById(drawerId);
     if (drawer) drawer.checked = false;
     router.push('/cart');
+  };
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+
+    if (!searchQuery.trim()) {
+      setSearchError('I did not search anything.');
+      return;
+    }
+
+    setSearchError('');
+    setSearchQuery('');
+    setIsSearchOpen(false);
   };
 
   // ---- sticky header on scroll ---------------------------------------
@@ -235,11 +250,16 @@ export default function Navbar({
 
                 <div className="flex items-center gap-2 md:gap-3">
                   <button
-                    onClick={() => setIsSearchOpen((v) => !v)}
+                    type="button"
+                    onClick={() => {
+                      setIsSearchOpen((v) => !v);
+                      setSearchError('');
+                    }}
                     className="rounded-lg p-1 transition-colors hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer"
-                    aria-label="Search"
+                    aria-label={isSearchOpen ? 'Close search' : 'Open search'}
+                    aria-expanded={isSearchOpen}
                   >
-                    <Search size={24} className={themeIcon} />
+                    {isSearchOpen ? <X size={24} className={themeIcon} /> : <Search size={24} className={themeIcon} />}
                   </button>
 
                   <Link
@@ -695,34 +715,34 @@ export default function Navbar({
           <div className="border-b border-white bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900 lg:hidden">
             <div className="container mx-auto px-4 py-6">
               <div className="mx-auto max-w-2xl">
-                <div className="relative">
+                <form onSubmit={handleSearch}>
+                  <div className="relative">
                   <input
                     type="search"
                     placeholder="What are you looking for?"
                     className="w-full rounded-full border-2 border-gray-300 px-6 py-4 pr-12 text-lg focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
                     autoFocus
+                      value={searchQuery}
+                      onChange={(event) => {
+                        setSearchQuery(event.target.value);
+                        setSearchError('');
+                      }}
                   />
                   <button
-                    className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+                      type="submit"
+                    className=" absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-2 ml-9 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
                     aria-label="Search"
                   >
                     <Search className={`h-6 w-6 ${themeIcon}`} />
                   </button>
                 </div>
+                  {searchError && (
+                    <p className="mt-2 px-4 text-sm text-red-600 dark:text-red-400" role="alert">
+                      {searchError}
+                    </p>
+                  )}
+                </form>
 
-                <div className="mt-4">
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">Popular Searches</p>
-                  <div className="flex flex-wrap gap-2">
-                    {['Electronics', 'Fashion', 'Home & Garden', 'Sports'].map((term) => (
-                      <button
-                        key={term}
-                        className="rounded-full bg-gray-100 px-4 py-2 text-sm transition-colors hover:bg-gray-200 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700"
-                      >
-                        {term}
-                      </button>
-                    ))}
-                  </div>
-                </div>
               </div>
             </div>
           </div>
