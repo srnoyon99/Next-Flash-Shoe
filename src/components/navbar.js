@@ -259,7 +259,7 @@ export default function Navbar({
                     aria-label={isSearchOpen ? 'Close search' : 'Open search'}
                     aria-expanded={isSearchOpen}
                   >
-                    {isSearchOpen ? <X size={24} className={themeIcon} /> : <Search size={24} className={themeIcon} />}
+                    {isSearchOpen ? <CircleX color="#ff0000" size={24} className={themeIcon} /> : <Search size={24} className={themeIcon} />}
                   </button>
 
                   <Link
