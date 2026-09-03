@@ -1,6 +1,7 @@
 "use client"
 import Accessories from '@/components/accessories'
 import BestSeller from '@/components/bestseller'
+import Choosesneakers from '@/components/Choosesneakers'
 import Combopack from '@/components/Combopack'
 import JustLanded from '@/components/justlanded'
 import Products from '@/components/products'
@@ -18,6 +19,7 @@ const page = () => {
       <Combopack/>
       <Youwant/>
       <Accessories/>
+      <Choosesneakers/>
     </div>
   )
 }

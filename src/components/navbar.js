@@ -24,6 +24,7 @@ import {
   Trash2,
   Navigation,
   CircleX,
+  MapPinned,
 } from 'lucide-react';
 import Image from 'next/image';
 
@@ -267,7 +268,7 @@ export default function Navbar({
                     </div>
                     <div className="drawer-side">
                       <label htmlFor="my-drawer-5" aria-label="close sidebar" className="drawer-overlay"></label>
-                      <div className="menu min-h-full w-[min(70vw,28rem)] bg-white p-4 dark:bg-gray-600">
+                      <div className="menu min-h-full w-[min(77vw,28rem)] bg-white p-4 dark:bg-gray-600">
 
                         <label
                           htmlFor="my-drawer-5"
@@ -429,7 +430,7 @@ export default function Navbar({
                               <ShoppingBag size={20} /> My Order 
                             </Link>
                              <Link href="/ordertracking" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <Navigation size={20} /> Order Tracking 
+                              <MapPinned size={20} /> Order Tracking
                             </Link>
                             <Link href="/mycancellation" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <CircleX  size={20} /> My Cancellation 
@@ -444,7 +445,7 @@ export default function Navbar({
                               <ShoppingBag size={20} /> My Order
                             </Link>
                              <Link href="/ordertracking" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <Navigation size={20} /> Order Tracking
+                              <MapPinned size={20} /> Order Tracking
                             </Link>
                             <Link href="/mycancellation" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <CircleX  size={20} /> My Cancellation 
@@ -640,7 +641,7 @@ export default function Navbar({
                             <User size={22} /> Manage My Account
                           </Link>
                           <Link href="/ordertracking" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <Navigation size={22} /> Order Tracking
+                            <MapPinned size={22} /> Order Tracking
                           </Link>
                           <Link href="/myorder" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <ShoppingBag size={22} /> My Order
@@ -661,7 +662,7 @@ export default function Navbar({
                             <User size={22} /> Sign In
                           </Link>
                            <Link href="/ordertracking" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
-                            <Navigation size={22} /> Order Tracking
+                            <MapPinned size={22} /> Order Tracking
                           </Link>
                           <Link href="/myorder" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <ShoppingBag size={22} /> My Order

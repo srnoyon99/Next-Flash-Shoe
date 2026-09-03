@@ -6,7 +6,7 @@ import { useState } from 'react';
 const content = {
   en: {
     intro:
-      'Ordering from Ghorer Bazar is simple and flexible. Choose the method that’s most convenient for you:',
+      'Ordering from Flash Comfort is simple and flexible. Choose the method that’s most convenient for you:',
     termsLabel: 'Terms And Conditions',
     methods: [
       {
@@ -35,7 +35,7 @@ const content = {
   },
   bn: {
     intro:
-      'ঘরের বাজার থেকে অর্ডার করা খুবই সহজ এবং সুবিধাজনক। আপনার জন্য সবচেয়ে সুবিধাজনক পদ্ধতিটি বেছে নিন:',
+      'Flash Comfort থেকে অর্ডার করা খুবই সহজ এবং সুবিধাজনক। আপনার জন্য সবচেয়ে সুবিধাজনক পদ্ধতিটি বেছে নিন:',
     termsLabel: 'শর্তাবলী',
     methods: [
       {
@@ -108,11 +108,11 @@ export default function HowToOrderPage() {
           {t.termsLabel}
         </Link>
 
-        <div className="relative inline-flex rounded-full border border-gray-300 bg-white p-0.5">
+        <div className="relative inline-flex rounded-full border border-gray-300 bg-white p-0.5 cursor-pointer">
           <button
             type="button"
             onClick={() => setLang('en')}
-            className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors ${
+            className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors cursor-pointer ${
               !isBn ? 'bg-emerald-600 text-white' : 'text-gray-500'
             }`}
           >
@@ -121,7 +121,7 @@ export default function HowToOrderPage() {
           <button
             type="button"
             onClick={() => setLang('bn')}
-            className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors ${
+            className={`px-3 py-1 text-sm font-semibold rounded-full transition-colors cursor-pointer ${
               isBn ? 'bg-emerald-600 text-white' : 'text-gray-500'
             }`}
           >

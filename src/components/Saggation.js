@@ -1,6 +1,5 @@
 import React from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide'
-import { Heart } from 'lucide-react'
 import Addtocardbutton from './addtocardbutton'
 import Wishlistheart from './Wishlistheart'
 
