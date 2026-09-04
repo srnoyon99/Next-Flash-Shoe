@@ -35,16 +35,14 @@ const CANCEL_REASONS = [
 /*  Mock recent orders — replace with your API                        */
 /* ------------------------------------------------------------------ */
 const RECENT_ORDERS = [
-  { orderNo: "ORD-58213", date: "28 Aug, 2026", time: "11:42 AM", tag: "Hoodie", product: "Oversized Cotton Hoodie", size: "L", color: "Charcoal Black", qty: 2, price: "2,450" },
-  { orderNo: "ORD-58147", date: "21 Aug, 2026", time: "4:05 PM", tag: "Cargo", product: "Slim Fit Cargo Pants", size: "M", color: "Olive Green", qty: 1, price: "1,290" },
-  { orderNo: "ORD-57990", date: "12 Aug, 2026", time: "9:18 AM", tag: "Loafers", product: "Genuine Leather Loafers", size: "42", color: "Tan Brown", qty: 1, price: "3,200" },
-  { orderNo: "ORD-57810", date: "05 Aug, 2026", time: "2:30 PM", tag: "Tee", product: "Classic Crewneck Tee", size: "S", color: "Off White", qty: 3, price: "980" },
-  { orderNo: "ORD-57622", date: "29 Jul, 2026", time: "6:14 PM", tag: "Jacket", product: "Ridge Trail Jacket", size: "L", color: "Moss Green", qty: 1, price: "4,650" },
-  { orderNo: "ORD-57501", date: "22 Jul, 2026", time: "10:02 AM", tag: "Belt", product: "Leather Belt", size: "M", color: "Brown", qty: 1, price: "650" },
-  { orderNo: "ORD-57388", date: "14 Jul, 2026", time: "1:47 PM", tag: "Tote", product: "Everyday Canvas Tote", size: "One size", color: "Sand", qty: 1, price: "890" },
-  { orderNo: "ORD-57210", date: "06 Jul, 2026", time: "5:20 PM", tag: "Socks", product: "Cotton Ankle Socks (3-pack)", size: "L", color: "Grey", qty: 2, price: "420" },
-  { orderNo: "ORD-57098", date: "29 Jun, 2026", time: "9:55 AM", tag: "Cap", product: "Running Cap", size: "One size", color: "Red", qty: 1, price: "550" },
-  { orderNo: "ORD-56944", date: "20 Jun, 2026", time: "3:12 PM", tag: "Shoes", product: "Trail Running Shoes", size: "42", color: "Grey/Orange", qty: 1, price: "5,100" },
+  { orderNo: "ORD-58213", date: "28 Aug, 2026", time: "11:42 AM", img: "/shoe1.avif", product: "Oversized Cotton Hoodie", size: "L", color: "Charcoal Black", qty: 2, price: "2,450" },
+  { orderNo: "ORD-58147", date: "21 Aug, 2026", time: "4:05 PM", img: "/shoe2.avif", product: "Slim Fit Cargo Pants", size: "M", color: "Olive Green", qty: 1, price: "1,290" },
+  { orderNo: "ORD-57990", date: "12 Aug, 2026", time: "9:18 AM", img: "/shoe3.avif", product: "Genuine Leather Loafers", size: "42", color: "Tan Brown", qty: 1, price: "3,200" },
+  { orderNo: "ORD-57810", date: "05 Aug, 2026", time: "2:30 PM", img: "/shoe4.webp", product: "Classic Crewneck Tee", size: "S", color: "Off White", qty: 3, price: "980" },
+  { orderNo: "ORD-57622", date: "29 Jul, 2026", time: "6:14 PM", img: "/shoe5.avif", product: "Ridge Trail Jacket", size: "L", color: "Moss Green", qty: 1, price: "4,650" },
+  { orderNo: "ORD-57210", date: "06 Jul, 2026", time: "5:20 PM", img: "/shoe7.avif", product: "Cotton Ankle Socks (3-pack)", size: "L", color: "Grey", qty: 2, price: "420" },
+  { orderNo: "ORD-57098", date: "29 Jun, 2026", time: "9:55 AM", img: "/shoe8.avif", product: "Running Cap", size: "One size", color: "Red", qty: 1, price: "550" },
+  { orderNo: "ORD-56944", date: "20 Jun, 2026", time: "3:12 PM", img: "/shoe9.avif", product: "Trail Running Shoes", size: "42", color: "Grey/Orange", qty: 1, price: "5,100" },
 ];
 
 function Pill({ children }) {
@@ -200,9 +198,11 @@ export default function OrderCancelPage() {
                     key={order.orderNo}
                     className="rounded-2xl bg-white dark:bg-gray-800 dark:text-white shadow-sm p-4 flex items-center gap-4"
                   >
-                    <div className="w-16 h-16 shrink-0 rounded-2xl bg-indigo-50 text-indigo-700 font-medium text-sm flex items-center justify-center text-center px-1">
-                      {order.tag}
-                    </div>
+                    <img
+                      src={order.img}
+                      alt={order.product}
+                      className="w-16 h-16 shrink-0 rounded-2xl bg-indigo-50 text-indigo-700 font-medium text-sm flex items-center justify-center text-center px-1"
+                    />
 
                     <div className="min-w-0 flex-1">
                       <p className="text-xs text-stone-400 dark:text-gray-300 flex flex-wrap items-center gap-x-1.5">

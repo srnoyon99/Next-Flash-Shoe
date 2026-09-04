@@ -261,7 +261,6 @@ export default function Navbar({
                   >
                     {isSearchOpen ? <CircleX color="#ff0000" size={24} className={themeIcon} /> : <Search size={24} className={themeIcon} />}
                   </button>
-
                   <Link
 
                     href="/wishlist"

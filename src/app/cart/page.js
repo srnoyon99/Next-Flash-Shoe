@@ -14,7 +14,8 @@ const INITIAL_ITEMS = [
   { id: 2, name: 'Black Seed Honey 1kg', image: '/shoe2.avif', price: 1600, qty: 1 },
 ];
 
-const DELIVERY_COST = 70;
+const DHAKA_DELIVERY_COST = 70;
+const OUTSIDE_DHAKA_DELIVERY_COST = 130;
 
 // ---------------------------------------------------------------------------
 // Bangladesh Districts (English + Bangla names) — flat list, 64 districts
@@ -793,8 +794,6 @@ const DEFAULT_ADDRESS_FORM = {
 export default function page() {
   const [items, setItems] = useState(INITIAL_ITEMS);
   const [form, setForm] = useState(DEFAULT_ADDRESS_FORM);
-  const [billingOpen, setBillingOpen] = useState(false);
-  const [billingForm, setBillingForm] = useState(DEFAULT_ADDRESS_FORM);
   const [paymentMethod, setPaymentMethod] = useState('cod');
   const [couponOpen, setCouponOpen] = useState(false);
   const [couponCode, setCouponCode] = useState('');
@@ -803,7 +802,8 @@ export default function page() {
   const [submitting, setSubmitting] = useState(false);
 
   const subtotal = useMemo(() => items.reduce((sum, item) => sum + item.price * item.qty, 0), [items]);
-  const total = Math.max(0, subtotal + DELIVERY_COST - discount);
+  const deliveryCost = form.district === 'Dhaka' ? DHAKA_DELIVERY_COST : OUTSIDE_DHAKA_DELIVERY_COST;
+  const total = Math.max(0, subtotal + deliveryCost - discount);
 
   const handleQty = (id, direction) => {
     setItems((prev) =>
@@ -956,33 +956,6 @@ export default function page() {
             </div>
           </section>
 
-          {/* Billing address */}
-          <section className="rounded-xl bg-white dark:bg-gray-800 p-6 shadow-sm">
-            <div className="flex items-center justify-between">
-              <SectionTitle> <span className=' text-black dark:text-white '>Billing Address</span> </SectionTitle>
-              <button
-                type="button"
-                onClick={() => setBillingOpen((prev) => !prev)}
-                className="flex h-5 w-5 items-center justify-center rounded-full border-2 border-orange-500 cursor-pointer "
-                aria-pressed={billingOpen}
-                aria-label="Toggle separate billing address"
-              >
-                {billingOpen && <span className="h-2.5 w-2.5 rounded-full bg-orange-500" />}
-              </button>
-            </div>
-            {billingOpen && (
-              <div className="mt-4">
-                <AddressFields
-                  form={billingForm}
-                  onChange={handleFieldChange(setBillingForm)}
-                  onDistrictChange={handleDistrictChange(setBillingForm)}
-                  onPoliceStationChange={handlePoliceStationChange(setBillingForm)}
-                  onNotesToggle={handleNotesToggle(setBillingForm)}
-                  onNotesChange={handleNotesChange(setBillingForm)}
-                />
-              </div>
-            )}
-          </section>
             </>
           )}
         </div>
@@ -1089,7 +1062,7 @@ export default function page() {
             </div>
             <div className="flex items-center justify-between py-1.5">
               <span className="text-sm text-gray-500 dark:text-white">Delivery cost</span>
-              <span className="text-sm text-gray-800 dark:text-white/80">{DELIVERY_COST.toFixed(2)} BDT</span>
+              <span className="text-sm text-gray-800 dark:text-white/80">{deliveryCost.toFixed(2)} BDT</span>
             </div>
             {discount > 0 && (
               <div className="flex items-center justify-between py-1.5">
@@ -1123,6 +1096,7 @@ export default function page() {
           </div>
 
           {/* Place order */}
+          <Link href="/orderdetails">
           <button
             type="button"
             onClick={handlePlaceOrder}
@@ -1131,6 +1105,7 @@ export default function page() {
           >
             {submitting ? 'PLACING ORDER…' : 'PLACE ORDER'}
           </button>
+          </Link>
         </div>
         )}
       </div>
