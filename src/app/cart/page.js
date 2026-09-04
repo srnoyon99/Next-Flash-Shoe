@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import Cashon from "../../../images/cashondelivery.svg"
 import Card from "../../../images/cardpayment.svg"
@@ -792,6 +793,7 @@ const DEFAULT_ADDRESS_FORM = {
 };
 
 export default function page() {
+  const router = useRouter();
   const [items, setItems] = useState(INITIAL_ITEMS);
   const [form, setForm] = useState(DEFAULT_ADDRESS_FORM);
   const [paymentMethod, setPaymentMethod] = useState('cod');
@@ -872,11 +874,29 @@ export default function page() {
       toast.error('Please agree to the Terms and Conditions to continue');
       return;
     }
+
+    const order = {
+      orderId: `ORD-${Date.now()}`,
+      items,
+      productImage: items[0]?.image || '/shoe1.avif',
+      productName: items[0]?.name || 'Order',
+      quantity: items.reduce((sum, item) => sum + item.qty, 0),
+      customerName: form.fullName,
+      mobile: form.phone,
+      email: form.email,
+      address: form.address,
+      district: form.district,
+      thana: form.policeStation,
+      paymentMethod,
+      subtotal,
+      deliveryCost,
+      discount,
+      total,
+    };
+
+    sessionStorage.setItem('flashShoeOrder', JSON.stringify(order));
     setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      toast.success('Order placed successfully');
-    }, 900);
+    router.push('/orderdetails');
   };
 
   return (
@@ -1096,7 +1116,6 @@ export default function page() {
           </div>
 
           {/* Place order */}
-          <Link href="/orderdetails">
           <button
             type="button"
             onClick={handlePlaceOrder}
@@ -1105,7 +1124,6 @@ export default function page() {
           >
             {submitting ? 'PLACING ORDER…' : 'PLACE ORDER'}
           </button>
-          </Link>
         </div>
         )}
       </div>

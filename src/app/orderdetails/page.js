@@ -40,12 +40,20 @@ const paymentLabels = {
   nagad: 'Nagad',
 };
 
-export default function OrderSuccessPage({ order = sampleOrder }) {
+export default function OrderSuccessPage({ order: initialOrder = sampleOrder }) {
   const router = useRouter();
+  const [order, setOrder] = useState(initialOrder);
   const [secondsLeft, setSecondsLeft] = useState(30);
 
-  const total = (order.subtotal || 0) + (order.deliveryCost || 0);
+  const total = order.total ?? (order.subtotal || 0) + (order.deliveryCost || 0) - (order.discount || 0);
   const isDhaka = (order.district || '').trim().toLowerCase() === 'dhaka';
+
+  useEffect(() => {
+    const savedOrder = sessionStorage.getItem('flashShoeOrder');
+    if (savedOrder) {
+      setOrder(JSON.parse(savedOrder));
+    }
+  }, []);
 
   useEffect(() => {
     if (secondsLeft <= 0) {
@@ -132,6 +140,12 @@ export default function OrderSuccessPage({ order = sampleOrder }) {
             <span>Delivery Cost</span>
             <span>৳{order.deliveryCost?.toLocaleString()}</span>
           </div>
+          {order.discount > 0 && (
+            <div className="flex justify-between text-sm text-orange-600">
+              <span>Discount</span>
+              <span>-৳{order.discount.toLocaleString()}</span>
+            </div>
+          )}
           <div className="flex justify-between text-base font-bold text-gray-900 dark:text-white pt-2 border-t border-dashed border-gray-200 dark:border-neutral-700">
             <span>Total Amount</span>
             <span>৳{total.toLocaleString()}</span>
