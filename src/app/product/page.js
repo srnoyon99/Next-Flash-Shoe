@@ -36,6 +36,20 @@ const COLOR_OPTIONS = [
 ];
 
 const description = {
+  bn: {
+    paragraphs: [
+      'কালোজিরা ফুলের মধু থেকে মৌমাছিরা সংগ্রহ করা একটি অনন্য ও উন্নতমানের মধু হলো ব্ল্যাক সিড হানি। এর স্বতন্ত্র স্বাদ, ঘ্রাণ, রং এবং অসাধারণ স্বাস্থ্য উপকারিতার জন্য এটি পরিচিত।',
+      'ছোট ব্যাচে উৎপাদিত হওয়ায় এর প্রাকৃতিক সমৃদ্ধি ও বিশুদ্ধতা বজায় থাকে।',
+    ],
+    benefits: [
+      'রোগ প্রতিরোধ ক্ষমতা বৃদ্ধি করে',
+      'হজমে সহায়তা করে এবং অম্লতা ও কোষ্ঠকাঠিন্য কমাতে সাহায্য করে',
+      'শক্তি যোগায় এবং ঘুমের মান উন্নত করে',
+      'সর্দি, কাশি ও গলা ব্যথায় কার্যকর',
+      'ত্বক ও সৌন্দর্যচর্চায় উপকারী',
+    ],
+    storage: 'ঠান্ডা ও শুষ্ক স্থানে রাখুন। সরাসরি সূর্যালোক থেকে দূরে রাখুন এবং ফ্রিজে রাখবেন না।',
+  },
   paragraphs: [
     'Black Seed Honey is a unique and premium-quality honey collected by bees from the nectar of Nigella sativa flowers. Known for its strong taste, aroma, color, and remarkable health benefits, it is also called "Black Seed Honey."',
     'Produced in small batches, it preserves its natural richness and purity.',
@@ -428,6 +442,10 @@ function ProductInfo({ product }) {
 function DescriptionTab({ description }) {
   if (!description) return null;
 
+  const [language, setLanguage] = useState('english');
+  const content = language === 'bengali' ? description.bn : description;
+  const isBengali = language === 'bengali';
+
   return (
     <div className="bg-white dark:bg-gray-700 rounded-xl border border-gray-200 p-6">
       <div className=" text-lg font-semibold text-gray-900 dark:text-amber-200 relative inline-block pb-2 mb-4">
@@ -437,7 +455,12 @@ function DescriptionTab({ description }) {
         <span className="absolute left-0 bottom-0 h-0.5 w-10 bg-orange-500" />
         </div>
         <div  >
-           <select className="self-end bg-gray-500 dark:bg-gray-500 text-amber-50 text-xs shrink-0 rounded-md cursor-pointer outline-none mb-1 ">
+           <select
+             value={language}
+             onChange={(event) => setLanguage(event.target.value)}
+             aria-label="Select description language"
+             className="self-end bg-gray-500 dark:bg-gray-500 text-amber-50 text-xs shrink-0 rounded-md cursor-pointer outline-none mb-1 "
+           >
               <option className="bg-white dark:bg-black text-black dark:text-amber-50 cursor-pointer" value="english">
                 EN
               </option>
@@ -450,7 +473,7 @@ function DescriptionTab({ description }) {
         
       </div>
 
-      {description.paragraphs?.map((p, idx) => (
+      {content.paragraphs?.map((p, idx) => (
         <p key={idx} className="text-gray-600 dark:text-amber-50 leading-relaxed mb-3">
           {p}
         </p>
@@ -458,18 +481,21 @@ function DescriptionTab({ description }) {
 
       {description.benefits?.length > 0 && (
         <div className="mt-4">
-          <h4 className="font-semibold text-gray-900 dark:text-amber-200 mb-2">Nutritional &amp; Health Benefits:</h4>
+          <h4 className="font-semibold text-gray-900 dark:text-amber-200 mb-2">
+            {isBengali ? 'পুষ্টি ও স্বাস্থ্য উপকারিতা:' : 'Nutritional & Health Benefits:'}
+          </h4>
           <ul className="space-y-1 text-gray-600 dark:text-amber-50 ">
-            {description.benefits.map((b, idx) => (
+            {content.benefits.map((b, idx) => (
               <li key={idx}>{b}</li>
             ))}
           </ul>
         </div>
       )}
 
-      {description.storage && (
+      {content.storage && (
         <p className="mt-5  ">
-          <span className="font-semibold text-gray-900 dark:text-amber-200">Storage:</span> <span className='text-gray-900 dark:text-amber-50'>{description.storage}</span> 
+          <span className="font-semibold text-gray-900 dark:text-amber-200">{isBengali ? 'সংরক্ষণ:' : 'Storage:'}</span>{' '}
+          <span className='text-gray-900 dark:text-amber-50'>{content.storage}</span> 
         </p>
       )}
     </div>

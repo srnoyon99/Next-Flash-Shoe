@@ -9,6 +9,15 @@ import Link from 'next/link'
 
 const Combopack = () => {
 
+  const getDiscountPercentage = (price, oldPrice) => {
+    const currentPrice = Number.parseFloat(price.replace(/[^0-9.]/g, ''))
+    const previousPrice = Number.parseFloat(oldPrice.replace(/[^0-9.]/g, ''))
+
+    if (!previousPrice || currentPrice >= previousPrice) return 0
+
+    return Math.round(((previousPrice - currentPrice) / previousPrice) * 100)
+  }
+
   const images = [
     { src: '/shoe1.avif', alt: 'Image 1' },
     { src: '/shoe2.avif', alt: 'Image 2' },
@@ -23,12 +32,12 @@ const Combopack = () => {
   ]
 
   const products = [
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '42', size2: '38' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '42', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '41', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$4000', oldPrice: '$5500', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '42', size2: '38' },
+    { name: 'shaker', price: '$5300', oldPrice: '$7000', color: 'Red', color1: 'Blue', color2: 'Green', size: '42', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$4200', oldPrice: '$5000', color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$5100', oldPrice: '$9000', color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$3500', oldPrice: '$6000', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$4700', oldPrice: '$6000', color: 'Red', color1: 'Blue', color2: 'Green', size: '41', size1: '44', size2: '46' },
   ]
 
   // Pair products with images safely to avoid undefined accesses
@@ -39,50 +48,55 @@ const Combopack = () => {
 
   return (
     <div className=' bg-gray-300 dark:bg-gray-800 rounded-2xl '>
-    <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8">
 
-      <div className=' flex items-center justify-between'>
-      <div className="container flex items-center ">
-        <div className=" grid items-center justify-center h-[24px] w-[24px] bg-red-700 mb-4 rounded-3xl animate-spin "><Fan fill='#000000' size={18} strokeWidth={1} /></div>
-        <h2 className=" text-md lg:text-2xl text-black dark:text-white font-bold mb-4 ml-2 ">Exclusive Combo Deals</h2>
-      </div>
+        <div className=' flex items-center justify-between'>
+          <div className="container flex items-center ">
+            <div className=" grid items-center justify-center h-[24px] w-[24px] bg-red-700 mb-4 rounded-3xl animate-spin "><Fan fill='#000000' size={18} strokeWidth={1} /></div>
+            <h2 className=" text-md lg:text-2xl text-black dark:text-white font-bold mb-4 ml-2 ">Exclusive Combo Deals</h2>
+          </div>
 
-      <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
-      <Link href={'/combodeals'} > <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> </Link>
-      </div>
-      </div>
+          <div className=' flex items-center justify-center gap-1 cursor-pointer mb-4 '>
+            <Link href={'/combodeals'} > <p className=' flex items-center gap-1 text-nowrap text-sm border-b-1 lg:text-2xl'>See All <MoveRight /></p> </Link>
+          </div>
+        </div>
 
-      <Splide options={{
-        type: 'loop',
-        perPage: 4,
-        perMove: 1,
-        gap: '1rem',
-        breakpoints: {
-          640: {
-            perPage: 2,
+        <Splide options={{
+          type: 'loop',
+          perPage: 4,
+          perMove: 1,
+          gap: '1rem',
+          breakpoints: {
+            640: {
+              perPage: 2,
+            },
+            1024: {
+              perPage: 3,
+            },
           },
-          1024: {
-            perPage: 3,
-          },
-        },
-      }}>
+        }}>
 
-        {items.map((item, index) => (
-          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs bg-white dark:bg-black '} key={index}>
-            <div className="  rounded-3xl grid-rows-1 items-center justify-center">
-              <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-              <Wishlistheart/>
-               <Addtocardbutton/>
-              <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
-                <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
-                <p className="text-red-500">TK.{item.price || ''}</p>
+          {items.map((item, index) => (
+            <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs bg-white dark:bg-black '} key={index}>
+              <div className="  rounded-3xl grid-rows-1 items-center justify-center">
+                <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
+                <span className="absolute top-3 left-3 text-white text-[10px]  font-poppins px-3 py-1 font-bold border-1 bg-red-700 rounded-3xl">
+                  -{getDiscountPercentage(item.price, item.oldPrice)}%
+                </span>
+                <Wishlistheart />
+                <Addtocardbutton />
+                <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
+                  <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
+                  <div className="flex items-center gap-2">
+                    <p className="text-red-500">TK.{item.price || ''}</p>
+                    <p className="text-gray-500 line-through">TK.{item.oldPrice || ''}</p>
+                  </div>              </div>
               </div>
-            </div>
-          </SplideSlide>
-        ))}
-      </Splide>
+            </SplideSlide>
+          ))}
+        </Splide>
 
-    </div>
+      </div>
     </div>
   )
 }

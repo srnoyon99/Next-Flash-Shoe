@@ -10,6 +10,15 @@ import Wishlistheart from '@/components/Wishlistheart'
 const Choosesneakers = ({ showSeeAll = true }) => {
   const [visibleProductCount, setVisibleProductCount] = useState(16)
 
+    const getDiscountPercentage = (price, oldPrice) => {
+    const currentPrice = Number.parseFloat(price.replace(/[^0-9.]/g, ''))
+    const previousPrice = Number.parseFloat(oldPrice.replace(/[^0-9.]/g, ''))
+
+    if (!previousPrice || currentPrice >= previousPrice) return 0
+
+    return Math.round(((previousPrice - currentPrice) / previousPrice) * 100)
+  }
+
   const images = [
     { src: '/shoe1.avif', alt: 'Image 1' },
     { src: '/shoe2.avif', alt: 'Image 2' },
@@ -37,7 +46,8 @@ const Choosesneakers = ({ showSeeAll = true }) => {
 
     return {
       name: 'shaker',
-      price: '$100',
+      price: '$1600',
+      oldPrice: '$2500',
       size,
       size1,
       size2,
@@ -67,11 +77,17 @@ const Choosesneakers = ({ showSeeAll = true }) => {
           <div className="cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs" key={index}>
             <div className="relative items-center justify-center rounded-3xl overflow-hidden">
               <img className="w-full h-full object-cover rounded-t-3xl" src={item.image.src} alt={item.image.alt} />
+              <span className="absolute top-3 left-3 text-white text-[10px]  font-poppins px-3 py-1 font-bold border-1 bg-red-700 rounded-3xl">
+                -{getDiscountPercentage(item.price, item.oldPrice)}%
+              </span>
               <Wishlistheart />
               <Addtocardbutton />
               <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                 <h3 className="text-lg font-bold break-all">{item.name}</h3>
-                <p className="text-red-500">TK.{item.price}</p>
+                <div className="flex items-center gap-2">
+                  <p className="text-red-500">TK.{item.price || ''}</p>
+                  <p className="text-gray-500 line-through">TK.{item.oldPrice || ''}</p>
+                </div>
               </div>
             </div>
           </div>

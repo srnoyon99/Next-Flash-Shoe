@@ -8,6 +8,15 @@ import Wishlistheart from './Wishlistheart'
 const JustLanded = () => {
      const [selectedCategory, setSelectedCategory] = useState('sneakers')
 
+       const getDiscountPercentage = (price, oldPrice) => {
+    const currentPrice = Number.parseFloat(price.replace(/[^0-9.]/g, ''))
+    const previousPrice = Number.parseFloat(oldPrice.replace(/[^0-9.]/g, ''))
+
+    if (!previousPrice || currentPrice >= previousPrice) return 0
+
+    return Math.round(((previousPrice - currentPrice) / previousPrice) * 100)
+  }
+
      const images = [
           { src: '/shoe1.avif', alt: 'Image 1' },
           { src: '/shoe2.avif', alt: 'Image 2' },
@@ -22,12 +31,12 @@ const JustLanded = () => {
      ]
 
      const products = [
-          { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '42', size2: '38' },
-          { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '42', size1: '44', size2: '46' },
-          { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
-          { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
-          { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '44', size2: '46' },
-          { name: 'shaker', price: '$100', color: 'Red', color1: 'Blue', color2: 'Green', size: '41', size1: '44', size2: '46' },
+          { name: 'shaker', price: '$2500', oldPrice: '$3600', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '42', size2: '38' },
+          { name: 'shaker', price: '$2200', oldPrice: '$3000', color: 'Red', color1: 'Blue', color2: 'Green', size: '42', size1: '44', size2: '46' },
+          { name: 'shaker', price: '$1500', oldPrice: '$2600', color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
+          { name: 'shaker', price: '$4000', oldPrice: '$6000', color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
+          { name: 'shaker', price: '$1000', oldPrice: '$2200', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '44', size2: '46' },
+          { name: 'shaker', price: '$2000', oldPrice: '$3300', color: 'Red', color1: 'Blue', color2: 'Green', size: '41', size1: '44', size2: '46' },
      ]
 
      const sliderOptions = [
@@ -111,11 +120,17 @@ const JustLanded = () => {
                          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs '} key={index}>
                               <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                                    <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
+                                   <span className="absolute top-3 left-3 text-white text-[10px]  font-poppins px-3 py-1 font-bold border-1 bg-red-700 rounded-3xl">
+                - {getDiscountPercentage(item.price, item.oldPrice)} %
+              </span>
                                    <Wishlistheart/>
                                    <Addtocardbutton/>
                                    <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                                         <h3 className="text-lg font-bold break-all ">{item.name}</h3>
-                                        <p className="text-red-500">TK.{item.price || ''}</p>
+                                        <div className="flex items-center gap-2">
+                  <p className="text-red-500">TK.{item.price || ''}</p>
+                  <p className="text-gray-500 line-through">TK.{item.oldPrice || ''}</p>
+                </div>
                                    </div>
                               </div>
                          </SplideSlide>
