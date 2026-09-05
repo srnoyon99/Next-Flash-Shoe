@@ -17,6 +17,7 @@ const INITIAL_ITEMS = [
 
 const DHAKA_DELIVERY_COST = 70;
 const OUTSIDE_DHAKA_DELIVERY_COST = 130;
+const GMAIL_PATTERN = /^[^\s@]+@gmail\.com$/i;
 
 // ---------------------------------------------------------------------------
 // Bangladesh Districts (English + Bangla names) — flat list, 64 districts
@@ -786,8 +787,8 @@ const DEFAULT_ADDRESS_FORM = {
   phone: '',
   email: '',
   address: '',
-  district: 'Dhaka', // holds the selected District (English key)
-  policeStation: (POLICE_STATION_BY_DISTRICT['Dhaka'] || [])[0]?.en || '', // holds the selected Police Station (English key, may be custom typed)
+  district: '',
+  policeStation: '',
   notesOpen: false,
   notes: '',
 };
@@ -802,6 +803,7 @@ export default function page() {
   const [discount, setDiscount] = useState(0);
   const [agreed, setAgreed] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [validationErrors, setValidationErrors] = useState({});
 
   const subtotal = useMemo(() => items.reduce((sum, item) => sum + item.price * item.qty, 0), [items]);
   const deliveryCost = form.district === 'Dhaka' ? DHAKA_DELIVERY_COST : OUTSIDE_DHAKA_DELIVERY_COST;
@@ -824,22 +826,25 @@ export default function page() {
 
   // Text inputs (name, phone, email, address)
   const handleFieldChange = (setter) => (field) => (e) => {
-    const value = e.target.value;
+    const value = field === 'phone'
+      ? e.target.value.replace(/\D/g, '')
+      : e.target.value;
     setter((prev) => ({ ...prev, [field]: value }));
+    setValidationErrors((prev) => ({ ...prev, [field]: '' }));
   };
 
-  // District select -> reset Police Station to the first option for that district
   const handleDistrictChange = (setter) => (districtEn) => {
     setter((prev) => ({
       ...prev,
       district: districtEn,
-      policeStation: (POLICE_STATION_BY_DISTRICT[districtEn] || [])[0]?.en || '',
+      policeStation: '',
     }));
+    setValidationErrors((prev) => ({ ...prev, district: '', policeStation: '' }));
   };
 
-  // Police Station select (supports a custom typed value)
   const handlePoliceStationChange = (setter) => (stationEn) => {
     setter((prev) => ({ ...prev, policeStation: stationEn }));
+    setValidationErrors((prev) => ({ ...prev, policeStation: '' }));
   };
 
   // Special notes toggle + textarea, per address
@@ -866,14 +871,22 @@ export default function page() {
   };
 
   const handlePlaceOrder = () => {
-    if (!form.fullName.trim() || !form.phone.trim() || !form.address.trim()) {
-      toast.error('Fill in your name, phone, and address');
-      return;
+    const email = form.email.trim();
+
+    const errors = {};
+    if (!form.fullName.trim()) errors.fullName = 'Fill Your Name';
+    if (!form.phone.trim()) errors.phone = 'Fillup Your Number';
+    else if (form.phone.length !== 11) errors.phone = 'Your number must be at least 11 characters long';
+    if (!form.address.trim()) errors.address = 'Fillup Your Address';
+    if (!form.district) errors.district = 'Select Your District';
+    if (!form.policeStation) errors.policeStation = 'Select Your Police Station';
+    if (email && !GMAIL_PATTERN.test(email)) {
+      errors.email = 'Your Gmail does not have @gmail.com at the end, please give it.';
     }
-    if (!agreed) {
-      toast.error('Please agree to the Terms and Conditions to continue');
-      return;
-    }
+    if (!agreed) errors.agreed = 'Fill This Condition';
+
+    setValidationErrors(errors);
+    if (Object.keys(errors).length > 0) return;
 
     const order = {
       orderId: `ORD-${Date.now()}`,
@@ -883,7 +896,7 @@ export default function page() {
       quantity: items.reduce((sum, item) => sum + item.qty, 0),
       customerName: form.fullName,
       mobile: form.phone,
-      email: form.email,
+      email,
       address: form.address,
       district: form.district,
       thana: form.policeStation,
@@ -967,6 +980,7 @@ export default function page() {
             <div className="mt-4">
               <AddressFields
                 form={form}
+                errors={validationErrors}
                 onChange={handleFieldChange(setForm)}
                 onDistrictChange={handleDistrictChange(setForm)}
                 onPoliceStationChange={handlePoliceStationChange(setForm)}
@@ -1100,7 +1114,10 @@ export default function page() {
           <div className="flex items-start gap-2 px-1">
             <button
               type="button"
-              onClick={() => setAgreed((prev) => !prev)}
+              onClick={() => {
+                setAgreed((prev) => !prev);
+                setValidationErrors((prev) => ({ ...prev, agreed: '' }));
+              }}
               className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full border-2 border-orange-500 cursor-pointer "
               aria-pressed={agreed}
               aria-label="Agree to terms"
@@ -1114,6 +1131,9 @@ export default function page() {
               <Link href="/refund" className="text-orange-500 hover:underline">Refund and Return Policy</Link>.
             </p>
           </div>
+          {validationErrors.agreed && (
+            <p role="alert" className="text-sm text-red-600">{validationErrors.agreed}</p>
+          )}
 
           {/* Place order */}
           <button
@@ -1140,52 +1160,72 @@ function SectionTitle({ children }) {
   );
 }
 
-function AddressFields({ form, onChange, onDistrictChange, onPoliceStationChange, onNotesToggle, onNotesChange }) {
+function AddressFields({ form, errors, onChange, onDistrictChange, onPoliceStationChange, onNotesToggle, onNotesChange }) {
   const policeStationOptions = POLICE_STATION_BY_DISTRICT[form.district] || [];
 
   return (
     <div className="space-y-3">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <input
-          type="text"
-          value={form.fullName}
-          onChange={onChange('fullName')}
-          placeholder="Your Full Name *"
-          className="rounded-md border border-gray-200 px-3 py-2.5 text-sm placeholder-gray-400 focus:border-orange-400 focus:outline-none"
-        />
-        <div className="flex items-center overflow-hidden rounded-md border border-gray-200 focus-within:border-orange-400">
-          <span className="border-r border-gray-200 bg-gray-100 dark:bg-gray-700 px-3 py-2.5 text-sm text-gray-600 dark:text-white">+88</span>
+        <div>
           <input
-            type="tel"
-            value={form.phone}
-            onChange={onChange('phone')}
-            placeholder="017********"
-            className="w-full px-3 py-2.5 text-sm placeholder-gray-400 focus:outline-none"
+            type="text"
+            value={form.fullName}
+            onChange={onChange('fullName')}
+            placeholder="Your Full Name *"
+            className="w-full rounded-md border border-gray-200 px-3 py-2.5 text-sm placeholder-gray-400 focus:border-orange-400 focus:outline-none"
           />
+          {errors.fullName && <p role="alert" className="mt-1 text-sm text-red-600">{errors.fullName}</p>}
+        </div>
+        <div>
+          <div className="flex items-center overflow-hidden rounded-md border border-gray-200 focus-within:border-orange-400">
+            <span className="border-r border-gray-200 bg-gray-100 dark:bg-gray-700 px-3 py-2.5 text-sm text-gray-600 dark:text-white">+88</span>
+            <input
+              type="tel"
+              value={form.phone}
+              onChange={onChange('phone')}
+              inputMode="numeric"
+              minLength={11}
+              pattern="[0-9]{11,}"
+              placeholder="017*********"
+              className="w-full px-3 py-2.5 text-sm placeholder-gray-400 focus:outline-none"
+            />
+          </div>
+          {errors.phone && <p role="alert" className="mt-1 text-sm text-red-600">{errors.phone}</p>}
         </div>
       </div>
-      <input
-        type="email"
-        value={form.email}
-        onChange={onChange('email')}
-        placeholder="example@gmail.com (Optional)"
-        className="w-full rounded-md border border-gray-200 px-3 py-2.5 text-sm placeholder-gray-400 focus:border-orange-400 focus:outline-none"
-      />
-      <input
-        type="text"
-        value={form.address}
-        onChange={onChange('address')}
-        placeholder="ex: House no. / building / street / area"
-        className="w-full rounded-md border border-gray-200 px-3 py-2.5 text-sm placeholder-gray-400 focus:border-orange-400 focus:outline-none"
-      />
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-        <SearchableSelect
-          options={DISTRICT}
-          value={form.district}
-          onChange={onDistrictChange}
-          placeholder="Select Your Zilla"
-          searchPlaceholder="Search district…"
+      <div>
+        <input
+          type="email"
+          value={form.email}
+          onChange={onChange('email')}
+          pattern="[^\s@]+@gmail\.com"
+          maxLength={254}
+          placeholder="example@gmail.com (Optional)"
+          className="w-full rounded-md border border-gray-200 px-3 py-2.5 text-sm placeholder-gray-400 focus:border-orange-400 focus:outline-none"
         />
+        {errors.email && <p role="alert" className="mt-1 text-sm text-red-600">{errors.email}</p>}
+      </div>
+      <div>
+        <input
+          type="text"
+          value={form.address}
+          onChange={onChange('address')}
+          placeholder="ex: House no. / building / street / area"
+          className="w-full rounded-md border border-gray-200 px-3 py-2.5 text-sm placeholder-gray-400 focus:border-orange-400 focus:outline-none"
+        />
+        {errors.address && <p role="alert" className="mt-1 text-sm text-red-600">{errors.address}</p>}
+      </div>
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+        <div>
+          <SearchableSelect
+            options={DISTRICT}
+            value={form.district}
+            onChange={onDistrictChange}
+            placeholder="Select Your Zilla"
+            searchPlaceholder="Search district…"
+          />
+          {errors.district && <p role="alert" className="mt-1 text-sm text-red-600">{errors.district}</p>}
+        </div>
         <div>
           <SearchableSelect
             options={policeStationOptions}
@@ -1195,9 +1235,9 @@ function AddressFields({ form, onChange, onDistrictChange, onPoliceStationChange
             searchPlaceholder="Search police station…"
             allowCustom
           />
+          {errors.policeStation && <p role="alert" className="mt-1 text-sm text-red-600">{errors.policeStation}</p>}
           {policeStationOptions.length === 0 && (
             <p className="mt-1 text-xs text-gray-400">
-              No preset list for {form.district} yet — just type the name and pick it.
             </p>
           )}
         </div>
