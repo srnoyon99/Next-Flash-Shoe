@@ -7,7 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const page = () => {
-    const getDiscountPercentage = (price, oldPrice) => {
+  const getDiscountPercentage = (price, oldPrice) => {
     const currentPrice = Number.parseFloat(price.replace(/[^0-9.]/g, ''))
     const previousPrice = Number.parseFloat(oldPrice.replace(/[^0-9.]/g, ''))
 
@@ -70,44 +70,44 @@ const page = () => {
     <div className="container mx-auto px-4 py-4">
 
       <div className=' flex items-center justify-start gap-2' >
-       <Link href={'/brands'} > <p className=' text-sm cursor-pointer ' >Brands</p> </Link>
+        <Link href={'/brands'} > <p className=' text-sm cursor-pointer ' >Brands</p> </Link>
         <p className=' text-sm cursor-pointer ' >/</p>
         <p className=' text-sm cursor-pointer text-green-700 ' >Adidas</p>
       </div>
 
       {/* /////////////////Logo/////////////////// */}
-            <div className=' container flex items-center justify-center overflow-hidden ' >
-              <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Adidas} alt='img'/>
-            </div>
-            {/* ////////////////Logo//////////////////// */}
+      <div className=' container flex items-center justify-center overflow-hidden ' >
+        <Image className='h-12 lg:h-20 w-20 lg:w-50 py-1 px-1 border-2 border-gray-400 rounded-2xl bg-white shadow-2xs cursor-pointer ' src={Adidas} alt='img' />
+      </div>
+      {/* ////////////////Logo//////////////////// */}
 
       {/* //////////////////ALL Products////////////////////// */}
       <div className=" pt-8 ">
-         <div className="flex items-center ">
+        <div className="flex items-center ">
           <div className="h-[20px] w-[20px] bg-red-700 mb-4 rounded-3xl " />
           <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">Adidas</h2>
         </div>
 
-       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 ">
-        {productImages.map((item, index) => (
-          <div className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
-            <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
-              <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
-              <span className="absolute top-3 left-3 text-white text-[10px]  font-poppins px-3 py-1 font-bold border-1 bg-red-700 rounded-3xl">
-                -{getDiscountPercentage(item.price, item.oldPrice)}%
-              </span>
-              <Wishlistheart/>
-              <Addtocardbutton/>
-              <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
-                <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
-<div className="flex items-center gap-2">
-                  <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-500 line-through">TK.{item.oldPrice || ''}</p>
-                </div>              </div>
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 overflow-hidden ">
+          {productImages.map((item, index) => (
+            <div className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
+              <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
+                <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
+                <span className="absolute top-3 left-3 text-white text-[10px]  font-poppins px-3 py-1 font-bold border-1 bg-red-700 rounded-3xl">
+                  -{getDiscountPercentage(item.price, item.oldPrice)}%
+                </span>
+                <Wishlistheart />
+                <Addtocardbutton />
+                <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
+                  <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
+                  <div className="flex items-center gap-2">
+                    <p className="text-red-500">TK.{item.price || ''}</p>
+                    <p className="text-gray-500 text-[13px] lg:text-sm line-through">TK.{item.oldPrice || ''}</p>
+                  </div>              </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
       </div>
       {/* //////////////////ALL Products////////////////////// */}
     </div>

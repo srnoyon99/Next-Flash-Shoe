@@ -66,18 +66,18 @@ const page = () => {
           </div>
 
           <div className="dropdown dropdown-end">
-            <button tabIndex={0} role="button" className=" py-1 px-3 rounded-2xl bg-green-700 border-1 border-black dark:border-amber-50 cursor-pointer  text-white m-1 mb-5">ITEM </button>
+            <button tabIndex={0} role="button" className=" px-2 rounded-2xl bg-gray-100 dark:bg-gray-800 border-1 border-orange-500 cursor-pointer text-black dark:text-white m-1 mb-5">ITEM </button>
             <ul tabIndex="-1" className="dropdown-content menu border-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white  rounded-box z-1 w-52 p-2 shadow-2xl">
               <li><Link href={'/leathershoe'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1">Shoes</Link></li>
               <li><Link href={'/belt'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Belt</Link></li>
-              <li><Link href={'/wallet'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Money Bag</Link></li>
+              <li><Link href={'/wallet'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Wallet</Link></li>
               <li><Link href={'/leatherbags'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Leather Bags</Link></li>
             </ul>
           </div>
 
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-hidden">
           {items.map((item, index) => (
             <div className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
               <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
@@ -91,7 +91,7 @@ const page = () => {
                   <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                   <div className="flex items-center gap-2">
                   <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-500 line-through">TK.{item.oldPrice || ''}</p>
+                  <p className="text-gray-500 text-[13px] lg:text-sm line-through">TK.{item.oldPrice || ''}</p>
                 </div>
                 </div>
               </div>

@@ -44,7 +44,7 @@ const Accessoriesitems = ({ selectedCategory, onCategoryChange }) => {
           }
         }}>
           {selectedProducts.map((product, index) => (
-            <SplideSlide className={'cursor-pointer pt-6 '} key={index}>
+            <SplideSlide className={'cursor-pointer overflow-hidden pt-6 '} key={index}>
               <button
                 type="button"
                 aria-pressed={selectedCategory === product.key}

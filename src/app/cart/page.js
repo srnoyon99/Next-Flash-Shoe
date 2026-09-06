@@ -1111,6 +1111,9 @@ export default function page() {
           </section>
 
           {/* Terms */}
+          {validationErrors.agreed && (
+            <p role="alert" className="text-sm text-red-600">{validationErrors.agreed}</p>
+          )}
           <div className="flex items-start gap-2 px-1">
             <button
               type="button"
@@ -1124,6 +1127,7 @@ export default function page() {
             >
               {agreed && <span className="h-2 w-2 rounded-full bg-orange-500" />}
             </button>
+            
             <p className="text-sm text-gray-600 dark:text-white ">
               I have read and agree to the{' '}
               <Link href="/terms" className="text-orange-500 hover:underline">Terms and Conditions</Link>,{' '}
@@ -1131,9 +1135,7 @@ export default function page() {
               <Link href="/refund" className="text-orange-500 hover:underline">Refund and Return Policy</Link>.
             </p>
           </div>
-          {validationErrors.agreed && (
-            <p role="alert" className="text-sm text-red-600">{validationErrors.agreed}</p>
-          )}
+          
 
           {/* Place order */}
           <button
@@ -1167,6 +1169,7 @@ function AddressFields({ form, errors, onChange, onDistrictChange, onPoliceStati
     <div className="space-y-3">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
+          {errors.fullName && <p role="alert" className="mt-1 text-sm text-red-600">{errors.fullName}</p>}
           <input
             type="text"
             value={form.fullName}
@@ -1174,9 +1177,10 @@ function AddressFields({ form, errors, onChange, onDistrictChange, onPoliceStati
             placeholder="Your Full Name *"
             className="w-full rounded-md border border-gray-200 px-3 py-2.5 text-sm placeholder-gray-400 focus:border-orange-400 focus:outline-none"
           />
-          {errors.fullName && <p role="alert" className="mt-1 text-sm text-red-600">{errors.fullName}</p>}
+          
         </div>
         <div>
+             {errors.phone && <p role="alert" className="mt-1 text-sm text-red-600">{errors.phone}</p>}
           <div className="flex items-center overflow-hidden rounded-md border border-gray-200 focus-within:border-orange-400">
             <span className="border-r border-gray-200 bg-gray-100 dark:bg-gray-700 px-3 py-2.5 text-sm text-gray-600 dark:text-white">+88</span>
             <input
@@ -1190,10 +1194,11 @@ function AddressFields({ form, errors, onChange, onDistrictChange, onPoliceStati
               className="w-full px-3 py-2.5 text-sm placeholder-gray-400 focus:outline-none"
             />
           </div>
-          {errors.phone && <p role="alert" className="mt-1 text-sm text-red-600">{errors.phone}</p>}
+         
         </div>
       </div>
       <div>
+         {errors.email && <p role="alert" className="mt-1 text-sm text-red-600">{errors.email}</p>}
         <input
           type="email"
           value={form.email}
@@ -1203,9 +1208,9 @@ function AddressFields({ form, errors, onChange, onDistrictChange, onPoliceStati
           placeholder="example@gmail.com (Optional)"
           className="w-full rounded-md border border-gray-200 px-3 py-2.5 text-sm placeholder-gray-400 focus:border-orange-400 focus:outline-none"
         />
-        {errors.email && <p role="alert" className="mt-1 text-sm text-red-600">{errors.email}</p>}
       </div>
       <div>
+        {errors.address && <p role="alert" className="mt-1 text-sm text-red-600">{errors.address}</p>}
         <input
           type="text"
           value={form.address}
@@ -1213,10 +1218,10 @@ function AddressFields({ form, errors, onChange, onDistrictChange, onPoliceStati
           placeholder="ex: House no. / building / street / area"
           className="w-full rounded-md border border-gray-200 px-3 py-2.5 text-sm placeholder-gray-400 focus:border-orange-400 focus:outline-none"
         />
-        {errors.address && <p role="alert" className="mt-1 text-sm text-red-600">{errors.address}</p>}
       </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <div>
+          {errors.district && <p role="alert" className="mt-1 text-sm text-red-600">{errors.district}</p>}
           <SearchableSelect
             options={DISTRICT}
             value={form.district}
@@ -1224,9 +1229,10 @@ function AddressFields({ form, errors, onChange, onDistrictChange, onPoliceStati
             placeholder="Select Your Zilla"
             searchPlaceholder="Search district…"
           />
-          {errors.district && <p role="alert" className="mt-1 text-sm text-red-600">{errors.district}</p>}
+          
         </div>
         <div>
+           {errors.policeStation && <p role="alert" className="mt-1 text-sm text-red-600">{errors.policeStation}</p>}
           <SearchableSelect
             options={policeStationOptions}
             value={form.policeStation}
@@ -1235,7 +1241,7 @@ function AddressFields({ form, errors, onChange, onDistrictChange, onPoliceStati
             searchPlaceholder="Search police station…"
             allowCustom
           />
-          {errors.policeStation && <p role="alert" className="mt-1 text-sm text-red-600">{errors.policeStation}</p>}
+         
           {policeStationOptions.length === 0 && (
             <p className="mt-1 text-xs text-gray-400">
             </p>

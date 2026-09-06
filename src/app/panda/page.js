@@ -88,7 +88,7 @@ const page = () => {
           <h2 className=" text-lg lg:text-2xl font-bold mb-4 ml-2 ">Panda</h2>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 ">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4 overflow-hidden ">
           {productImages.map((item, index) => (
             <div className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
               <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
@@ -102,8 +102,9 @@ const page = () => {
                   <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                   <div className="flex items-center gap-2">
                     <p className="text-red-500">TK.{item.price || ''}</p>
-                    <p className="text-gray-500 line-through">TK.{item.oldPrice || ''}</p>
-                  </div>              </div>
+                    <p className="text-gray-500 text-[13px] lg:text-sm line-through">TK.{item.oldPrice || ''}</p>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

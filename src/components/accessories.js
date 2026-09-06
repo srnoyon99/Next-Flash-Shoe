@@ -75,7 +75,7 @@ const Accessories = () => {
       }}>
 
         {items.map((item, index) => (
-          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs '} key={index}>
+          <SplideSlide className={'cursor-pointer border-1 overflow-hidden rounded-3xl border-gray-400 min-h-fit shadow-2xs '} key={index}>
             <div className="  rounded-3xl grid-rows-1 items-center justify-center">
               <div className=' flex flex-col items-center justify-center' >
                 <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
@@ -89,7 +89,7 @@ const Accessories = () => {
                 <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                 <div className="flex items-center gap-2">
                   <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-500 line-through">TK.{item.oldPrice || ''}</p>
+                  <p className="text-gray-500 text-[13px] lg:text-sm line-through">TK.{item.oldPrice || ''}</p>
                 </div>
               </div>
             </div>

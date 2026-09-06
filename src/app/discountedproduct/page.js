@@ -5,7 +5,7 @@ import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
 
 const page = () => {
-    const getDiscountPercentage = (price, oldPrice) => {
+  const getDiscountPercentage = (price, oldPrice) => {
     const currentPrice = Number.parseFloat(price.replace(/[^0-9.]/g, ''))
     const previousPrice = Number.parseFloat(oldPrice.replace(/[^0-9.]/g, ''))
 
@@ -28,14 +28,14 @@ const page = () => {
   ]
 
   const products = [
-    { name: 'shaker', price: '$1800', oldPrice: '$2500',  color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '42', size2: '38' },
-    { name: 'shaker', price: '$1800', oldPrice: '$2500',  color: 'Red', color1: 'Blue', color2: 'Green', size: '42', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$1800', oldPrice: '$2500',  color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$1800', oldPrice: '$2500',  color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$1800', oldPrice: '$2500',  color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$1800', oldPrice: '$2500',  color: 'Red', color1: 'Blue', color2: 'Green', size: '41', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$1800', oldPrice: '$2500',  color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
-    { name: 'shaker', price: '$1800', oldPrice: '$2500',  color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$1800', oldPrice: '$2500', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '42', size2: '38' },
+    { name: 'shaker', price: '$1800', oldPrice: '$2500', color: 'Red', color1: 'Blue', color2: 'Green', size: '42', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$1800', oldPrice: '$2500', color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$1800', oldPrice: '$2500', color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$1800', oldPrice: '$2500', color: 'Red', color1: 'Blue', color2: 'Green', size: '40', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$1800', oldPrice: '$2500', color: 'Red', color1: 'Blue', color2: 'Green', size: '41', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$1800', oldPrice: '$2500', color: 'Red', color1: 'Blue', color2: 'Green', size: '38', size1: '44', size2: '46' },
+    { name: 'shaker', price: '$1800', oldPrice: '$2500', color: 'Red', color1: 'Blue', color2: 'Green', size: 'M', size1: '44', size2: '46' },
   ]
 
   // Pair products with images safely to avoid undefined accesses
@@ -48,7 +48,7 @@ const page = () => {
     <div className="container mx-auto px-4 py-4">
 
       <div className=' flex items-center justify-start gap-2 mb-7' >
-       <Link href={'/'} > <p className=' text-sm cursor-pointer ' >Home</p> </Link>
+        <Link href={'/'} > <p className=' text-sm cursor-pointer ' >Home</p> </Link>
         <p className=' text-sm cursor-pointer ' >/</p>
         <p className=' text-sm cursor-pointer text-green-700 ' >Discountproduct</p>
       </div>
@@ -61,7 +61,7 @@ const page = () => {
         </div>
 
         <div className="dropdown dropdown-end">
-          <button tabIndex={0} role="button" className=" px-2 rounded-2xl bg-green-700 border-1 border-black dark:border-amber-50 cursor-pointer  text-white m-1 mb-5">ITEM </button>
+          <button tabIndex={0} role="button" className=" px-2 rounded-2xl bg-gray-100 dark:bg-gray-800 border-1 border-orange-500 cursor-pointer text-black dark:text-white m-1 mb-5">ITEM </button>
           <ul tabIndex="-1" className="dropdown-content menu border-1 bg-gray-300 dark:bg-gray-700 text-black dark:text-white  rounded-box z-1 w-52 p-2 shadow-2xl">
             <li><Link href={'/discountedproduct'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 border-orange-500 ">All Product</Link></li>
             <li><Link href={'/manproduct'} className=" bg-white dark:bg-gray-500 hover:bg-amber-200 dark:hover:bg-gray-600 border-1 mt-1">Man</Link></li>
@@ -71,7 +71,7 @@ const page = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 overflow-hidden">
         {items.map((item, index) => (
           <div className={'cursor-pointer border-1 rounded-3xl border-gray-400/20 min-h-fit shadow-2xs '} key={index}>
             <div className=" relative items-center justify-center rounded-3xl overflow-hidden">
@@ -79,13 +79,13 @@ const page = () => {
               <span className="absolute top-3 left-3 text-white text-[10px]  font-poppins px-3 py-1 font-bold border-1 bg-red-700 rounded-3xl">
                 -{getDiscountPercentage(item.price, item.oldPrice)}%
               </span>
-              <Wishlistheart/>
-              <Addtocardbutton/>
+              <Wishlistheart />
+              <Addtocardbutton />
               <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                 <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                 <div className="flex items-center gap-2">
                   <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-500 line-through">TK.{item.oldPrice || ''}</p>
+                  <p className="text-gray-500 text-[13px] lg:text-sm line-through">TK.{item.oldPrice || ''}</p>
                 </div>
               </div>
             </div>

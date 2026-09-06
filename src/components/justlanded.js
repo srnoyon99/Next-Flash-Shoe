@@ -8,14 +8,14 @@ import Wishlistheart from './Wishlistheart'
 const JustLanded = () => {
      const [selectedCategory, setSelectedCategory] = useState('sneakers')
 
-       const getDiscountPercentage = (price, oldPrice) => {
-    const currentPrice = Number.parseFloat(price.replace(/[^0-9.]/g, ''))
-    const previousPrice = Number.parseFloat(oldPrice.replace(/[^0-9.]/g, ''))
+     const getDiscountPercentage = (price, oldPrice) => {
+          const currentPrice = Number.parseFloat(price.replace(/[^0-9.]/g, ''))
+          const previousPrice = Number.parseFloat(oldPrice.replace(/[^0-9.]/g, ''))
 
-    if (!previousPrice || currentPrice >= previousPrice) return 0
+          if (!previousPrice || currentPrice >= previousPrice) return 0
 
-    return Math.round(((previousPrice - currentPrice) / previousPrice) * 100)
-  }
+          return Math.round(((previousPrice - currentPrice) / previousPrice) * 100)
+     }
 
      const images = [
           { src: '/shoe1.avif', alt: 'Image 1' },
@@ -84,7 +84,7 @@ const JustLanded = () => {
                          },
                     }}>
                          {sliderOptions.map((option) => (
-                              <SplideSlide className="mb-7" key={option.key}>
+                              <SplideSlide className="mb-7 overflow-hidden" key={option.key}>
                                    <button
                                         type="button"
                                         aria-pressed={selectedCategory === option.key}
@@ -117,20 +117,20 @@ const JustLanded = () => {
 
 
                     {selectedItems.map((item, index) => (
-                         <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs '} key={index}>
+                         <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs overflow-hidden'} key={index}>
                               <div className="  rounded-3xl grid-rows-1 items-center justify-center">
                                    <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
                                    <span className="absolute top-3 left-3 text-white text-[10px]  font-poppins px-3 py-1 font-bold border-1 bg-red-700 rounded-3xl">
-                - {getDiscountPercentage(item.price, item.oldPrice)} %
-              </span>
-                                   <Wishlistheart/>
-                                   <Addtocardbutton/>
+                                        - {getDiscountPercentage(item.price, item.oldPrice)} %
+                                   </span>
+                                   <Wishlistheart />
+                                   <Addtocardbutton />
                                    <div className="text-start pl-5 border-t-[1px] border-gray-400 py-2">
                                         <h3 className="text-lg font-bold break-all ">{item.name}</h3>
                                         <div className="flex items-center gap-2">
-                  <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-500 line-through">TK.{item.oldPrice || ''}</p>
-                </div>
+                                             <p className="text-red-500">TK.{item.price || ''}</p>
+                                             <p className="text-gray-500 text-[13px] lg:text-sm line-through">TK.{item.oldPrice || ''}</p>
+                                        </div>
                                    </div>
                               </div>
                          </SplideSlide>
