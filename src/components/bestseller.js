@@ -86,7 +86,7 @@ const BestSeller = () => {
                 <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                 <div className="flex items-center gap-2">
                   <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-500 text-sm line-through">TK.{item.oldPrice || ''}</p>
+                  <p className="text-gray-500 text-[13px] lg:text-sm line-through">TK.{item.oldPrice || ''}</p>
                 </div>
               </div>
             </div>
