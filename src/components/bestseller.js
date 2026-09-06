@@ -74,7 +74,7 @@ const BestSeller = () => {
       }}>
 
         {items.map((item, index) => (
-          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs '} key={index}>
+          <SplideSlide className={'cursor-pointer border-1 rounded-3xl border-gray-400 min-h-fit shadow-2xs overflow-hidden'} key={index}>
             <div className="  rounded-3xl grid-rows-1 items-center justify-center">
               <img className=" w-full h-full lg:w-full lg:h-full object-cover rounded-t-3xl " src={item.image.src} alt={item.image.alt} />
               <span className="absolute top-3 left-3 text-white text-[10px]  font-poppins px-3 py-1 font-bold border-1 bg-red-700 rounded-3xl">
@@ -86,7 +86,7 @@ const BestSeller = () => {
                 <h3 className="text-lg font-bold break-all ">{item.name || 'Product'}</h3>
                 <div className="flex items-center gap-2">
                   <p className="text-red-500">TK.{item.price || ''}</p>
-                  <p className="text-gray-500 line-through">TK.{item.oldPrice || ''}</p>
+                  <p className="text-gray-500 text-sm line-through">TK.{item.oldPrice || ''}</p>
                 </div>
               </div>
             </div>
