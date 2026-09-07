@@ -300,7 +300,7 @@ export default function MyOrdersPage() {
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
-                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                  className={`relative rounded-full px-2 lg:px-4 py-2 text-sm font-medium transition-all duration-200 cursor-pointer ${
                     isActive
                       ? 'bg-white text-[#161623] shadow-[0_1px_2px_rgba(22,22,35,0.08),0_1px_8px_rgba(22,22,35,0.06)] dark:bg-[#2A2A45] dark:text-white'
                       : 'text-[#7C7C93] hover:text-[#161623] dark:text-[#7C7C93] dark:hover:text-[#E5E4F0]'
