@@ -295,7 +295,7 @@ export default function Navbar({
                     </div>
                     <div className="drawer-side">
                       <label htmlFor="my-drawer-5" aria-label="close sidebar" className="drawer-overlay"></label>
-                      <div className="menu min-h-full w-[min(77vw,28rem)] bg-white p-4 dark:bg-gray-600">
+                      <div className="menu flex h-screen min-h-0 w-[min(77vw,28rem)] flex-col bg-white p-4 dark:bg-gray-600">
 
                         <label
                           htmlFor="my-drawer-5"
@@ -306,9 +306,9 @@ export default function Navbar({
                         </label>
 
                         {/* Order review Mobile */}
-                        <section className=" mt-3 rounded-xl bg-gray-200 p-3 shadow-sm dark:bg-gray-800 sm:p-2">
+                        <section className="mt-3 min-h-0 flex-1 overflow-y-auto rounded-xl bg-gray-200 p-3 shadow-sm dark:bg-gray-800 sm:p-2">
                           <SectionTitle> <span className=' text-black dark:text-white '>Order Review</span></SectionTitle>
-                          <div className=" max-h-177 overflow-y-auto  mt-4 divide-y divide-gray-100">
+                          <div className="mt-4 divide-y divide-gray-100">
                             {items.map((item) => (
                               <div key={item.id} className="flex flex-wrap items-center gap-3 py-4 first:pt-0 last:pb-0 sm:flex-nowrap sm:gap-4">
                                 <div className="relative flex h-16 w-16 shrink-0 items-center justify-center overflow-hidden rounded-md border border-white bg-white dark:bg-gray-700">
@@ -581,7 +581,7 @@ export default function Navbar({
                     </div>
                     <div className="drawer-side">
                       <label htmlFor="flash-cart-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                      <div className="menu min-h-full w-[min(100vw,28rem)] bg-white p-4 dark:bg-gray-600">
+                      <div className="menu flex h-screen min-h-0 w-[min(100vw,28rem)] flex-col bg-white p-4 dark:bg-gray-600">
 
                         <label
                           htmlFor="flash-cart-drawer"
@@ -592,7 +592,7 @@ export default function Navbar({
                         </label>
 
                         {/* Order review Dasktop */}
-                        <section className=" max-h-200 overflow-y-auto rounded-xl bg-gray-200 p-4 shadow-sm dark:bg-gray-800 sm:p-6 mt-3 ">
+                        <section className="mt-3 min-h-0 flex-1 overflow-y-auto rounded-xl bg-gray-200 p-4 shadow-sm dark:bg-gray-800 sm:p-6">
                           <SectionTitle> <span className=' text-black dark:text-white '>Order Review</span></SectionTitle>
                           {/* Product */}
                           <div className="mt-4 divide-y divide-gray-100 ">
