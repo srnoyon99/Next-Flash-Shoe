@@ -5,6 +5,7 @@ import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
 import Shopcategories from '@/components/shopcategories'
 import { useState } from 'react'
+import WhatsApp from '@/components/whatsapp'
 
 const page = () => {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -106,7 +107,7 @@ const page = () => {
           </div>
         ))}
       </div>
-
+      <WhatsApp/>
     </div>
   )
 }

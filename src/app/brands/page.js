@@ -10,6 +10,7 @@ import Panda from '../../../images/pandalogo.png'
 import Power from '../../../images/powerlogo.png'
 import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
+import WhatsApp from '@/components/whatsapp'
 const BestSeller = () => {
 
     const getDiscountPercentage = (price, oldPrice) => {
@@ -272,7 +273,7 @@ const BestSeller = () => {
         </Splide>
       </div>
       {/* /////////////////Power////////////////// */}
-
+      <WhatsApp/>
     </div>
   )
 }

@@ -5,6 +5,7 @@ import Addtocardbutton from '@/components/addtocardbutton'
 import Accessoriesitems from '@/components/accessoriesitems'
 import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
+import WhatsApp from '@/components/whatsapp'
 
 const page = () => {
   const [selectedCategory, setSelectedCategory] = useState('all')
@@ -115,6 +116,7 @@ const page = () => {
       </div>
       </div>
       {/* //////////////////ALL Products////////////////////// */}
+      <WhatsApp/>
     </div>
   )
 }

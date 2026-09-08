@@ -1,8 +1,40 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function WhatsApp() {
   const phoneNumber = "8801540626301";
   const whatsappUrl = `https://wa.me/${phoneNumber}`;
+  const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    const cartDrawerIds = ["flash-cart-drawer", "my-drawer-5"];
+
+    const syncCartDrawerState = () => {
+      const isOpen = cartDrawerIds.some((id) => {
+        const drawer = document.getElementById(id);
+        return drawer instanceof HTMLInputElement && drawer.checked;
+      });
+
+      setIsCartDrawerOpen(isOpen);
+    };
+
+    const drawers = cartDrawerIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    drawers.forEach((drawer) => {
+      drawer.addEventListener("change", syncCartDrawerState);
+    });
+
+    syncCartDrawerState();
+
+    return () => {
+      drawers.forEach((drawer) => {
+        drawer.removeEventListener("change", syncCartDrawerState);
+      });
+    };
+  }, []);
 
   const handleClick = () => {
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
@@ -16,14 +48,14 @@ export default function WhatsApp() {
         position: "fixed",
         bottom: "24px",
         right: "24px",
-        zIndex: 9999,
+        zIndex: 200,
         width: "46px",
         height: "46px",
         backgroundColor: "#25d366",
         borderRadius: "50%",
         border: "none",
         cursor: "pointer",
-        display: "flex",
+        display: isCartDrawerOpen ? "none" : "flex",
         alignItems: "center",
         justifyContent: "center",
         boxShadow: "0 4px 12px rgba(0,0,0,0.25)",

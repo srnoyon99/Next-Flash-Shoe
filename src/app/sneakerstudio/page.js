@@ -7,6 +7,7 @@ import { MoveRight } from 'lucide-react'
 import Addtocardbutton from '@/components/addtocardbutton'
 import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
+import WhatsApp from '@/components/whatsapp'
 
 const page = () => {
   const getDiscountPercentage = (price, oldPrice) => {
@@ -214,8 +215,8 @@ const page = () => {
             ))}
           </Splide>
         </div>
-
       </div>
+      <WhatsApp/>
     </div>
   )
 }

@@ -32,6 +32,12 @@ const INITIAL_ITEMS = [
   { id: 1, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
   { id: 2, name: 'Black Seed Honey 1kg', image: '/shoe2.avif', price: 1600, qty: 1 },
   { id: 3, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
+  { id: 4, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
+  { id: 5, name: 'Black Seed Honey 1kg', image: '/shoe2.avif', price: 1600, qty: 1 },
+  { id: 6, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
+  { id: 7, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
+  { id: 8, name: 'Black Seed Honey 1kg', image: '/shoe2.avif', price: 1600, qty: 1 },
+  { id: 9, name: 'Black Seed Honey 1kg', image: '/shoe1.avif', price: 1600, qty: 1 },
 ];
 
 
@@ -131,6 +137,8 @@ export default function Navbar({
     setSearchQuery('');
     setIsSearchOpen(false);
   };
+
+  const subtotal = items.reduce((sum, item) => sum + item.price * item.qty, 0);
 
   // ---- sticky header on scroll ---------------------------------------
   useEffect(() => {
@@ -274,14 +282,14 @@ export default function Navbar({
                   </Link>
 
                   {/* Mobile */}
-                  <div className="drawer drawer-end">
+                  <div className="drawer drawer-end z-9999">
                     <input id="my-drawer-5" type="checkbox" className="drawer-toggle" />
                     <div className="drawer-content">
                       {/* Page content here */}
                       <label htmlFor="my-drawer-5" className="drawer-button cursor-pointer ">
                         <span className="absolute -right-1 -top-2 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-                    {cartCount}
-                  </span>
+                          {cartCount}
+                        </span>
                         <ShoppingCart size={24} className={themeIcon} strokeWidth={2} />
                       </label>
                     </div>
@@ -359,9 +367,22 @@ export default function Navbar({
                         </section>
 
                         {items.length > 0 && (
-                          <Link href="/cart" onClick={handleViewCart('my-drawer-5')} className="flex flex-col mt-auto items-center justify-center bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
-                            CHECKOUT
-                          </Link>
+                          <>
+                          <div className="mt-auto">
+                            <div className="mt-4 border-t border-gray-300 pt-4 dark:border-gray-50">
+                              <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-200">
+                                <span className="font-extrabold">Total</span>
+                                <span className="text-base font-extrabold text-black dark:text-white">
+                                  ৳{subtotal.toLocaleString()}.00
+                                </span>
+                              </div>
+                            </div>
+
+                            <Link href="/cart" onClick={handleViewCart('my-drawer-5')} className="mt-4 flex flex-col items-center justify-center bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
+                              CHECKOUT
+                            </Link>
+                          </div>
+                          </>
                         )}
                       </div>
                     </div>
@@ -446,13 +467,13 @@ export default function Navbar({
                               <User size={20} /> Manage My Account
                             </Link>
                             <Link href="/myorder" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <ShoppingBag size={20} /> My Order 
+                              <ShoppingBag size={20} /> My Order
                             </Link>
-                             <Link href="/ordertracking" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                            <Link href="/ordertracking" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <MapPinned size={20} /> Order Tracking
                             </Link>
                             <Link href="/mycancellation" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <CircleX  size={20} /> My Cancellation 
+                              <CircleX size={20} /> My Cancellation
                             </Link>
                           </>
                         ) : (
@@ -463,11 +484,11 @@ export default function Navbar({
                             <Link href="/myorder" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <ShoppingBag size={20} /> My Order
                             </Link>
-                             <Link href="/ordertracking" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
+                            <Link href="/ordertracking" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
                               <MapPinned size={20} /> Order Tracking
                             </Link>
                             <Link href="/mycancellation" className="flex items-center gap-4 p-2 rounded-md border-1 border-gray-300 dark:border-gray-500 hover:bg-gray-100 dark:hover:bg-gray-700" onClick={() => { setMobileAccountOpen(false); setIsMobileMenuOpen(false); }}>
-                              <CircleX  size={20} /> My Cancellation 
+                              <CircleX size={20} /> My Cancellation
                             </Link>
                           </>
                         )}
@@ -628,9 +649,22 @@ export default function Navbar({
                         </section>
 
                         {items.length > 0 && (
-                          <Link href="/cart" onClick={handleViewCart('flash-cart-drawer')} className="flex flex-col items-center justify-center mt-auto bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
-                            CHECKOUT
-                          </Link>
+                          <>
+                          <div className="mt-auto">
+                            <div className="mt-4 border-t border-gray-300 pt-4 dark:border-gray-100">
+                              <div className="flex items-center justify-between text-sm text-gray-700 dark:text-gray-200">
+                                <span className="font-medium">Total</span>
+                                <span className="text-base font-extrabold text-black dark:text-white">
+                                  ৳{subtotal.toLocaleString()}.00
+                                </span>
+                              </div>
+                            </div>
+
+                            <Link href="/cart" onClick={handleViewCart('flash-cart-drawer')} className="mt-4 flex flex-col items-center justify-center bg-black py-2 font-extrabold leading-6 text-white dark:bg-white dark:text-black">
+                              CHECKOUT
+                            </Link>
+                            </div>
+                          </>
                         )}
 
                       </div>
@@ -680,7 +714,7 @@ export default function Navbar({
                           <Link href="signin" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <User size={22} /> Sign In
                           </Link>
-                           <Link href="/ordertracking" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
+                          <Link href="/ordertracking" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
                             <MapPinned size={22} /> Order Tracking
                           </Link>
                           <Link href="/myorder" className="flex items-center gap-4" onClick={() => setAccountMenuOpen(false)}>
@@ -716,25 +750,25 @@ export default function Navbar({
               <div className="mx-auto max-w-2xl">
                 <form onSubmit={handleSearch}>
                   <div className="relative">
-                  <input
-                    type="search"
-                    placeholder="What are you looking for?"
-                    className="w-full rounded-full border-2 border-gray-300 px-6 py-4 pr-12 text-lg focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
-                    autoFocus
+                    <input
+                      type="search"
+                      placeholder="What are you looking for?"
+                      className="w-full rounded-full border-2 border-gray-300 px-6 py-4 pr-12 text-lg focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:placeholder-gray-400"
+                      autoFocus
                       value={searchQuery}
                       onChange={(event) => {
                         setSearchQuery(event.target.value);
                         setSearchError('');
                       }}
-                  />
-                  <button
+                    />
+                    <button
                       type="submit"
-                    className=" absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-2 ml-9 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
-                    aria-label="Search"
-                  >
-                    <Search className={`h-6 w-6 ${themeIcon}`} />
-                  </button>
-                </div>
+                      className=" absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-2 ml-9 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
+                      aria-label="Search"
+                    >
+                      <Search className={`h-6 w-6 ${themeIcon}`} />
+                    </button>
+                  </div>
                   {searchError && (
                     <p className="mt-2 px-4 text-sm text-red-600 dark:text-red-400" role="alert">
                       {searchError}

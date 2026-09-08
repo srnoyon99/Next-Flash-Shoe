@@ -6,6 +6,7 @@ import Combopack from '@/components/Combopack'
 import JustLanded from '@/components/justlanded'
 import Products from '@/components/products'
 import SwiperCarousel from '@/components/slider'
+import WhatsApp from '@/components/whatsapp'
 import Youwant from '@/components/youwant'
 import React from 'react'
 
@@ -20,6 +21,7 @@ const page = () => {
       <Youwant/>
       <Accessories/>
       <Choosesneakers/>
+      <WhatsApp/>
     </div>
   )
 }

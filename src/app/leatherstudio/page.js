@@ -7,6 +7,7 @@ import Cummonbutton from '@/components/cummonbutton'
 import Addtocardbutton from '@/components/addtocardbutton'
 import Wishlistheart from '@/components/Wishlistheart'
 import Link from 'next/link'
+import WhatsApp from '@/components/whatsapp'
 
 const page = () => {
     const getDiscountPercentage = (price, oldPrice) => {
@@ -100,6 +101,7 @@ const page = () => {
         </div>
 
       </div>
+      <WhatsApp/>
     </div>
   )
 }
