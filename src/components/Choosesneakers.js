@@ -94,7 +94,7 @@ const Choosesneakers = ({ showSeeAll = true }) => {
         ))}
       </div>
 
-      {visibleProductCount < products.length && (
+      {visibleProductCount < products.length ? (
         <div className="flex justify-center mt-8">
           <button
             type="button"
@@ -102,6 +102,16 @@ const Choosesneakers = ({ showSeeAll = true }) => {
             className="rounded-full border border-gray-900 dark:border-gray-400 px-4 py-2 font-semibold transition-colors hover:bg-gray-900 dark:bg-gray-800 hover:text-white dark:hover:text-white cursor-pointer"
           >
             Load More...
+          </button>
+        </div>
+      ) : (
+        <div className="flex justify-center mt-8">
+          <button
+            type="button"
+            onClick={() => setVisibleProductCount(16)}
+            className="rounded-full border border-gray-900 dark:border-gray-400 px-4 py-2 font-semibold transition-colors hover:bg-gray-900 dark:bg-gray-800 hover:text-white dark:hover:text-white cursor-pointer"
+          >
+            Less All
           </button>
         </div>
       )}
